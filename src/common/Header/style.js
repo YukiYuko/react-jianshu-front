@@ -83,6 +83,7 @@ const InputBox = styled.div`
       top: 100%;
       left: 0;
       box-shadow: 0 0 4px -2px rgba(0,0,0,0.4);
+      background-color: #fff;
       &-head {
         color: ${grayColor};
         cursor: pointer;

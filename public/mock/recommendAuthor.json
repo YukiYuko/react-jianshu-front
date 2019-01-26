@@ -1,0 +1,51 @@
+{
+  "code": 200,
+  "users": [
+    {
+      "id": 4287007,
+      "slug": "f666aefcc318",
+      "nickname": "晖宗聊绘画",
+      "avatar_source": "http://upload.jianshu.io/users/upload_avatars/4287007/b7b9c810-069e-4385-aec7-1823e94ee43d.jpg",
+      "total_likes_count": 2114,
+      "total_wordage": 169797,
+      "is_following_user": false
+    },
+    {
+      "id": 7290998,
+      "slug": "4062aaeba322",
+      "nickname": "念远怀人",
+      "avatar_source": "http://upload.jianshu.io/users/upload_avatars/7290998/f64f5ef0-def0-4b26-beb3-b9d88f060ba0.jpg",
+      "total_likes_count": 9086,
+      "total_wordage": 636024,
+      "is_following_user": false
+    },
+    {
+      "id": 6305091,
+      "slug": "4ce7aca123a3",
+      "nickname": "只有一半影子的人",
+      "avatar_source": "http://upload.jianshu.io/users/upload_avatars/6305091/dc5b863a-26fc-47df-af32-18177f6cc9ff.jpg",
+      "total_likes_count": 949,
+      "total_wordage": 254409,
+      "is_following_user": false
+    },
+    {
+      "id": 5796592,
+      "slug": "86b81ed8e35c",
+      "nickname": "乔汉童",
+      "avatar_source": "http://upload.jianshu.io/users/upload_avatars/5796592/73837104-47e5-4fe9-a5be-054bd50b06f7.jpg",
+      "total_likes_count": 1740,
+      "total_wordage": 480551,
+      "is_following_user": false
+    },
+    {
+      "id": 3950651,
+      "slug": "ca5b9d6f94dc",
+      "nickname": "三儿王屿",
+      "avatar_source": "http://upload.jianshu.io/users/upload_avatars/3950651/acfaa0ce-42fe-424a-b7c8-9a0136fb96ec.jpg",
+      "total_likes_count": 2917,
+      "total_wordage": 234638,
+      "is_following_user": false
+    }
+  ],
+  "total_count": 10990
+}

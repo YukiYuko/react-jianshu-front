@@ -4,17 +4,20 @@ import {connect} from "react-redux";
 import LogoComponent from "./Logo";
 import NavComponent from "./Nav";
 import LoginComponent from "./Login";
+import {Affix} from "antd";
 class HeaderComponent extends Component {
     render() {
         console.log(this.props.user)
         return (
-            <HeadWarper>
-                <div className="warp1440">
-                    <LogoComponent/>
-                    <NavComponent/>
-                    <LoginComponent/>
-                </div>
-            </HeadWarper>
+            <Affix offsetTop={0}>
+                <HeadWarper>
+                    <div className="warp1440">
+                        <LogoComponent/>
+                        <NavComponent/>
+                        <LoginComponent/>
+                    </div>
+                </HeadWarper>
+            </Affix>
         )
     }
 }

@@ -1,0 +1,24 @@
+{
+  "code": 200,
+  "data": [
+    {
+      "url": "",
+      "src": "http://localhost:3000/images/1.jpg"
+    },
+    {
+      "url": "",
+      "src": "http://localhost:3000/images/2.png"
+    },
+    {
+      "url": "",
+      "src": "http://localhost:3000/images/3.jpg"
+    },
+    {
+      "url": "",
+      "src": "http://localhost:3000/images/4.jpg"
+    },{
+      "url": "",
+      "src": "http://localhost:3000/images/5.jpg"
+    }
+  ]
+}

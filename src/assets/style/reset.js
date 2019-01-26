@@ -54,6 +54,9 @@ export default createGlobalStyle`
     input {
         outline: none;
     }
+    img {
+        vertical-align: middle;
+    }
     .warp960, .warp1440 {
         position: relative;
         margin: auto;

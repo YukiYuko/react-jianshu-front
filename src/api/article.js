@@ -11,7 +11,18 @@ const article = {
     hotList () {
         return ajax.get(`${base.local}/mock/hot.json`);
     },
-    // 其他接口…………
+    // banner
+    banner () {
+        return ajax.get(`${base.local}/mock/banner.json`);
+    },
+    // 推荐作者
+    recommendAuthor () {
+        return  ajax.get(`${base.local}/mock/recommendAuthor.json`);
+    },
+    // 首页数据
+    articleList () {
+        return  ajax.get(`${base.local}/mock/articleList.json`);
+    }
 };
 
 export default article;
