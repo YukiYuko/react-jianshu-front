@@ -58,7 +58,7 @@ export const Banner = styled.div`
     }
 `;
 // 专题相关
-export const Topic = styled.a`
+export const Topic = styled.div`
     height: 50px;
     line-height: 1;
     display: block;
