@@ -1,0 +1,105 @@
+.uz-modal{
+  position: fixed;
+  text-align: center;
+  visibility: visible;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 999;
+  overflow: hidden;
+  transform: translateZ(0);
+  animation: fade-in .3s ease forwards;
+  &-bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.6);
+  }
+  &-fixer {
+    position: relative;
+    margin: 12% auto 0;
+    display: inline-block;
+    width: auto;
+    transition: margin .3s;
+    animation: yd-kf-zoom-in .3s ease forwards;
+  }
+  &-outer {
+    background: #2e3846;
+    min-width: 400px;
+    height: auto;
+    text-align: center;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
+  }
+  &-content {
+    font-size: 14px;
+    color: #fff;
+  }
+  &-close {
+    text-align: right;
+    padding: 10px 15px 0 0;
+    cursor: pointer;
+  }
+  &-text {
+    padding: 20px 0 30px;
+  }
+  &-toolbar {
+    font-size: 14px;
+    color: #fff;
+    padding: 0 30px 20px;
+  }
+  &-button {
+    outline: 0;
+    display: block;
+    text-decoration: none!important;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.428571429;
+    color: #fff;
+    background-color: #795aac;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-clip: padding-box;
+    user-select: none;
+    transition: all ease .3s;
+    flex: 1;
+    margin: 0 10px;
+    &.danger {
+      background-color: #fb4858;
+    }
+    &:hover {
+      background-color: #3e4b5d;
+      color: #ffffff;
+    }
+  }
+}
+
+@keyframes yd-kf-zoom-in {
+  from {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
