@@ -62,7 +62,7 @@ export const Topic = styled.div`
     height: 50px;
     line-height: 1;
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
     &:nth-child(1) {
         margin-top: -4px;
     }
@@ -75,7 +75,6 @@ export const Topic = styled.div`
 // 推荐作者
 export const RecommendAuthor = styled.div`
     min-height: 300px;
-    margin-top: 30px;
     color: ${grayColor};
     .author-head {
         margin-bottom: 15px;

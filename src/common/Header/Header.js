@@ -7,7 +7,7 @@ import LoginComponent from "./Login";
 import {Affix} from "antd";
 class HeaderComponent extends Component {
     render() {
-        console.log(this.props.user)
+        console.log(this.props.user);
         return (
             <Affix offsetTop={0}>
                 <HeadWarper>

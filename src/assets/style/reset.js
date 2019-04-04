@@ -54,6 +54,9 @@ export default createGlobalStyle`
     input {
         outline: none;
     }
+    //input:-webkit-autofill {
+    //  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    //}
     img {
         vertical-align: middle;
     }

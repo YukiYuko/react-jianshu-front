@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import WarpIndex from "../../common/WarpIndex";
 import {Trending} from "./style";
+import Header from "../../common/Header/Header";
 class TrendingComponent extends Component {
   constructor(props) {
     super(props);
@@ -23,13 +24,16 @@ class TrendingComponent extends Component {
   render() {
     const {headImage} = this.state;
     return (
-      <WarpIndex>
-        <Trending className="trending">
-          <div className="trending-head">
-            <img src={headImage} alt=""/>
-          </div>
-        </Trending>
-      </WarpIndex>
+      <div className="trending">
+        <Header/>
+        <WarpIndex>
+          <Trending>
+            <div className="trending-head">
+              <img src={headImage} alt=""/>
+            </div>
+          </Trending>
+        </WarpIndex>
+      </div>
     );
   }
 }

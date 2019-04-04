@@ -18,7 +18,7 @@ const Modal = (props) => createPortal(
       <div className="uz-modal-outer">
         {
           props.close && <div className="uz-modal-close">
-            <img onClick={() => props.closeFun()} src={require("./close.png")} alt="关闭"/>
+            <img onClick={props.closeFun} src={require("./close.png")} alt="关闭"/>
           </div>
         }
         <div className="uz-modal-content">
@@ -41,7 +41,7 @@ const Modal = (props) => createPortal(
 Modal.propTypes = {
   type: PropTypes.string,
   close: PropTypes.bool,
-  closeFun: PropTypes.fun
+  closeFun: PropTypes.func
 };
 Modal.defaultProps = {
   type: "confirm",

@@ -1,0 +1,40 @@
+.loading-view {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10000;
+  .authent {
+    background: #35394a;
+    background: -webkit-gradient(linear,left bottom,right top,color-stop(0%,#35394a),color-stop(100%,#1f222e));
+    background: -webkit-linear-gradient(45deg,#35394a 0%,#1f222e 100%);
+    background: linear-gradient(45deg,#35394a 0%,#1f222e 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a',endColorstr='#1f222e',GradientType=1 );
+    position: absolute;
+    left: 0;
+    right: 90px;
+    margin: auto;
+    width: 240px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 20px 70px;
+    top: 200px;
+    bottom: 0;
+    height: 110px;
+    z-index: 999;
+    animation: left-in 0.3s ease-in-out forwards;
+  }
+}
+@keyframes left-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    display: block;
+    right: -320px;
+  }
+}
