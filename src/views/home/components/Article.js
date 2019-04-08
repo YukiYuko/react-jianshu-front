@@ -42,7 +42,7 @@ class ArticleComponent extends Component {
         <div className="article-list">
           {
             articles.map((item) => (
-              <Link to="/post" target="_blank" key={item.objectId}>
+              <Link to="/post/1" target="_blank" key={item.objectId}>
                 <div className="article-list-item">
                   <div className="article-list-item-left">
                     <div className="title">

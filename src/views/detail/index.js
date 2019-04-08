@@ -1,16 +1,16 @@
 import React, {Component} from "react";
 import {DetailWarp} from "./style";
-import Header from "../../common/Header/Header";
+import Back from "../../common/Back";
 
 class DetailComponent extends Component {
   render() {
+    const {history} = this.props;
     return (
-      <div className="post">
-        <Header/>
-        <DetailWarp>
-          detail
-        </DetailWarp>
-      </div>
+      <DetailWarp>
+        <Back back={history.goBack}/>
+        <div className="detail">
+        </div>
+      </DetailWarp>
     );
   }
 }

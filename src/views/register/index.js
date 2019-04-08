@@ -36,10 +36,13 @@ class Register extends React.Component {
         return false;
       }
     }
+    this.props.reg();
     user.register(this.state.formData).then(() => {
       tips("注册成功，请登录。", "success");
       this.initData();
       this.props.close();
+    }).catch(() => {
+      this.props.closeLoading();
     })
   };
   initData() {

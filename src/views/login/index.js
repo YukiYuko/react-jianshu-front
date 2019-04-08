@@ -5,6 +5,9 @@ import Loading from "../../common/Loading";
 import Register from "../register";
 import { CSSTransition } from 'react-transition-group';
 import cls from "classnames";
+import {tips} from "../../actions";
+import user from "../../api/user";
+import {setStorage} from "../../untils/localstorage";
 
 class LoginView extends Component {
   constructor(props) {
@@ -13,20 +16,43 @@ class LoginView extends Component {
     this.state = {
       loading: false,
       show: false,
+      email: "",
+      password: ""
     }
   }
 
   toggle () {
     this.setState((prev) => ({
-      loading: !prev.loading
-    }))
+      loading: true
+    }));
+    user.login({email: this.state.email, password: this.state.password}).then((res) => {
+      tips("登录成功!");
+      setStorage("token", res.data.token);
+      this.props.history.push("/");
+      this.closeLoading();
+    }).catch(() => {
+      this.closeLoading();
+    })
   }
+  closeLoading = () => {
+    setTimeout(() => {
+      this.setState((prev) => ({
+        loading: false
+      }));
+    }, 1000);
+  };
   openRegister = () => {
     this.setState({show: true})
   };
   closeRegister = () => {
-    this.setState({show: false})
+    this.setState({show: false, loading: false})
   };
+  reg = () => {
+    this.setState({loading: true})
+  };
+
+  componentDidMount() {
+  }
 
   render() {
     const {loading, show} = this.state;
@@ -43,7 +69,7 @@ class LoginView extends Component {
           onEnter={() => this.setState({show: true})}
           onExited={() => this.setState({show: false})}
         >
-          <Register close={this.closeRegister}/>
+          <Register reg={this.reg} close={this.closeRegister} closeLoading={this.closeLoading}/>
         </CSSTransition>
         <div className={cls('login-view-box', {'loading': !!loading || show})}>
           <div className="login-view-title flex justify-between">
@@ -55,13 +81,13 @@ class LoginView extends Component {
               <div>
                 <Icon type="user"/>
               </div>
-              <input type="text" placeholder="用户名"/>
+              <input onChange={(e) => this.setState({email: e.target.value})} type="text" placeholder="用户名"/>
             </div>
             <div className="login-view-form-item">
               <div>
                 <Icon type="lock"/>
               </div>
-              <input type="text" placeholder="密码"/>
+              <input onChange={(e) => this.setState({password: e.target.value})} type="password" placeholder="密码"/>
             </div>
           </div>
           <div className="login-view-btn flex justify-between">

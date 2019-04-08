@@ -6,6 +6,7 @@ import axios from 'axios';
 // import router from '../router';
 // import store from '../store/index';
 import { notification  } from 'antd';
+import { getStorage  } from '../untils/localstorage';
 
 /**
  * 提示函数
@@ -29,7 +30,7 @@ const toLogin = () => {
     //         redirect: router.currentRoute.fullPath
     //     }
     // });
-}
+};
 
 /**
  * 请求失败后的错误统一处理
@@ -40,6 +41,7 @@ const errorHandle = (status, other) => {
     switch (status) {
         // 401: 未登录状态，跳转登录页
         case 401:
+            tip('token验证失败..');
             toLogin();
             break;
         // 403 token过期
@@ -74,16 +76,32 @@ instance.interceptors.request.use(
         // 但是即使token存在，也有可能token是过期的，所以在每次的请求头中携带token
         // 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码
         // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
-        // const token = store.state.token;
-        // token && (config.headers.Authorization = token);
+        const token = getStorage("token");
+        token && (config.headers.Authorization = token);
         return config;
     },
-    error => Promise.error(error))
+    error => Promise.error(error));
 
 // 响应拦截器
 instance.interceptors.response.use(
     // 请求成功
-    res => res.status === 200 ? Promise.resolve(res.data) : Promise.reject(res),
+    res => {
+      if (res.status === 200) {
+        if (res.data.code === 200) {
+          return Promise.resolve(res.data)
+        } else {
+          tip(res.data.msg);
+          if (res.data.code === 301) {
+            tip("token");
+            window.location.href = "/login";
+          }
+          return Promise.reject(res)
+        }
+      } else {
+        tip("系统错误---");
+        return Promise.reject(res)
+      }
+    },
     // 请求失败
     error => {
         const { response } = error;
