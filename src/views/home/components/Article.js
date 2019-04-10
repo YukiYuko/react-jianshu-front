@@ -26,13 +26,17 @@ class ArticleComponent extends Component {
     }
   }
 
-  componentDidMount() {
+  // 获取列表
+  getData = () => {
     article.articleList().then((res) => {
-      console.log(res);
       this.setState(() => ({
-        articles: res.data.entrylist
+        articles: res.data.data
       }));
     })
+  };
+
+  componentDidMount() {
+    this.getData();
   }
 
   render() {
@@ -42,7 +46,7 @@ class ArticleComponent extends Component {
         <div className="article-list">
           {
             articles.map((item) => (
-              <Link to="/post/1" target="_blank" key={item.objectId}>
+              <Link to={`/post/${item.id}`} target="_blank" key={item.id}>
                 <div className="article-list-item">
                   <div className="article-list-item-left">
                     <div className="title">
@@ -52,11 +56,11 @@ class ArticleComponent extends Component {
                       {
                         item.original && <span className="original">专栏</span>
                       }
-                      <span>{item.user.username}</span>
+                      <span>{item.author.username}</span>
                       <span>{getDate(item.createdAt)}</span>
                       {
-                        item.tags.map((tag) => (
-                          <span key={tag.title}>{tag.title}</span>
+                        item.label.split(",").map((tag, index) => (
+                          <span key={index}>{tag}</span>
                         ))
                       }
                     </div>

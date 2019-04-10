@@ -6,7 +6,7 @@ const Back = (props) => (
       <i className="iconfont icon-back"/>
     </div>
     <div className="center box1">
-      这是标题哦
+      {props.title}
     </div>
     <div className="right"/>
   </div>

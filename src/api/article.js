@@ -6,6 +6,7 @@ import base from './base'; // 导入接口域名列表
 import ajax from '../ajax'; // 导入http中创建的axios实例
 import qs from 'qs'; // 根据需求是否导入qs模块
 
+const prefix = "article";
 const article = {
   // 热门搜索
   hotList(params) {
@@ -20,8 +21,16 @@ const article = {
     return ajax.get(`${base.local}/mock/recommendAuthor.json`);
   },
   // 首页数据
-  articleList() {
-    return ajax.get(`${base.local}/mock/articleList.json`);
+  // articleList() {
+  //   return ajax.get(`${base.local}/mock/articleList.json`);
+  // },
+  // 文章详情
+  articleDetail(id) {
+    return ajax.post(`${base.server}/${prefix}/detail`, qs.stringify({id}));
+  },
+  // 文章列表
+  articleList(params) {
+    return ajax.post(`${base.server}/${prefix}/list`, qs.stringify(params));
   },
   // post提交
   // login(params) {
