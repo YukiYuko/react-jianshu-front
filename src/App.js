@@ -6,8 +6,24 @@ import HomeComponent from "./views/home";
 import DetailComponent from "./views/detail";
 import TrendingComponent from "./views/trending";
 import LoginComponent from "./views/login";
+import user from "./api/user";
+import {set_user} from "./store/modules/user/actions";
+import {bindActionCreators} from "redux";
+import connect from "react-redux/es/connect/connect";
+import {getStorage} from "./untils/localstorage";
 
 class App extends Component {
+  componentDidMount() {
+    let token = getStorage("token");
+    if (token) {
+      this.getUser();
+    }
+  }
+  getUser = () => {
+    user.getUser().then((res) => {
+      this.props.set_user(res.data);
+    })
+  };
   render() {
     return (
       <div className="App">
@@ -26,4 +42,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+const mapDispatchToProps = {} = (dispatch) => {
+  return bindActionCreators({
+    set_user
+  }, dispatch)
+};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

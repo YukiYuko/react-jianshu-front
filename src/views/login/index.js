@@ -7,7 +7,8 @@ import { CSSTransition } from 'react-transition-group';
 import cls from "classnames";
 import {tips} from "../../actions";
 import user from "../../api/user";
-import {setStorage} from "../../untils/localstorage";
+import {setStorage, getStorage} from "../../untils/localstorage";
+import {connect} from "react-redux";
 
 class LoginView extends Component {
   constructor(props) {
@@ -18,7 +19,9 @@ class LoginView extends Component {
       show: false,
       email: "",
       password: ""
-    }
+    };
+    let token = getStorage("token");
+    console.log(token);
   }
 
   toggle () {
@@ -123,4 +126,10 @@ class LoginView extends Component {
   }
 }
 
-export default LoginView
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+const mapDispatchToProps = () => ({
+
+});
+export default connect(mapStateToProps, mapDispatchToProps)(LoginView)

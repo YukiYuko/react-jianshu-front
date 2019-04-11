@@ -5,26 +5,24 @@ import LogoComponent from "./Logo";
 import NavComponent from "./Nav";
 import LoginComponent from "./Login";
 import {Affix} from "antd";
+
 class HeaderComponent extends Component {
-    render() {
-        console.log(this.props.user);
-        return (
-            <Affix offsetTop={0}>
-                <HeadWarper>
-                    <div className="warp1440">
-                        <LogoComponent/>
-                        <NavComponent/>
-                        <LoginComponent/>
-                    </div>
-                </HeadWarper>
-            </Affix>
-        )
-    }
+  render() {
+    const {user} = this.props;
+    return (
+      <Affix offsetTop={0}>
+        <HeadWarper>
+          <div className="warp1440">
+            <LogoComponent/>
+            <NavComponent/>
+            <LoginComponent user={user}/>
+          </div>
+        </HeadWarper>
+      </Affix>
+    )
+  }
 }
 const mapStateToProps = (state) => ({
-    user: state.user
+  user: state.user
 });
-const mapDispatchToProps = () => ({
-
-});
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);
+export default connect(mapStateToProps)(HeaderComponent);

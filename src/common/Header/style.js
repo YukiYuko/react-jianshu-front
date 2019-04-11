@@ -112,6 +112,22 @@ const LoginRegBox = styled.div`
     position: absolute;
     right: 0;
     top: 0;
+    height: 100%;
+    .is_login {
+      height: 100%;
+      position: relative;
+      .user_info {
+        height: 100%;
+        width: 120px;
+        cursor: pointer;
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+      }
+    }
 `;
 // 登录
 const Login = styled.div`
@@ -145,11 +161,11 @@ const Reg = styled.div`
      }
 `;
 export {
-    HeadWarper,
-    Logo,
-    Nav,
-    InputBox,
-    LoginRegBox,
-    Login,
-    Reg
+  HeadWarper,
+  Logo,
+  Nav,
+  InputBox,
+  LoginRegBox,
+  Login,
+  Reg
 }
