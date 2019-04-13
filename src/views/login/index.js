@@ -31,7 +31,7 @@ class LoginView extends Component {
     user.login({email: this.state.email, password: this.state.password}).then((res) => {
       tips("登录成功!");
       setStorage("token", res.data.token);
-      this.props.history.push("/");
+      window.location.href = "/";
       this.closeLoading();
     }).catch(() => {
       this.closeLoading();

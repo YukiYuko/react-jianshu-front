@@ -8,7 +8,9 @@ const Back = (props) => (
     <div className="center box1">
       {props.title}
     </div>
-    <div className="right"/>
+    <div className="right">
+      {props.right}
+    </div>
   </div>
 );
 export default Back;

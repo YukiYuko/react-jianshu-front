@@ -72,4 +72,16 @@ export default createGlobalStyle`
     .warp1440 {
         max-width: 1440px; 
     }
+    .hover_img {
+      position: relative;
+      overflow: hidden;
+      &:hover {
+        img {
+          transform: scale(1.2);
+        }
+      }
+      img {
+        transition: all 0.5s ease-in-out;
+      }
+    }
 `;

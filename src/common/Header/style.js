@@ -10,13 +10,13 @@ const HeadWarper = styled.div`
     height: 58px;
     border-bottom: 1px solid #f0f0f0;
     background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 `;
 //
 const Logo = styled.a`
     height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
     img{
       height: 100%;
     }
@@ -109,7 +109,7 @@ const InputBox = styled.div`
 `;
 // 登录注册
 const LoginRegBox = styled.div`
-    position: absolute;
+    position: relative;
     right: 0;
     top: 0;
     height: 100%;

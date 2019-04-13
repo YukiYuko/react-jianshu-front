@@ -4,8 +4,14 @@ import {connect} from "react-redux";
 import {get_hot_list} from "../../store/modules/article/actions";
 import {VelocityComponent} from "velocity-react";
 import system from "../../api/system";
+import {Link} from "react-router-dom";
+import classNames from "classnames";
+import PropTypes from "prop-types";
 
 class NavComponent extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
   constructor(props) {
     super(props);
     this.changeHot = this.changeHot.bind(this);
@@ -55,10 +61,12 @@ class NavComponent extends Component {
   componentDidMount() {
     this.props.get_hot_list();
     this.getCategory();
+    console.log(this.context)
   }
   render() {
     const {hotList} = this.props.article;
     const {index, focused, mouseIn, menu} = this.state;
+    const {route} = this.context.router;
     let totalPage = Math.ceil(hotList.length / 10);
     let splitList = [];
     if (hotList.length) {
@@ -85,10 +93,10 @@ class NavComponent extends Component {
     return (
       <div className="warp960 flex">
         <Nav className="flex">
-          <a className="active" href="/">首页</a>
+          <a className={classNames({'active': !route.match.params.type})} href="/">首页</a>
           {
             menu.map((item) => (
-              <a href="/" key={item.id}>{item.name}</a>
+              <a className={classNames({ 'active': route.match.params.type * 1 === item.id })} href={`/category/${item.id}`} key={item.id}>{item.name}</a>
             ))
           }
         </Nav>

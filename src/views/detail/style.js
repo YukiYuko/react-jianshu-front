@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {grayColor} from "../../assets/style/var";
 
 const Warp960 = styled.div`
   max-width: 800px;
@@ -8,6 +7,7 @@ const Warp960 = styled.div`
 `;
 
 const DetailWarp = styled.div`
+  padding-bottom: 50px;
   .sub_head {
     padding: 20px 0;
     text-align: right;

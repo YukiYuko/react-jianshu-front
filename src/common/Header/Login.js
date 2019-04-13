@@ -14,7 +14,7 @@ class LoginComponent extends Component {
   loginOut = () => {
     console.log(this.props);
     removeStorage("token");
-    window.location.href = "login";
+    window.location.href = "/login";
   };
 
   render() {

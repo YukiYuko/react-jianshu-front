@@ -59,7 +59,7 @@ class ArticleComponent extends Component {
                       <span>{item.author.username}</span>
                       <span>{getDate(item.createdAt)}</span>
                       {
-                        item.label.split(",").map((tag, index) => (
+                        item.label.map((tag, index) => (
                           <span key={index}>{tag}</span>
                         ))
                       }

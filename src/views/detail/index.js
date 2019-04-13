@@ -5,11 +5,27 @@ import article from "../../api/article";
 import { BackTop, Tag } from 'antd';
 import Button from "../../common/Button";
 import {connect} from "react-redux";
+import comment from "../../api/comment";
+import {tips} from "../../actions";
+import Login from "../../common/Header/Login";
 
 class DetailComponent extends Component {
   state = {
     id: "",
-    detail: {}
+    detail: {},
+    content: "",
+    comments: [],
+    total: 0
+  };
+  // 获取评论列表
+  getComment = () => {
+    comment.commentList({postId: this.state.id}).then((res) => {
+      let comments = [...this.state.comments, ...res.data.data];
+      this.setState({
+        comments,
+        total: res.data.count
+      })
+    })
   };
   // 获取详情
   getData = () => {
@@ -19,20 +35,47 @@ class DetailComponent extends Component {
       })
     })
   };
-
+  // 评论
+  commentHandle = () => {
+    let params = {
+      postId: this.state.id,
+      uid: this.props.user.id,
+      content: this.state.content
+    };
+    if (this.state.content.match(/^\s*$/)) {
+      tips("请输入点儿东西吧~","error");
+      return false;
+    }
+    comment.commentCreate(params).then((res) => {
+      let data = {...res.data, user: this.props.user};
+      let comments = [data,...this.state.comments];
+      this.setState({
+        comments,
+        content: ""
+      })
+    })
+  };
+  // 绑定输入值
+  changeHandle = (e) => {
+    let v = e.target.value;
+    this.setState({
+      content: v
+    })
+  };
   componentDidMount() {
     this.setState({
       id: this.props.match.params.id
     }, () => {
       this.getData();
+      this.getComment();
     });
   }
 
   render() {
     const {history, user} = this.props;
-    const {detail} = this.state;
+    const {detail, content, comments} = this.state;
 
-    const DiscussPublish = () => (
+    const DiscussPublish = (
       <div className="discuss-publish">
         <div className="discuss-publish-head">
           <em>377 </em>
@@ -46,16 +89,16 @@ class DetailComponent extends Component {
           </div>
           <div className="right box1">
             <div className="input-box">
-              <textarea placeholder="说点儿什么吧~"></textarea>
+              <textarea value={content} onChange={this.changeHandle} placeholder="说点儿什么吧~"/>
             </div>
             <div className="submit-box">
-              <Button type="primary">评论</Button>
+              <Button type="primary" onClick={this.commentHandle}>评论</Button>
             </div>
           </div>
         </div>
       </div>
     );
-    const CommentItem = () => (
+    const CommentItem = ({item}) => (
       <div className="discuss-comment-item flex">
         <div className="left">
           {/*{*/}
@@ -63,8 +106,8 @@ class DetailComponent extends Component {
           {/*}*/}
         </div>
         <div className="right box1">
-          <h3>醉柔男儿心 <span>IT之家四川成都网友 2019-4-10 21:23:43</span></h3>
-          <p>小米的自主研发能力也是很厉害</p>
+          <h3>{item.user.username} <span>IT之家四川成都网友 {item.createdAt}</span></h3>
+          <p>{item.content}</p>
           <div className="reply flex justify-between items-center">
             <div className="reply-comment">
               回复 <span>• 26条回复 <i className="iconfont icon-down"></i></span>
@@ -84,7 +127,7 @@ class DetailComponent extends Component {
 
     return (
       <DetailWarp>
-        <Back back={history.goBack} title={detail.title}/>
+        <Back back={history.goBack} title={detail.title} right={<Login user={user}/>}/>
         <Warp960>
           <div className="sub_head">
             {
@@ -107,13 +150,19 @@ class DetailComponent extends Component {
           </div>
           {/*赞*/}
           <div className="like">
-
+            {/*<input value={content} onChange={this.changeHandle} placeholder="说点儿什么吧~"/>*/}
           </div>
           {/*评论 */}
           <div className="discuss">
-            <DiscussPublish/>
+            {
+              DiscussPublish
+            }
             <div className="discuss-comment">
-              <CommentItem/>
+              {
+                comments.map((item, index) => (
+                  <CommentItem key={index} item={item}/>
+                ))
+              }
             </div>
           </div>
         </Warp960>
