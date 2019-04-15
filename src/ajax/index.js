@@ -25,7 +25,7 @@ const tip = (msg) => {
  */
 const toLogin = () => {
   removeStorage("token");
-  window.location.href = "login";
+  window.location.href = "/login";
 };
 
 /**

@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import comment from "../../api/comment";
 import {tips} from "../../actions";
 import Login from "../../common/Header/Login";
+import LoadMore from "../components/loadmore";
 
 class DetailComponent extends Component {
   state = {
@@ -15,16 +16,67 @@ class DetailComponent extends Component {
     detail: {},
     content: "",
     comments: [],
-    total: 0
+    total: 0,
+    page: 1,
+    loading: true,
+    hasMore: true,
+    text: "加载中...",
+    like: false
+  };
+  // 点赞
+  like = () => {
+    this.setState((prev) => ({
+      like: !prev.like
+    }), () => {
+      let status = this.state.like ? 1 : 0;
+      let params = {
+        postId: this.state.id,
+        uid: this.props.user.id,
+        status
+      };
+      article.articleLike(params).then((res) => {
+        console.log(res)
+      })
+    });
   };
   // 获取评论列表
   getComment = () => {
-    comment.commentList({postId: this.state.id}).then((res) => {
-      let comments = [...this.state.comments, ...res.data.data];
+    let {comments, total, loading} = this.state;
+    if (loading) {
+      return false
+    }
+    if (comments.length >= total) {
       this.setState({
-        comments,
-        total: res.data.count
-      })
+        hasMore: false,
+        text: "没有更多啦"
+      });
+      return false;
+    }
+    this.setState({
+      loading: true,
+      text: "加载中..."
+    });
+    this._getComment();
+  };
+  _getComment = () => {
+    comment.commentList({postId: this.state.id, page: this.state.page}).then((res) => {
+      setTimeout(() => {
+        let comments = [...this.state.comments, ...res.data.data];
+        let page = this.state.page + 1;
+        this.setState({
+          comments,
+          total: res.data.count,
+          page,
+          loading: false,
+          text: "加载更多"
+        });
+        if (comments.length >= res.data.count) {
+          this.setState({
+            hasMore: false,
+            text: "没有更多啦"
+          });
+        }
+      }, 1000);
     })
   };
   // 获取详情
@@ -49,9 +101,11 @@ class DetailComponent extends Component {
     comment.commentCreate(params).then((res) => {
       let data = {...res.data, user: this.props.user};
       let comments = [data,...this.state.comments];
+      let total = this.state.total + 1;
       this.setState({
         comments,
-        content: ""
+        content: "",
+        total
       })
     })
   };
@@ -67,18 +121,18 @@ class DetailComponent extends Component {
       id: this.props.match.params.id
     }, () => {
       this.getData();
-      this.getComment();
+      this._getComment();
     });
   }
 
   render() {
     const {history, user} = this.props;
-    const {detail, content, comments} = this.state;
+    const {detail, content, comments, total, text, like} = this.state;
 
     const DiscussPublish = (
       <div className="discuss-publish">
         <div className="discuss-publish-head">
-          <em>377 </em>
+          <em>{total} </em>
           条评论
         </div>
         <div className="discuss-publish-body flex">
@@ -101,16 +155,14 @@ class DetailComponent extends Component {
     const CommentItem = ({item}) => (
       <div className="discuss-comment-item flex">
         <div className="left">
-          {/*{*/}
-            {/*user.id && <img src={user.avatar} alt={user.username}/>*/}
-          {/*}*/}
+          <img src={item.user.avatar} alt={item.user.username}/>
         </div>
         <div className="right box1">
           <h3>{item.user.username} <span>IT之家四川成都网友 {item.createdAt}</span></h3>
           <p>{item.content}</p>
           <div className="reply flex justify-between items-center">
             <div className="reply-comment">
-              回复 <span>• 26条回复 <i className="iconfont icon-down"></i></span>
+              回复 <span>• 26条回复 <i className="iconfont icon-down"/></span>
             </div>
             <div className="reply-box">
               <div className="heart">
@@ -150,6 +202,11 @@ class DetailComponent extends Component {
           </div>
           {/*赞*/}
           <div className="like">
+            <div className="anim-icon anim-icon-md heart">
+              <input type="checkbox" checked={like} onChange={this.like} id="heart"/>
+              <label htmlFor="heart"/>
+            </div>
+            <div className="like-number">123</div>
             {/*<input value={content} onChange={this.changeHandle} placeholder="说点儿什么吧~"/>*/}
           </div>
           {/*评论 */}
@@ -163,6 +220,7 @@ class DetailComponent extends Component {
                   <CommentItem key={index} item={item}/>
                 ))
               }
+              <LoadMore text={text} onClick={this.getComment}/>
             </div>
           </div>
         </Warp960>

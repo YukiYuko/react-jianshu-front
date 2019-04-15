@@ -32,10 +32,10 @@ const article = {
   articleList(params) {
     return ajax.post(`${base.server}/${prefix}/list`, qs.stringify(params));
   },
-  // post提交
-  // login(params) {
-  //   return ajax.post(`${base.sq}/accesstoken`, qs.stringify(params));
-  // }
+  // 文章点赞
+  articleLike(params) {
+    return ajax.post(`${base.server}/${prefix}/like`, qs.stringify(params));
+  }
 };
 
 export default article;
