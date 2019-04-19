@@ -25,8 +25,8 @@ const article = {
   //   return ajax.get(`${base.local}/mock/articleList.json`);
   // },
   // 文章详情
-  articleDetail(id) {
-    return ajax.post(`${base.server}/${prefix}/detail`, qs.stringify({id}));
+  articleDetail(id, uid = "") {
+    return ajax.post(`${base.server}/${prefix}/detail`, qs.stringify({id, uid}));
   },
   // 文章列表
   articleList(params) {

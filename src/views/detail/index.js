@@ -81,7 +81,7 @@ class DetailComponent extends Component {
   };
   // 获取详情
   getData = () => {
-    article.articleDetail(this.state.id).then((res) => {
+    article.articleDetail(this.state.id, this.props.user.id).then((res) => {
       this.setState({
         detail: res.data
       })
@@ -120,6 +120,7 @@ class DetailComponent extends Component {
     this.setState({
       id: this.props.match.params.id
     }, () => {
+      console.log(this.props);
       this.getData();
       this._getComment();
     });

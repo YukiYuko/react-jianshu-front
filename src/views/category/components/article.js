@@ -49,11 +49,11 @@ class Article extends React.PureComponent {
           <div className="right">
             <span>
               <i className="iconfont icon-dianzan"/>
-              <em> 26</em>
+              <em> {item.likes.length}</em>
             </span>
             <span>
               <i className="iconfont icon-liuyan"/>
-              <em> 356</em>
+              <em> {item.comments.length}</em>
             </span>
           </div>
         </div>
