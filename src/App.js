@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import HomeComponent from "./views/home";
 import DetailComponent from "./views/detail";
 import TrendingComponent from "./views/trending";
+import SearchComponent from "./views/search";
 import LoginComponent from "./views/login";
 import CategoryComponent from "./views/category";
 import user from "./api/user";
@@ -36,6 +37,7 @@ class App extends Component {
             <Route exact path="/post/:id" component={DetailComponent}/>
             <Route exact path="/category/:type" component={CategoryComponent}/>
             <Route exact path="/trending/:type" component={TrendingComponent}/>
+            <Route exact path="/search" component={SearchComponent}/>
             <Route exact path="/login" component={LoginComponent}/>
           </div>
         </Router>

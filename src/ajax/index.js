@@ -102,6 +102,7 @@ instance.interceptors.response.use(
   // 请求失败
   error => {
     const {response} = error;
+    console.log(response)
     if (response) {
       // 请求已发出，但是不在2xx的范围
       errorHandle(response.status, response.data.message);
@@ -112,6 +113,8 @@ instance.interceptors.response.use(
       // network状态在app.vue中控制着一个全局的断网提示组件的显示隐藏
       // 关于断网组件中的刷新重新获取数据，会在断网组件中说明
       // store.commit('changeNetwork', false);
+      tip('请检查网络是否正常');
+      return Promise.reject("请求错误");
     }
   });
 

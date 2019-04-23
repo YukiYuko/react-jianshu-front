@@ -2,9 +2,8 @@ import React, {Component} from "react";
 import {InputBox, Nav} from "./style";
 import {connect} from "react-redux";
 import {get_hot_list} from "../../store/modules/article/actions";
-import {VelocityComponent} from "velocity-react";
+import { CSSTransition } from 'react-transition-group';
 import system from "../../api/system";
-import {Link} from "react-router-dom";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
@@ -53,6 +52,7 @@ class NavComponent extends Component {
   // 获取文章分类
   getCategory() {
     system.categoryList().then((res) => {
+      console.log(1111111111111111)
       this.setState({
         menu: res.data
       })
@@ -75,21 +75,6 @@ class NavComponent extends Component {
         splitList.push(data)
       }
     }
-    let animationProps;
-    // 这里似乎有点bug
-    if (mouseIn || focused) {
-      animationProps = {
-        animation: {
-          opacity: 1, translateY: "0px", zIndex: 1
-        }
-      };
-    } else {
-      animationProps = {
-        animation: {
-          opacity: 0, translateY: "-20px", zIndex: -1
-        }
-      }
-    }
     return (
       <div className="warp960 flex">
         <Nav className="flex">
@@ -100,10 +85,19 @@ class NavComponent extends Component {
             ))
           }
         </Nav>
+        {/*
+
         <InputBox>
           <input type="text" onFocus={() => this.changeState(true)} onBlur={() => this.changeState(false)} placeholder="搜索"/>
           <i className="iconfont icon-sousuo"/>
-          <VelocityComponent {...animationProps} duration={200}>
+          <CSSTransition
+            in={focused || mouseIn}
+            timeout={300}
+            classNames="slide-down"
+            unmountOnExit
+            onEnter={() => this.setState({show: true})}
+            onExited={() => this.setState({show: false})}
+          >
             <div className="hot-box" onMouseEnter={() => this.changeMouse(true)} onMouseLeave={() => this.changeMouse(false)}>
               <div className="hot-box-head flex justify-between items-center">
                 <span>热门搜索</span>
@@ -117,8 +111,10 @@ class NavComponent extends Component {
                 }
               </div>
             </div>
-          </VelocityComponent>
+          </CSSTransition>
         </InputBox>
+        */}
+
       </div>
     );
   }

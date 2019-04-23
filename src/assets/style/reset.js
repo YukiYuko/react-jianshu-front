@@ -59,6 +59,7 @@ export default createGlobalStyle`
     //}
     img {
         vertical-align: middle;
+        object-fit: cover;
     }
     .warp960, .warp1440 {
         position: relative;
@@ -81,7 +82,7 @@ export default createGlobalStyle`
         }
       }
       img {
-        transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease;
       }
     }
 `;

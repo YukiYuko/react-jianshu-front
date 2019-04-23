@@ -5,6 +5,7 @@
 import base from './base'; // 导入接口域名列表
 import ajax from '../ajax'; // 导入http中创建的axios实例
 import qs from 'qs'; // 根据需求是否导入qs模块
+import axios from "axios";
 
 const prefix = "article";
 const article = {
@@ -35,6 +36,10 @@ const article = {
   // 文章点赞
   articleLike(params) {
     return ajax.post(`${base.server}/${prefix}/like`, qs.stringify(params));
+  },
+  // 每日一文
+  oneDay() {
+    return axios.get('https://interface.meiriyiwen.com/article/today?dev=1')
   }
 };
 

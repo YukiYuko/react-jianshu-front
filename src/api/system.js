@@ -6,6 +6,10 @@ const system = {
   categoryList() {
     return ajax.post(`${base.server}/${prefix}/category/list`);
   },
+  // 所有标签
+  labelList() {
+    return ajax.post(`${base.server}/${prefix}/label/list`);
+  },
   // banner 图
   bannerList() {
     return ajax.post(`${base.server}/${prefix}/banner/list`);
