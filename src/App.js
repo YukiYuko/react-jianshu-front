@@ -13,6 +13,8 @@ import {set_user} from "./store/modules/user/actions";
 import {bindActionCreators} from "redux";
 import connect from "react-redux/es/connect/connect";
 import {getStorage} from "./untils/localstorage";
+import {LocaleProvider} from "antd";
+import zh_CN from 'antd/lib/locale-provider/zh_CN';
 
 class App extends Component {
   componentDidMount() {
@@ -28,20 +30,22 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="App">
-        <Globalstyle/>
-        <FlexStyle/>
-        <Router>
-          <div className="views">
-            <Route exact path="/" component={HomeComponent}/>
-            <Route exact path="/post/:id" component={DetailComponent}/>
-            <Route exact path="/category/:type" component={CategoryComponent}/>
-            <Route exact path="/trending/:type" component={TrendingComponent}/>
-            <Route exact path="/search" component={SearchComponent}/>
-            <Route exact path="/login" component={LoginComponent}/>
-          </div>
-        </Router>
-      </div>
+      <LocaleProvider locale={zh_CN}>
+        <div className="App">
+          <Globalstyle/>
+          <FlexStyle/>
+          <Router>
+            <div className="views">
+              <Route exact path="/" component={HomeComponent}/>
+              <Route exact path="/post/:id" component={DetailComponent}/>
+              <Route exact path="/category/:type" component={CategoryComponent}/>
+              <Route exact path="/trending/:type" component={TrendingComponent}/>
+              <Route exact path="/search" component={SearchComponent}/>
+              <Route exact path="/login" component={LoginComponent}/>
+            </div>
+          </Router>
+        </div>
+      </LocaleProvider>
     );
   }
 }
@@ -49,7 +53,7 @@ class App extends Component {
 const mapStateToProps = (state) => ({
   user: state.user
 });
-const mapDispatchToProps = {} = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     set_user
   }, dispatch)

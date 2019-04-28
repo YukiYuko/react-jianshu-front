@@ -6,6 +6,7 @@ import { CSSTransition } from 'react-transition-group';
 import system from "../../api/system";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import storage from "../../untils/storage";
 
 class NavComponent extends Component {
   static contextTypes = {
@@ -20,7 +21,8 @@ class NavComponent extends Component {
       index: 0,
       focused: false,
       mouseIn: false,
-      menu: []
+      menu: [],
+      keyword: ""
     };
   }
   // 改变状态
@@ -52,16 +54,39 @@ class NavComponent extends Component {
   // 获取文章分类
   getCategory() {
     system.categoryList().then((res) => {
-      console.log(1111111111111111)
       this.setState({
         menu: res.data
       })
     })
   }
+  // 搜索
+  handelKeyPress = async (e) => {
+    if (e.key === "Enter") {
+      if (!this.state.keyword && !this.state.keyword.trim()) {
+        return false;
+      }
+      let historySearch = await storage.get("historySearch") || [];
+      if (!historySearch.includes(this.state.keyword)) {
+        if (historySearch.length < 10) {
+          historySearch.unshift(this.state.keyword);
+        } else {
+          historySearch.pop();
+          historySearch.unshift(this.state.keyword)
+        }
+      }
+      await storage.set("historySearch", historySearch);
+      this.context.router.history.push({
+        pathname: "/search",
+        query: {
+          keyword: this.state.keyword
+        },
+        search:'?keyword=' + this.state.keyword
+      })
+    }
+  };
   componentDidMount() {
     this.props.get_hot_list();
     this.getCategory();
-    console.log(this.context)
   }
   render() {
     const {hotList} = this.props.article;
@@ -85,10 +110,12 @@ class NavComponent extends Component {
             ))
           }
         </Nav>
-        {/*
-
         <InputBox>
-          <input type="text" onFocus={() => this.changeState(true)} onBlur={() => this.changeState(false)} placeholder="搜索"/>
+          <input type="text"
+                 onFocus={() => this.changeState(true)} onBlur={() => this.changeState(false)}
+                 onKeyPress={this.handelKeyPress}
+                 onChange={(e) => this.setState({keyword: e.target.value})}
+                 placeholder="搜索"/>
           <i className="iconfont icon-sousuo"/>
           <CSSTransition
             in={focused || mouseIn}
@@ -113,8 +140,6 @@ class NavComponent extends Component {
             </div>
           </CSSTransition>
         </InputBox>
-        */}
-
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {grayColor} from "../../assets/style/var";
+// import {grayColor} from "../../assets/style/var";
 
 const RegisterWrap = styled.div`
   box-shadow: 0 3px 8px -2px rgba(0, 0, 0, 0.2);

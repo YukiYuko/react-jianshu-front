@@ -5,23 +5,23 @@
  * @returns {string}
  */
 function nFormatter(num, digits = 1) {
-    const si = [
-        { value: 1, symbol: "" },
-        { value: 1E3, symbol: "K" },
-        { value: 1E6, symbol: "M" },
-        { value: 1E9, symbol: "G" },
-        { value: 1E12, symbol: "T" },
-        { value: 1E15, symbol: "P" },
-        { value: 1E18, symbol: "E" }
-    ];
-    const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
-    let i;
-    for (i = si.length - 1; i > 0; i--) {
-        if (num >= si[i].value) {
-            break;
-        }
+  const si = [
+    { value: 1, symbol: "" },
+    { value: 1E3, symbol: "K" },
+    { value: 1E6, symbol: "M" },
+    { value: 1E9, symbol: "G" },
+    { value: 1E12, symbol: "T" },
+    { value: 1E15, symbol: "P" },
+    { value: 1E18, symbol: "E" }
+  ];
+  const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+  let i;
+  for (i = si.length - 1; i > 0; i--) {
+    if (num >= si[i].value) {
+      break;
     }
-    return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
+  }
+  return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
 }
 
 /**
@@ -30,10 +30,36 @@ function nFormatter(num, digits = 1) {
  * @returns {string}
  */
 function toThousandslsFilter(num) {
-    return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','));
+  return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','));
+}
+
+/**
+ * @return {string}
+ */
+function GetUrlParam(paraName) {
+  const url = document.location.toString();
+  let arrObj = url.split("?");
+
+  if (arrObj.length > 1) {
+    const arrPara = arrObj[1].split("&");
+    let arr;
+
+    for (let i = 0; i < arrPara.length; i++) {
+      arr = arrPara[i].split("=");
+
+      if (arr != null && arr[0] === paraName) {
+        return arr[1];
+      }
+    }
+    return "";
+  }
+  else {
+    return "";
+  }
 }
 
 export {
-    nFormatter,
-    toThousandslsFilter
+  nFormatter,
+  toThousandslsFilter,
+  GetUrlParam
 }

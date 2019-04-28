@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {grayColor} from "../../assets/style/var";
+// import {grayColor} from "../../assets/style/var";
 
 export const Trending = styled.div`
   padding-top: 30px;

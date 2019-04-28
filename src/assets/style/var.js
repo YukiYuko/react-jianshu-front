@@ -5,8 +5,9 @@ const grayBorderColor = "#e7e7e7";
 const blackColor = "#444";
 
 export {
-    lineHeight,
-    grayColor,
-    grayBackColor,
-    grayBorderColor
+  lineHeight,
+  grayColor,
+  grayBackColor,
+  grayBorderColor,
+  blackColor
 }

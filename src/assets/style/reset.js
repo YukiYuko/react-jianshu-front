@@ -76,6 +76,16 @@ export default createGlobalStyle`
     .hover_img {
       position: relative;
       overflow: hidden;
+      &:before {
+        content: "";
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        background-color: rgba(0,0,0,0.1);
+        z-index: 1;
+      }
       &:hover {
         img {
           transform: scale(1.2);

@@ -4,14 +4,15 @@ const searchImg = require("../../assets/images/search.png");
 const searchBg = require("../../assets/images/searchBg.jpg");
 
 const Search = styled.div`
-  background-color: #ffffff;
+  background-color: #f5f5f5;
   min-height: 100vh;
   padding-bottom: 30px;
   .search-head {
-    height: 400px;
+    height: 300px;
     background: url("${searchBg}") no-repeat center;
     background-size: cover;
     position: relative;
+    margin-bottom: 20px;
     &:before {
       content: "";
       position: absolute;
@@ -62,29 +63,94 @@ const Search = styled.div`
     border-radius: 0;
     background-position: 100% center;
   }
-  // 热门搜索
-  .search__tag {
-    color: #ffffff;
-    margin-bottom: 20px;
-    &__title {
+  // 搜索历史
+  .search-history {
+    min-height: 800px;
+  }
+  // 最近搜搜
+  .search-latest {
+    &-item {
+      padding: 0 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
       margin-bottom: 10px;
-      color: #ffffff;
-      -webkit-background-clip: text;
-      font-size: 20px;
-      text-shadow: rgba(0,0,0,0.2) 1px 1px 1px;
+      &:hover {
+        background-color: rgb(202,202,202);
+        color: #ffffff;
+      }
+      i {
+        font-size: 25px;
+      }
     }
-    &__link {
-      &__item {
-        margin-bottom: 10px;
-        margin-right: 10px;
+  }
+  // 搜索列表
+  .search-list {
+    &-item {
+      background-color: #ffffff;
+      margin-bottom: 15px;
+      transition: all 0.2s ease;
+      &:hover {
+        box-shadow: 0 0 6px rgba(0,0,0,0.03);
+      }
+      &-img {
+        height: 315px;
+        position: relative;
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      &-title {
+        font-size: 18px;
+        color: #333;
+        font-weight: bold;
+        white-space: nowrap;
+        padding: 15px 15px 0;
         cursor: pointer;
-        transition: 0.3s all ease;
+        transition: all 0.3s ease-in-out;
         &:hover {
-          color: #0da4d3;
+          text-indent: 20px;
+        }
+      }
+      &-desc {
+        font-size: 14px;
+        color: #666;
+        line-height: 24px;
+        padding: 10px 15px;
+      }
+      &-msg {
+        border-top: 1px solid ${grayBorderColor};
+        padding: 10px 20px;
+        line-height: 25px;
+        font-size: 13px;
+        color: #888;
+        .label {
+          width: 300px;
+        }
+        .line {
+          height: 20px;
+          width: 1px;
+          background: #e6e6e6;
+          float: left;
+          margin-top: 3px;
+        }
+        .label {
+          i {
+            margin-right: 5px;
+          }
+          a {
+            margin-right: 10px;
+          }
+        }
+        .comments {
+          i {
+            font-size: 20px;
+          }
         }
       }
     }
-  } 
+  }
 `;
 
 export {

@@ -228,21 +228,21 @@ class DetailComponent extends Component {
         <BackTop/>
         {/*分享*/}
         <div className="rotate-menu">
-          <a className="share">
+          <span className="share">
             <i className="iconfont icon-fenxiang"/>
-          </a>
-          <a className="share1">
+          </span>
+          <span className="share1">
             <i className="iconfont icon-twitter"/>
-          </a>
-          <a className="share2">
+          </span>
+          <span className="share2">
             <i className="iconfont icon-weibo"/>
-          </a>
-          <a className="share3">
+          </span>
+          <span className="share3">
             <i className="iconfont icon-weixin"/>
-          </a>
-          <a className="share4">
+          </span>
+          <span className="share4">
             <i className="iconfont icon-qq"/>
-          </a>
+          </span>
         </div>
       </DetailWarp>
     );

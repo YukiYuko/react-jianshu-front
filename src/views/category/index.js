@@ -86,7 +86,6 @@ class CategoryCom extends React.Component{
   }
   render() {
     const {bg, data, loading, hasMore, labels, one} = this.state;
-    console.log(one)
     return (
       <Category>
         <Header/>
@@ -121,8 +120,8 @@ class CategoryCom extends React.Component{
                   <div className="one">
                     <div className="one-title">{one.title}</div>
                     <div className="one-author">{one.author}</div>
-                    <div className="one-digest">{one.digest}...<a href="https://meiriyiwen.com/" target="_blank" rel="noreferrer">查看全文</a></div>
-                    <div className="one-date"></div>
+                    <div className="one-digest">{one.digest}...<a href="https://meiriyiwen.com/" target="_blank" rel="noopener noreferrer">查看全文</a></div>
+                    <div className="one-date"/>
                   </div>
                 </Widget>
                 <Widget title="推荐文章">

@@ -40,7 +40,7 @@ class LoginComponent extends Component {
           <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">设置</a>
         </Menu.Item>
         <Menu.Item>
-          <a onClick={this.loginOut}>退出</a>
+          <span onClick={this.loginOut}>退出</span>
         </Menu.Item>
       </Menu>
     );

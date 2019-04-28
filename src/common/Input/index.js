@@ -1,4 +1,4 @@
-import React, { PureComponent, isValidElement, createRef } from "react";
+import React, { PureComponent, createRef } from "react";
 import cls from "classnames";
 import PropTypes from "prop-types";
 import "./style.less"
