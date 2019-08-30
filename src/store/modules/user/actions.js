@@ -5,7 +5,6 @@ const get_user = (param) => ({
   param
 });
 const set_user = (param) => {
-  // console.log("param", param);
   return {
     type: SET_USER,
     param

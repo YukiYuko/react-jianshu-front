@@ -11,11 +11,15 @@ const HeadWarper = styled.div`
     border-bottom: 1px solid #f0f0f0;
     background-color: #fff;
     position: sticky;
+    width: 100%;
+    left: 0;
     top: 0;
-    z-index: 1;
+    z-index: 10;
+    //transform: translateY(-58px);
+    //opacity: 0;
 `;
 //
-const Logo = styled.a`
+const Logo = styled.div`
     height: 100%;
     img{
       height: 100%;
@@ -24,7 +28,7 @@ const Logo = styled.a`
 //  导航
 const Nav = styled.nav`
     line-height: ${lineHeight};
-    a {
+    .nav-item {
       padding: 0 15px;
       margin-right: 10px;
       color: #444;
@@ -34,6 +38,24 @@ const Nav = styled.nav`
       &:hover {
         background-color: rgba(0,0,0,0.08);
       }
+    }
+`;
+// 发布文章
+const Publish = styled.button`
+    appearance: none;
+    background-color: #007fff;
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+    padding: 0 1rem;
+    outline: none;
+    transition: background-color .3s,color .3s;
+    cursor: pointer;
+    height: 35px;
+    line-height: 35px;
+    margin-right: 15px;
+    &:hover, &:active {
+      background-color: #1259ff;
     }
 `;
 // 搜索
@@ -167,5 +189,6 @@ export {
   InputBox,
   LoginRegBox,
   Login,
-  Reg
+  Reg,
+  Publish
 }

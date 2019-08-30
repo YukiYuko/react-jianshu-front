@@ -3,6 +3,7 @@ import {Login, LoginRegBox, Reg} from "./style";
 import {Link} from "react-router-dom";
 import {Menu, Dropdown} from "antd";
 import {removeStorage} from "../../untils/localstorage";
+import { persistor } from "../../store";
 
 class LoginComponent extends Component {
   constructor(props) {
@@ -12,9 +13,11 @@ class LoginComponent extends Component {
     }
   }
   loginOut = () => {
-    console.log(this.props);
     removeStorage("token");
-    window.location.href = "/login";
+    removeStorage("uid");
+    persistor.purge().then(() => {
+      window.location.reload();
+    });
   };
 
   render() {
@@ -22,7 +25,6 @@ class LoginComponent extends Component {
     const NoLogin = () => (
       <div className="no_login flex">
         <Login>
-          <a href="/">Aa</a>
           <Link to="/login">登录</Link>
         </Login>
         <Reg>
@@ -34,13 +36,10 @@ class LoginComponent extends Component {
     const menu = (
       <Menu>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">个人中心</a>
+          <Link to={`/profile/following`} className="reg">个人中心</Link>
         </Menu.Item>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">设置</a>
-        </Menu.Item>
-        <Menu.Item>
-          <span onClick={this.loginOut}>退出</span>
+          <div onClick={this.loginOut}>退出</div>
         </Menu.Item>
       </Menu>
     );

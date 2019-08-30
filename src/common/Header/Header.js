@@ -4,15 +4,27 @@ import {connect} from "react-redux";
 import LogoComponent from "./Logo";
 import NavComponent from "./Nav";
 import LoginComponent from "./Login";
+import PublishComponent from "./publish";
+import * as _ from "underscore";
 
 class HeaderComponent extends Component {
+  scrollEvent = () => {
+    console.log("bbbb")
+  };
+  componentDidMount() {
+    window.addEventListener("scroll", _.debounce(this.scrollEvent, 250))
+  }
+  componentWillReceiveProps(newProps) {
+    console.log("子组件 header")
+  }
   render() {
     const {user} = this.props;
     return (
       <HeadWarper>
-        <div className="warp1440 flex">
+        <div className="warp1440 flex items-center">
           <LogoComponent/>
-          <NavComponent/>
+          <NavComponent type={this.props.type}/>
+          <PublishComponent/>
           <LoginComponent user={user}/>
         </div>
       </HeadWarper>

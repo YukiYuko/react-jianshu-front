@@ -44,8 +44,6 @@ const errorHandle = (status, other) => {
     // 清除token并跳转登录页
     case 403:
       tip('登录过期，请重新登录');
-      localStorage.removeItem('token');
-      // store.commit('loginSuccess', null);
       setTimeout(() => {
         toLogin();
       }, 1000);
@@ -54,10 +52,13 @@ const errorHandle = (status, other) => {
     case 404:
       tip('请求的资源不存在');
       break;
+    case 422:
+      tip('请求参数错误');
+      break;
     default:
       console.log(other);
   }
-}
+};
 
 // 创建axios实例
 var instance = axios.create({timeout: 1000 * 12});
@@ -73,6 +74,7 @@ instance.interceptors.request.use(
     // 但是即使token存在，也有可能token是过期的，所以在每次的请求头中携带token
     // 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码
     // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
+    console.log(11111)
     const token = getStorage("token");
     token && (config.headers.Authorization = token);
     return config;
@@ -89,8 +91,10 @@ instance.interceptors.response.use(
       } else {
         tip(res.data.msg);
         if (res.data.code === 301) {
-          tip("token");
-          window.location.href = "/login";
+          tip('登录过期，请重新登录');
+          setTimeout(() => {
+            toLogin();
+          }, 1000);
         }
         return Promise.reject(res)
       }
@@ -102,7 +106,6 @@ instance.interceptors.response.use(
   // 请求失败
   error => {
     const {response} = error;
-    console.log(response)
     if (response) {
       // 请求已发出，但是不在2xx的范围
       errorHandle(response.status, response.data.message);

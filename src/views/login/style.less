@@ -4,9 +4,12 @@
   margin: 0;
   overflow: hidden;
   font-family: gudea,sans-serif;
-  background: #ea5c54;
-  background: -webkit-gradient(linear,left top,right bottom,color-stop(0%,#EA5C54),color-stop(100%,#bb6dec));
-  background: linear-gradient(135deg,#EA5C54 0%,#bb6dec 100%);
+  background: #ea5c54 url("../../assets/images/loginBg.jpg") no-repeat center;
+  background-size: cover;
+  //background: -webkit-gradient(linear,left top,right bottom,color-stop(0%,#EA5C54),color-stop(100%,#bb6dec));
+  //background: linear-gradient(135deg,#EA5C54 0%,#bb6dec 100%);
+  //background-size: 1300% 300%;
+  //animation: bgMove 5s ease infinite alternate;
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EA5C54 ',endColorstr='#bb6dec',GradientType=1 );
   &-box {
     opacity: 1;
@@ -105,44 +108,18 @@
   }
 }
 
-// 注册动画
-.slide-enter {
-  opacity: 0;
-  transform: scale(0.8) translateX(100%);
+// 背景渐变动画
+@keyframes bgMove{
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 100% 0;
+  }
 }
-.slide-enter-active {
-  opacity: 1;
-  transform: scale(1) translateX(0);
-  transition: opacity 300ms, transform 300ms;
-}
-.slide-exit {
-  opacity: 1;
-}
-.slide-exit-active {
-  opacity: 0;
-  transform: scale(0.8) translateX(100%);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.slide-down-enter {
-  opacity: 0;
-  transform: translateY(20px);
-}
-.slide-down-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
-}
-.slide-down-exit {
-  opacity: 1;
-  transform: translateY(0px);
-}
-.slide-down-exit-active {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 300ms, transform 300ms;
-}
-
 // 淡入淡出
 .alert-enter {
   opacity: 0;
@@ -161,4 +138,56 @@
   transform: scale(0.9);
   transition: opacity 300ms, transform 300ms;
 }
+// 3d动画
+.animation3d {
+  position: fixed;
+  right: 100px;
+  top: 100px;
+  width: 200px;
+  height: 200px;
+  div {
+    transform-style: preserve-3d;
+    perspective: 500px;
+  }
+  .rotate,
+  .reverseRotate {
+    width: 100%;
+    height: 100%;
+  }
+  .content {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: rgba(255, 100, 100, .8);
+    color: #fff;
+    box-shadow: 0 0 8px 2px rgba(100, 100, 100, .6);
+  }
 
+  .rotate {
+    animation: rotate 5s linear infinite;
+  }
+
+  .reverseRotate {
+    animation: reverseRotate 5s linear infinite;
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotateX(0deg) rotateZ(0deg);
+  }
+  50% {
+    transform: rotateX(20deg) rotateZ(180deg);
+  }
+  100% {
+    transform: rotateX(0deg) rotateZ(360deg);
+  }
+}
+
+@keyframes reverseRotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}

@@ -19,6 +19,9 @@ const comment = {
   commentList(params) {
     return ajax.post(`${base.server}/${prefix}/list`, qs.stringify(params));
   },
+  commentHot(params) {
+    return ajax.post(`${base.server}/${prefix}/hot`, qs.stringify(params));
+  }
 };
 
 export default comment;

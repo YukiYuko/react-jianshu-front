@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./style.less";
+import "../../assets/style/slide.less";
 import {Divider, Icon, Tooltip} from "antd";
 import Loading from "../../common/Loading";
 import Register from "../register";
@@ -7,8 +8,12 @@ import { CSSTransition } from 'react-transition-group';
 import cls from "classnames";
 import {tips} from "../../actions";
 import user from "../../api/user";
-import {setStorage, getStorage} from "../../untils/localstorage";
+import {setStorage} from "../../untils/localstorage";
 import {connect} from "react-redux";
+import mojs from "mo-js"
+import {NavLink, withRouter} from "react-router-dom";
+import {bindActionCreators} from "redux";
+import {set_user} from "../../store/modules/user/actions";
 
 class LoginView extends Component {
   constructor(props) {
@@ -20,29 +25,38 @@ class LoginView extends Component {
       email: "",
       password: ""
     };
-    let token = getStorage("token");
-    console.log(token);
   }
 
   toggle () {
-    this.setState((prev) => ({
+    this.setState(() => ({
       loading: true
     }));
     user.login({email: this.state.email, password: this.state.password}).then((res) => {
-      tips("登录成功!");
-      setStorage("token", res.data.token);
-      window.location.href = "/";
-      this.closeLoading();
+      setTimeout(() => {
+        this.setState({loading: false});
+        tips("登录成功!", "success");
+        setStorage("token", res.data.token);
+        // 登录之后获取用户信息
+        user.getUser().then((res) => {
+          this.props.set_user(res.data);
+          setStorage("uid", res.data.id);
+          //来源记录
+          let from;
+          if(this.props.location && this.props.location.state != null){
+            from = this.props.location.state.from
+          }
+          const urlTo = from ||'/';
+          this.props.history.replace(urlTo);
+        })
+      }, 1000);
     }).catch(() => {
-      this.closeLoading();
+      this.setState({loading: false})
     })
   }
   closeLoading = () => {
-    setTimeout(() => {
-      this.setState((prev) => ({
-        loading: false
-      }));
-    }, 1000);
+    this.setState((prev) => ({
+      loading: false
+    }));
   };
   openRegister = () => {
     this.setState({show: true})
@@ -54,6 +68,82 @@ class LoginView extends Component {
     this.setState({loading: true})
   };
 
+
+  // 鼠标点击效果
+  clickAnime() {
+    console.clear();
+
+    const pop = new mojs.Shape({
+      fill: 'none',
+      stroke: {'#27ae60':'#c0392b'},
+      radius: {0:80},
+      strokeWidth: {8:0},
+      opacity: {1:0},
+      duration: 1000
+    });
+
+    const burst = new mojs.Burst({
+      radius: {0:100},
+      angle: {0:100, easing: 'cubic.out'},
+      count: 25,
+      children: {
+        radius: {0:10},
+        shape: 'circle',
+        fill: {'#fff':'#8e44ad'},
+        duration: 800
+      }
+    });
+
+    const spark = new mojs.Burst({
+      radius: {0:150},
+      angle: {0: -60},
+      count: 10,
+      children: {
+        shape: 'line',
+        stroke: {'#d35400':'#e67e22'},
+        strokeWidth: {5:2},
+        duration: 800
+      }
+    });
+
+    const lines = new mojs.Burst({
+      radius: {50:150},
+      count: 10,
+      children: {
+        shape: 'line',
+        stroke: '#222',
+        strokeWidth: 4,
+        opacity: {1:0},
+        duration: 1000
+      }
+    });
+
+
+    const triangles = new mojs.Burst({
+      radius: {50:150},
+      angle: {0: 120},
+      count: 15,
+      children: {
+        shape: 'polygon',
+        points: 3,
+        fill: '#16a085',
+        duration: 1500
+      }
+    });
+
+    let animArr = [];
+    animArr.push(pop, burst, spark, triangles, lines);
+
+
+    window.addEventListener('mousedown', (e) => {
+      animArr.forEach(anim => {
+        anim.el.style.top = 0;
+        anim.el.style.left = 0;
+        anim.tune({x: e.x, y: e.y}).replay();
+      })
+    })
+  }
+
   componentDidMount() {
   }
 
@@ -61,6 +151,16 @@ class LoginView extends Component {
     const {loading, show} = this.state;
     return (
       <div className="login-view">
+        {/*
+        一个小小的动画
+        <div className="animation3d">
+          <div className="reverseRotate">
+            <div className="rotate">
+              <div className="content">正负旋转相消3D动画</div>
+            </div>
+          </div>
+        </div>
+        */}
         {
           loading && <Loading/>
         }
@@ -95,7 +195,7 @@ class LoginView extends Component {
           </div>
           <div className="login-view-btn flex justify-between">
             <div onClick={this.toggle}>登录</div>
-            <div>忘记密码</div>
+            <div> <NavLink to="/forgot">忘记密码</NavLink></div>
           </div>
           <Divider style={{color: "#afb1be", padding: "0 20px", margin: "20px auto"}}>社交账号登录</Divider>
           <div className="login-view-society flex justify-center">
@@ -120,6 +220,7 @@ class LoginView extends Component {
               </Tooltip>
             </div>
           </div>
+          {/*<div className="social-share"/>*/}
         </div>
       </div>
     )
@@ -129,7 +230,9 @@ class LoginView extends Component {
 const mapStateToProps = (state) => ({
   user: state.user
 });
-const mapDispatchToProps = () => ({
-
-});
-export default connect(mapStateToProps, mapDispatchToProps)(LoginView)
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    set_user
+  }, dispatch)
+};
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginView));

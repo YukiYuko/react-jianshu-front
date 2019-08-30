@@ -4,7 +4,8 @@ import YukiInput from "../../common/Input";
 import YukiButton from "../../common/Button";
 import {tips} from "../../actions";
 import user from "../../api/user";
-import { SchemaModel, StringType, DateType, NumberType } from 'schema-typed';
+import { SchemaModel, StringType } from 'schema-typed';
+import AES from "crypto-js/aes";
 
 const model = SchemaModel({
   username: StringType().isRequired('用户名不能为空'),
@@ -37,7 +38,8 @@ class Register extends React.Component {
       }
     }
     this.props.reg();
-    user.register(this.state.formData).then(() => {
+    let password = AES.encrypt(this.state.formData.password, '690517217').toString();
+    user.register({...this.state.formData, password}).then(() => {
       tips("注册成功，请登录。", "success");
       this.initData();
       this.props.close();

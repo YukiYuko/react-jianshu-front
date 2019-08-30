@@ -1,0 +1,42 @@
+@import "../../../../assets/style/var";
+.article-edit {
+  &-item {
+    margin-bottom: 20px;
+    &-label {
+      width: 80px;
+    }
+    &-input {
+      .yuki-input {
+        margin-bottom: 0;
+      }
+      .avatar {
+        width: 120px;
+        height: 70px;
+      }
+      .upload {
+        margin-left: 15px;
+        p {
+          color: #666666;
+          margin-bottom: 10px;
+        }
+      }
+      .switch {
+        padding: 15px 0;
+        text-align: right;
+      }
+    }
+  }
+}
+.foot-btn {
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  padding: 15px 20px;
+  border-top: 1px solid @ghostWhite;
+  background-color: #ffffff;
+  z-index: 1;
+  button:not(:nth-last-child(1)) {
+    margin-right: 15px;
+  }
+}

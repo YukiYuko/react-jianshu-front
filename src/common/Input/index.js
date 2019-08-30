@@ -10,9 +10,6 @@ const sizes = {
 };
 
 class Input extends PureComponent  {
-  state = {
-    value: this.props.defaultValue || this.props.value || ""
-  };
   // 默认值
   static defaultProps = {
     prefixCls: "yuki-input",
@@ -25,7 +22,8 @@ class Input extends PureComponent  {
     onClear: () => {},
     allowClear: false,
     suffix: null,
-    prefix: null
+    prefix: null,
+    showLabel: true
   };
   // 限定输入值
   static propTypes = {
@@ -55,7 +53,8 @@ class Input extends PureComponent  {
     size: PropTypes.oneOf(Object.values(sizes)),
     allowClear: PropTypes.bool,
     suffix: PropTypes.any,
-    prefix: PropTypes.any
+    prefix: PropTypes.any,
+    showLabel: PropTypes.bool
   };
   // 每次改变nextProps 的时候更新 state的value
   static getDerivedStateFromProps(nextProps) {
@@ -71,12 +70,22 @@ class Input extends PureComponent  {
   constructor(props) {
     super(props);
     this.inputRef = createRef();
+    this.state = {
+      value: this.props.defaultValue || this.props.value || ""
+    };
   }
   _onChange = e => {
     let val = e.target.value;
     this.setState({ value: val });
     if (this.props.onChange) {
       this.props.onChange(val);
+    }
+  };
+  _onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      if (this.props.onKeyPress) {
+        this.props.onKeyPress(this.state.value);
+      }
     }
   };
   onClearValue = () => {
@@ -106,6 +115,7 @@ class Input extends PureComponent  {
       allowClear,
       suffix,
       prefix,
+      showLabel,
       ...attr
     } = this.props;
     const { value } = this.state;
@@ -125,8 +135,11 @@ class Input extends PureComponent  {
           value={value}
           onChange={this._onChange}
           ref={this.inputRef}
+          onKeyPress={this._onKeyPress}
         />
-        <label>{placeholder}</label>
+        {
+          showLabel ? <label>{placeholder}</label> : null
+        }
         <div className="bar"/>
       </div>
     );

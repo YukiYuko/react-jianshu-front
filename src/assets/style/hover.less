@@ -1,0 +1,166 @@
+.card-template {
+  position: relative;
+  overflow: hidden;
+  * {
+    transition: all 0.35s ease;
+  }
+  .figcaption {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    opacity: 1;
+    padding: 30px 0 30px 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 40%;
+    -webkit-transform: translateX(150%);
+    transform: translateX(150%);
+  }
+  &:after {
+    position: absolute;
+    bottom: 50%;
+    right: 40%;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 120px 120px 0 120px;
+    border-color: rgba(255, 255, 255, 0.5) transparent transparent transparent;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  .figcaption {
+    &:before {
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      right: 100%;
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 120px 120px 120px 0;
+      border-color: transparent rgba(255, 255, 255, 0.5) transparent transparent;
+    }
+  }
+}
+
+.card-template:hover img,
+.card-template.active img {
+  zoom: 1;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}
+
+.card-template:hover:after,
+.card-template.active:after,
+.card-template:hover .figcaption,
+.card-template.active .figcaption,
+.card-template:hover i,
+.card-template.active i {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  opacity: 1;
+}
+
+// ************************alephent-card
+.alephent-card {
+  overflow: hidden;
+  position: relative;
+  *, *:before, *:after {
+    transition: all 0.2s ease;
+  }
+}
+.alephent-card:before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: '';
+  background-color: #090d77;
+  opacity: 0.5;
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+}
+
+.alephent-card:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: '';
+  background-color: #031f46;
+  opacity: 0.5;
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+}
+
+.alephent-card:before {
+  transform: skew(30deg) translateX(-80%);
+}
+
+.alephent-card:after {
+  transform: skew(-30deg) translateX(-70%);
+}
+
+.alephent-card figcaption {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 1;
+  bottom: 0;
+  padding: 25px 40% 25px 20px;
+}
+
+.alephent-card figcaption:before,
+.alephent-card figcaption:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #b81212;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  content: '';
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.alephent-card figcaption:before {
+  transform: skew(30deg) translateX(-100%);
+}
+
+.alephent-card figcaption:after {
+  transform: skew(-30deg) translateX(-90%);
+}
+
+.alephent-card:hover:before,
+.alephent-card.hover:before {
+  transform: skew(30deg) translateX(-30%);
+  transition-delay: 0.05s;
+}
+
+.alephent-card:hover:after,
+.alephent-card.hover:after {
+  transform: skew(-30deg) translateX(-20%);
+}
+
+.alephent-card:hover figcaption:before,
+.alephent-card.hover figcaption:before {
+  transform: skew(30deg) translateX(-50%);
+  transition-delay: 0.15s;
+}
+
+.alephent-card:hover figcaption:after,
+.alephent-card.hover figcaption:after {
+  transform: skew(-30deg) translateX(-40%);
+  transition-delay: 0.1s;
+}
+

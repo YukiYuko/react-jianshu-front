@@ -2,6 +2,7 @@ import React from "react";
 import "./article.less";
 import cls from "classnames";
 import PropTypes from "prop-types";
+import {formatTime} from "../../../untils";
 
 class Article extends React.PureComponent {
   static contextTypes = {
@@ -16,12 +17,12 @@ class Article extends React.PureComponent {
         <h3>{item.title}</h3>
         <p>
           <span>作者：{item.author && item.author.username}</span>
-          <span>时间：{item.createdAt}</span>
+          <span>时间：{formatTime(item.createdAt)}</span>
           <span>分类: <em>{item.category.name}</em></span>
         </p>
         <div className="img flex justify-between">
           {
-            item.images && item.images.map((img, index) => (
+            item.images && item.images.split(",").map((img, index) => (
               <div key={index} className={cls('hover_img', [
                 {'width30': item.images.length === 3},
                 {'width48': item.images.length === 2},
@@ -33,15 +34,15 @@ class Article extends React.PureComponent {
           }
         </div>
         <div className="desc">
-          技术进步对于设计师的影响到底有多大的影响？对于这个创意和创造力是核心竞争力的行业当中，不同的设计师对于技术发展的影响，看法不同。
+          {item.desc}
         </div>
         <div className="share flex justify-between">
           <div className="left">
             <span>
               <i className="iconfont icon-label"/>
               {
-                item.label && item.label.map((label, index) => (
-                  <em key={index}> {label}</em>
+                item.tags && item.tags.map((label, index) => (
+                  <em key={index}> {label.tag.name}</em>
                 ))
               }
             </span>

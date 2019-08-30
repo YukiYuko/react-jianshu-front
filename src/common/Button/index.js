@@ -12,6 +12,7 @@ const types = {
   default: "default",
   warning: "warning",
   success: "success",
+  danger: "danger",
   error: "error",
   info: "info",
   disabled: "disabled"
@@ -32,7 +33,7 @@ export default class Button extends PureComponent {
     plain: false
   };
   static propTypes = {
-    prefixCls: PropTypes.string.isRequired,
+    prefixCls: PropTypes.string,
     block: PropTypes.bool,
     hollow: PropTypes.bool,
     loading: PropTypes.bool,
@@ -59,7 +60,7 @@ export default class Button extends PureComponent {
       onClick,
       hollow,
       size,
-      href,
+      // href,
       dashed,
       circle,
       plain,
@@ -92,20 +93,20 @@ export default class Button extends PureComponent {
         <span>{children}</span>
       </>
     );
-    if (href) {
-      return (
-        <a
-          href={disabled ? "javascript:void(0);" : href}
-          disabled={disabled}
-          className={cls(`${prefixCls}-link`, className, {
-            [`${prefixCls}-link-disabled`]: disabled
-          })}
-          {...attr}
-        >
-          {content}
-        </a>
-      );
-    }
+    // if (href) {
+    //   return (
+    //     <a
+    //       href={disabled ? "javascript:void(0);" : href}
+    //       disabled={disabled}
+    //       className={cls(`${prefixCls}-link`, className, {
+    //         [`${prefixCls}-link-disabled`]: disabled
+    //       })}
+    //       {...attr}
+    //     >
+    //       {content}
+    //     </a>
+    //   );
+    // }
     return <button {...baseProps}>{content}</button>;
   }
 

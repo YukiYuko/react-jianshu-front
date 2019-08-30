@@ -58,14 +58,17 @@ const Category = styled.div`
     &-title {
       font-size: 16px;
       text-align: center;
+      margin-bottom: 10px;
     }
     &-author {
       font-size: 14px;
       text-align: center;
       color: #999;
+      margin-bottom: 10px;
     }
     &-digest {
       text-indent: 20px;
+      line-height: 20px;
     }
   }
 `;

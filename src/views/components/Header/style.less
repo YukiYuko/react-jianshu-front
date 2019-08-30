@@ -1,0 +1,178 @@
+.v-header {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: all 0.4s ease;
+  height: 80px;
+  &.active {
+    background-color: #111;
+    box-shadow: 0 1px 40px -8px rgba(0,0,0,.5);
+  }
+  &-logo {
+    display: inline-block;
+    height: 100%;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    position: absolute;
+    z-index: 3;
+    margin-left: 5%;
+    img {
+      height: 60px;
+      margin-top: 10px;
+    }
+  }
+  &.active {
+    .v-header-nav-box {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+    .v-header-nav-trigger {
+      opacity: 1;
+    }
+    .v-header-login-notLogin {
+      color: #ffffff;
+    }
+  }
+  // 菜单
+  &-nav {
+    padding: 0 5%;
+    height: 100%;
+    &-box {
+      z-index: 1;
+      transition: all 0.3s;
+      width: auto;
+      height: 80px;
+      background: transparent;
+      overflow: visible;
+      float: right;
+      opacity: 0;
+      transform: translateX(20px);
+      li {
+        float: left;
+        height: 100%;
+        line-height: 1;
+        padding: 0 0.4em;
+        display: flex;
+        align-items: center;
+        color: #ffffff;
+        a {
+          color: #ffffff;
+        }
+        span {
+          padding: .625em .8em;
+          line-height: 1;
+          border-bottom: none;
+        }
+      }
+    }
+    &-trigger {
+      display: block;
+      position: relative;
+      z-index: 3;
+      height: 40px;
+      width: 40px;
+      float: right;
+      transition: all 0.3s;
+      color: transparent;
+      text-indent: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 20px 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      opacity: 0;
+      &:before, &:after {
+        content: '';
+        position: absolute;
+      }
+      &:before {
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%) scale(0);
+        height: 100%;
+        width: 100%;
+        background-color: #dd85ac;
+        border-radius: 50%;
+        transition: transform 0.3s;
+      }
+      &:after {
+        left: 50%;
+        top: 50%;
+        bottom: auto;
+        right: auto;
+        transform: translateX(-50%) translateY(-50%);
+        height: 28px;
+        width: 28px;
+        background: url(../../../assets/images/searchIcon.png) no-repeat;
+        background-size: cover;
+      }
+      &.active {
+        transform: translateX(-46px);
+        &:before {
+          transform: translateX(-50%) translateY(-50%) scale(1);
+        }
+      }
+    }
+  }
+  // 登录相关
+  &-login {
+    position: absolute;
+    height: 100%;
+    min-width: 60px;
+    right: 20px;
+    top: 0;
+    z-index: 3;
+    &-notLogin {
+      color: #000000;
+      height: 100%;
+      cursor: pointer;
+      i {
+        font-size: 30px;
+      }
+    }
+    &-isLogin {
+      height: 100%;
+      .user_info {
+        height: 100%;
+      }
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+    }
+  }
+  // 搜索面板
+  &-search {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #14151c;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    &.active {
+      animation: v-slide-in .3s;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+@keyframes v-slide-in {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

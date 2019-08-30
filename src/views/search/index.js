@@ -5,7 +5,7 @@ import {Search} from "./style"
 import {Col, Row, Skeleton, Empty} from "antd";
 import Widget from "../components/widget";
 import Lazyload from "react-lazyload";
-import {GetUrlParam} from "../../untils";
+import {formatTime, GetUrlParam} from "../../untils";
 import Loading from "../../common/CssLoading";
 import LoadMore from "../components/loadmore/paper";
 import storage from "../../untils/storage";
@@ -106,11 +106,6 @@ class SearchView extends React.Component {
       })
     });
   };
-  // 绑定搜索框
-  handelChange = (e) => {
-    let val = e.target.value;
-    this.setState({searchVal: val})
-  };
   // 获取历史搜索
   getHistory = () => {
     storage.get("historySearch").then((res) => {
@@ -119,6 +114,41 @@ class SearchView extends React.Component {
       })
     })
   };
+  // 删除历史搜索
+  deleteHistory = (val) => {
+    let arr = this.state.history.filter((item) => item !== val);
+    this.setState({
+      history: arr
+    });
+    storage.set("historySearch", arr);
+  };
+  // 绑定搜索框
+  handelChange = (e) => {
+    console.log(e.target.value);
+    let val = e.target.value;
+    this.setState({searchVal: val})
+  };
+  // 防抖
+  debounce (fn, delay) {
+    let args    = arguments,
+      context = this,
+      timer   = null;
+
+    return function () {
+      if (timer) {
+        clearTimeout(timer);
+
+        timer = setTimeout(function () {
+          fn.apply(context, args);
+        }, delay);
+      } else {
+        timer = setTimeout(function () {
+          fn.apply(context, args);
+        }, delay);
+      }
+    }
+  }
+
   render() {
     const {data, empty, loading, text, searchVal, history} = this.state;
     return (
@@ -128,7 +158,7 @@ class SearchView extends React.Component {
           <div className="search__container">
             <input className="search__input" type="text"
                    value={searchVal}
-                   onChange={this.handelChange}
+                   onChange={(e) => this.debounce(this.handelChange(e), 300)}
                    onKeyPress={this.handelKeyPress}
                    placeholder="Search"/>
           </div>
@@ -137,15 +167,15 @@ class SearchView extends React.Component {
           <Row gutter={20}>
             <Col span={8}>
               <div className="search-history">
-                <Widget title="热门搜索">
-                </Widget>
+                {/*<Widget title="热门搜索">*/}
+                {/*</Widget>*/}
                 <Widget title="最近搜索">
                   <div className="search-latest">
                     {
                       history.map((item) => (
                         <div key={item} className="search-latest-item flex justify-between items-center">
                           <span>{item}</span>
-                          <i className="iconfont icon-close"/>
+                          <i onClick={() => this.deleteHistory(item)} className="iconfont icon-close"/>
                         </div>
                       ))
                     }
@@ -183,13 +213,13 @@ class SearchView extends React.Component {
                         <div className="label flex items-center">
                           <i className="iconfont icon-label"/>
                           {
-                            item.label.map((label, index) => (
-                              <span key={index}>{label}</span>
+                            item.tags.map((label, index) => (
+                              <span key={index}>{label.tag.name}</span>
                             ))
                           }
                         </div>
                         <em className="line"/>
-                        <div className="time">{item.createdAt}</div>
+                        <div className="time">{formatTime(item.createdAt)}</div>
                         <em className="line"/>
                         <div className="comments  flex items-center">
                           <i className="iconfont icon-liuyan"/>

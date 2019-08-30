@@ -11,5 +11,7 @@ export const Exchange = styled.div`
     i {
         font-size: 20px;
         margin-right: 5px;
+        transition: all ease-in-out 0.4s;
+        display: inline-block;
     }
 `;

@@ -13,6 +13,10 @@ const system = {
   // banner 图
   bannerList() {
     return ajax.post(`${base.server}/${prefix}/banner/list`);
+  },
+  // 友情链接
+  LinkList(params) {
+    return ajax.post(`${base.server}/${prefix}/link/list`, params);
   }
 };
 
