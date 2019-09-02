@@ -65,7 +65,6 @@ class DetailComponent extends Component {
           status
         };
         article.articleLike(params).then(res => {
-          console.log(res);
         });
       }
     );
@@ -260,7 +259,6 @@ class DetailComponent extends Component {
     this.setState({
       is_click_share: !is_click_share
     }, () => {
-      console.log(this.state.is_click_share)
     })
   };
   componentDidMount() {

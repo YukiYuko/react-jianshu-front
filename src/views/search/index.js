@@ -124,7 +124,6 @@ class SearchView extends React.Component {
   };
   // 绑定搜索框
   handelChange = (e) => {
-    console.log(e.target.value);
     let val = e.target.value;
     this.setState({searchVal: val})
   };

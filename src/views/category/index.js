@@ -7,12 +7,12 @@ import { Row, Col, BackTop } from "antd";
 import Widget from "../components/widget";
 import InfiniteScroll from "react-infinite-scroller";
 import article from "../../api/article";
-import system from "../../api/system";
 import Loading from "../../common/CssLoading";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { set_cate } from "../../store/modules/public/actions";
 import {connect} from "react-redux";
+import Label from "../components/Label";
 
 class CategoryCom extends React.Component {
   state = {
@@ -22,13 +22,11 @@ class CategoryCom extends React.Component {
     data: [],
     total: 0,
     page: 1,
-    labels: [],
     one: {}
   };
   componentDidMount() {
     this._getImg();
     // this.getData();
-    this.getLabel();
     this.getOneDay();
   }
   // 获取背景
@@ -73,8 +71,6 @@ class CategoryCom extends React.Component {
       });
   };
   componentWillReceiveProps(newProps, nextState) {
-    console.log("this.props.match.params.type", this.props.match.params.type);
-    console.log("newProps.type", newProps.type);
     if (this.props.match.params.type !== newProps.type) {
       this.setState({
         cid: newProps.type,
@@ -88,14 +84,6 @@ class CategoryCom extends React.Component {
       })
     }
   }
-  // 获取所有标签
-  getLabel() {
-    system.labelList().then(res => {
-      this.setState(() => ({
-        labels: res.data
-      }));
-    });
-  }
   // oneDay
   getOneDay() {
     article.oneDay().then(res => {
@@ -105,7 +93,7 @@ class CategoryCom extends React.Component {
     });
   }
   render() {
-    const { bg, data, loading, hasMore, labels, one } = this.state;
+    const { bg, data, loading, hasMore, one } = this.state;
     return (
       <Category>
         <Header />
@@ -151,13 +139,7 @@ class CategoryCom extends React.Component {
                 </Widget>
                 {/*<Widget title="推荐文章" />*/}
                 <Widget title="所有标签">
-                  <div className="label flex wrap-wrap">
-                    {labels.map((item, index) => (
-                      <div className="label-item" key={index}>
-                        <span>{item.name}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <Label/>
                 </Widget>
               </div>
             </Col>

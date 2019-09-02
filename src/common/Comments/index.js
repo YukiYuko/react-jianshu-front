@@ -19,14 +19,12 @@ class PublicComments extends PureComponent {
     this.props.submit({...formData, pid: 0});
   };
   reply = (formData) => {
-    console.log({...formData, pid: this.state.pid});
     this.props.submit({...formData, pid: this.state.pid});
     this.setState({
       show: false
     })
   };
   openReply = (id) => {
-    console.log(id)
     this.setState({
       show: true,
       pid: id

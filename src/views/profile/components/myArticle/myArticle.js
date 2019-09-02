@@ -74,7 +74,6 @@ class MyArticle extends React.PureComponent {
   };
   // 删除文章
   del = id => {
-    console.log(id);
     article.articleDelete({ id }).then(() => {
       tips("删除成功", "success");
       let arr = [...this.state.list];

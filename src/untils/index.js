@@ -81,7 +81,6 @@ const formatTime = (time, type = "YYYY-MM-DD HH:mm") => {
 // 防抖
 function debounce(fn, time = 1000) {
   let timer = null;
-  console.log(timer);
   return function() {
     clearTimeout(timer);
     timer = setTimeout(() => {

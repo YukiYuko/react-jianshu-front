@@ -25,8 +25,12 @@ class HomeComponent extends Component {
     new Parallax(scene);
     this.setActive();
   }
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
   setActive() {
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       classie.add(document.querySelector(".center-widget"), "active")
     }, 200)
   }

@@ -29,8 +29,6 @@ class ArticleEdit extends React.Component {
   };
   componentDidMount() {}
   componentWillReceiveProps(nextProps, nextContext) {
-    console.log("this.props.current.id", this.props.current.id);
-    console.log("nextProps.current.id", nextProps.current.id);
     if (this.props.current.id !== nextProps.current.id) {
       this.setState({
         current: nextProps.current

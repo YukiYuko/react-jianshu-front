@@ -55,6 +55,10 @@ const article = {
   articleRand(params) {
     return ajax.post(`${base.server}/${prefix}/rand`, qs.stringify(params));
   },
+  // 随机文章
+  articleTagList(params) {
+    return ajax.post(`${base.server}/${prefix}/tag/list`, qs.stringify(params));
+  },
   /**
    * @description 每日一文API
    * @param type today 今日文章, random 随机文章

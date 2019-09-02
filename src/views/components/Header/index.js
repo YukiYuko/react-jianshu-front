@@ -18,11 +18,16 @@ class HeaderComponent extends React.Component {
     menu: []
   };
   componentDidMount() {
+    this.handler = _.debounce(this.scrollEvent, 100);
     // 监听滚动
-    window.addEventListener("scroll", _.debounce(this.scrollEvent, 100));
+    window.addEventListener("scroll", this.handler, false);
     // 获取文章分类
     this.getCategory();
   }
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handler, false)
+  }
+
   // onMouseLeave
   onMouseLeave = () => {
     if (window.scrollY === 0) {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {grayBorderColor} from "../../assets/style/var";
+// import {grayBorderColor} from "../../assets/style/var";
 const Category = styled.div`
   background-color: #f7f7f7;
   min-height: 100vh;
@@ -19,40 +19,6 @@ const Category = styled.div`
   }
   .category-side {
     //background-color: #ffffff;
-    .label {
-      &-item {
-        padding: 3px 5px;
-        border: 1px solid ${grayBorderColor};
-        margin-right: 10px;
-        margin-bottom: 10px;
-        cursor: pointer;
-        position: relative;
-        span {
-          position: relative;
-          z-index: 2;
-        }
-        &:before {
-          position: absolute;
-          content: '';
-          width: 0;
-          height: 100%;
-          transition: 0.4s all ease;
-          background: #F27059;
-          left: 0;
-          top: 0;
-          z-index: -1;
-        }
-        &:hover {
-          color: white;
-          border-color: #F27059;
-        }
-        &:hover:before {
-          width: 100%;
-          transition: 0.4s all ease;
-          z-index: 1;
-        }
-      }
-    }
   }
   .one {
     &-title {

@@ -9,13 +9,11 @@ import * as _ from "underscore";
 
 class HeaderComponent extends Component {
   scrollEvent = () => {
-    console.log("bbbb")
   };
   componentDidMount() {
     window.addEventListener("scroll", _.debounce(this.scrollEvent, 250))
   }
-  componentWillReceiveProps(newProps) {
-    console.log("子组件 header")
+  componentWillReceiveProps(newProps, nextContext) {
   }
   render() {
     const {user} = this.props;

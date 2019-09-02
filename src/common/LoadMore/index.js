@@ -34,13 +34,15 @@ class LoadMore extends React.PureComponent {
     })
   };
   render() {
+    const {initialLoad = true} = this.props;
     return (
       <InfiniteScroll
-        initialLoad={true}
+        initialLoad={initialLoad}
         pageStart={0}
         loadMore={this.handleInfiniteOnLoad}
         hasMore={!this.state.loading && this.state.hasMore}
         useWindow={this.props.useWindow}
+        style={{width: "100%"}}
       >
         {this.props.children}
         {this.state.loading && this.state.hasMore && (

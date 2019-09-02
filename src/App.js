@@ -21,7 +21,7 @@ import user from "./api/user";
 import { set_user } from "./store/modules/user/actions";
 import { bindActionCreators } from "redux";
 import connect from "react-redux/es/connect/connect";
-import { getStorage, setStorage } from "./untils/localstorage";
+import { setStorage } from "./untils/localstorage";
 import { LocaleProvider } from "antd";
 import zh_CN from "antd/lib/locale-provider/zh_CN";
 import "./App.css";
@@ -61,7 +61,6 @@ class App extends Component {
     });
   };
   render() {
-    console.log(this.props.user);
     return (
       <LocaleProvider locale={zh_CN}>
         <div className="App">

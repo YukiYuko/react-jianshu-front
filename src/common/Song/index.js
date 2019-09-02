@@ -28,10 +28,8 @@ class Song extends React.Component {
   };
   // event binding example
   onPlay = () => {
-    console.log("on play");
   };
   onPause = () => {
-    console.log("on pause");
   };
   // example of access aplayer instance
   onInit = ap => {

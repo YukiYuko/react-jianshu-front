@@ -7,7 +7,6 @@ class ProfileItem extends React.PureComponent {
     editing: false
   };
   onChange = e => {
-    console.log(e.target.value);
     this.setState({
       value: e.target.value
     });
