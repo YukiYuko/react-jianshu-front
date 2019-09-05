@@ -126,6 +126,10 @@ const CenterContainer = styled.div`
               color: #999999;
               span {
                 margin-right: 10px;
+                i {
+                  margin-left: 5px;
+                  color: #0da4d3;
+                }
               }
             }
           }

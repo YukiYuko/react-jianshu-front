@@ -3,8 +3,17 @@ import {formatTime} from "../../../untils";
 import React from "react";
 const img = require("../../../assets/images/KyotoAnimation.jpg");
 function PicListItem({tag_type, data, onLike, index}) {
+
+  function clk (index, e) {
+    // 阻止合成事件的冒泡
+    e.stopPropagation();
+    // 阻止与原生事件的冒泡
+    // e.nativeEvent.stopImmediatePropagation();
+    onLike && onLike(index, e);
+  }
+
   return (
-    <div className={cls("pic-list-item",[
+    <div onClick={() => window.open(`/post/${data.id}`)} className={cls("pic-list-item",[
       {"pic-list-item-text": tag_type === "text"}
     ])}>
       <div className="pic-list-item-box">
@@ -26,7 +35,7 @@ function PicListItem({tag_type, data, onLike, index}) {
                 ))
               }
             </div>
-            <div onClick={() => onLike(index)} className={cls("like flex items-center justify-center", {
+            <div onClick={(e) => clk(index, e)} className={cls("like flex items-center justify-center", {
               active: data.isLike
             })}>
               <i className="iconfont icon-love" />

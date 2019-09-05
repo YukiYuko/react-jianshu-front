@@ -5,10 +5,10 @@ import {get_hot_list} from "../../store/modules/article/actions";
 // import { CSSTransition } from 'react-transition-group';
 import system from "../../api/system";
 import classNames from "classnames";
-import storage from "../../untils/storage";
 import {NavLink, withRouter} from "react-router-dom";
 import {bindActionCreators} from "redux";
 import {set_cate} from "../../store/modules/public/actions";
+import SearchInput from "../../common/SearchInput";
 
 class NavComponent extends Component {
   constructor(props) {
@@ -21,7 +21,6 @@ class NavComponent extends Component {
       focused: false,
       mouseIn: false,
       menu: [],
-      keyword: "",
       cid: ""
     };
   }
@@ -59,31 +58,6 @@ class NavComponent extends Component {
       })
     })
   }
-  // 搜索
-  handelKeyPress = async (e) => {
-    if (e.key === "Enter") {
-      if (!this.state.keyword && !this.state.keyword.trim()) {
-        return false;
-      }
-      let historySearch = await storage.get("historySearch") || [];
-      if (!historySearch.includes(this.state.keyword)) {
-        if (historySearch.length < 10) {
-          historySearch.unshift(this.state.keyword);
-        } else {
-          historySearch.pop();
-          historySearch.unshift(this.state.keyword)
-        }
-      }
-      await storage.set("historySearch", historySearch);
-      this.props.history.push({
-        pathname: "/search",
-        query: {
-          keyword: this.state.keyword
-        },
-        search:'?keyword=' + this.state.keyword
-      })
-    }
-  };
   // 跳转链接
   toUrl = (id) => {
     if (!id) {
@@ -134,11 +108,7 @@ class NavComponent extends Component {
           <NavLink className="nav-item" to="/about">关于&留言</NavLink>
         </Nav>
         <InputBox>
-          <input type="text"
-                 onFocus={() => this.changeState(true)} onBlur={() => this.changeState(false)}
-                 onKeyPress={this.handelKeyPress}
-                 onChange={(e) => this.setState({keyword: e.target.value})}
-                 placeholder="搜索"/>
+          <SearchInput/>
           <i className="iconfont icon-sousuo"/>
           {/*<CSSTransition*/}
             {/*in={focused || mouseIn}*/}

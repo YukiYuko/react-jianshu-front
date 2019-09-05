@@ -1,4 +1,4 @@
-import styled  from "styled-components";
+import styled from "styled-components";
 
 // const position = css`
 //   left: 50%;
@@ -14,6 +14,9 @@ const Warp960 = styled.div`
 
 const DetailWarp = styled.div`
   padding-bottom: 50px;
+  .posterImg {
+    animation: scale-in ease-in-out 0.3s;
+  }
   .sub_head {
     padding: 20px 0;
     text-align: right;
@@ -366,7 +369,7 @@ const DetailWarp = styled.div`
       box-shadow: 0 3px 2px -2px #7367f0;
       opacity: 0;
       &.active {
-        transform: translateX(-80px) rotate(45deg);
+        transform: translateY(60px);
         opacity: 1;
       }
     }
@@ -375,7 +378,7 @@ const DetailWarp = styled.div`
       box-shadow: 0 3px 2px -2px #9f44d3;
       opacity: 0;
       &.active {
-        transform: translateY(-80px);
+        transform: translateY(120px);
         opacity: 1;
       }
     }
@@ -384,7 +387,7 @@ const DetailWarp = styled.div`
       box-shadow: 0 3px 2px -2px #123597;
       opacity: 0;
       &.active {
-        transform: translateX(80px);
+        transform: translateY(180px);
         opacity: 1;
       }
     }
@@ -393,9 +396,19 @@ const DetailWarp = styled.div`
       box-shadow: 0 3px 2px -2px #00e4ff;
       opacity: 0;
       &.active {
-        transform: translateY(80px);
+        transform: translateY(240px);
         opacity: 1;
       }
+    }
+  }
+
+  // 一些动画
+  @keyframes scale-in {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
     }
   }
 `;

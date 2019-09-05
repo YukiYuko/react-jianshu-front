@@ -3,7 +3,7 @@ import "./style.less";
 const Back = (props) => (
   <div className="back flex">
     <div onClick={props.back} className="left">
-      <i className="iconfont icon-back"/>
+      <i className="iconfont icon-shouye"/>
     </div>
     <div className="center box1">
       {props.title}

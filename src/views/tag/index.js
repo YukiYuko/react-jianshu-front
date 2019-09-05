@@ -14,6 +14,7 @@ import article from "../../api/article";
 import LoadMore from "../../common/LoadMore";
 import PicList from "./components/picList";
 import PicListItem from "./components/picListItem";
+import {isLogin} from "../../actions/index";
 
 class Tag extends React.Component {
 
@@ -71,11 +72,21 @@ class Tag extends React.Component {
 
   // 喜欢和取消喜欢
   onLike = (index) => {
-    let list = [...this.state.list];
-    list[index].isLike = !list[index].isLike;
-    this.setState({
-      list
-    })
+    if (isLogin(this.props)) {
+      let list = [...this.state.list];
+      let status = list[index].isLike ? 0 : 1;
+      let params = {
+        postId: list[index].id,
+        uid: this.props.user.id,
+        status
+      };
+      article.articleLike(params).then(() => {
+        list[index].isLike = !list[index].isLike;
+        this.setState({
+          list
+        });
+      });
+    }
   };
 
   // 绑定子组件实例
@@ -107,7 +118,7 @@ class Tag extends React.Component {
         <Block>
           <div className="block">
             <div className="block-box flex items-center justify-center dir-column">
-              <h3
+              <div
                 ref={el => {
                   this.h = el;
                 }}

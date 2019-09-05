@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import marked from "marked";
 import { DetailWarp, Warp960 } from "./style";
 import Back from "../../common/Back";
 import article from "../../api/article";
-import { BackTop, Tag } from "antd";
+import { BackTop, Tag, Tooltip } from "antd";
 import cls from "classnames";
 import { connect } from "react-redux";
 import comment from "../../api/comment";
@@ -13,6 +14,10 @@ import { getStorage } from "../../untils/localstorage";
 import CommentTpl from "../../common/Comment";
 import { formatTime } from "../../untils/index";
 import "../../assets/style/output.css";
+import Poster from "../../common/Poster";
+import {drawCanvas} from "../../untils/poster";
+import Qrcode from "qrcodejs2";
+import Overlay from "../../common/Overlay";
 
 class DetailComponent extends Component {
   state = {
@@ -29,7 +34,9 @@ class DetailComponent extends Component {
     reply: "",
     placeholder: "",
     replyId: "",
-    is_click_share: false
+    is_click_share: false,
+    posterImg: "",
+    show: false
   };
   // 文章点赞
   like = () => {
@@ -38,7 +45,7 @@ class DetailComponent extends Component {
         this.props.history.push({
           pathname: "/login",
           state: {
-            from:this.props.location.pathname
+            from: this.props.location.pathname
           }
         });
       });
@@ -64,8 +71,7 @@ class DetailComponent extends Component {
           uid: this.props.user.id,
           status
         };
-        article.articleLike(params).then(res => {
-        });
+        article.articleLike(params).then(res => {});
       }
     );
   };
@@ -256,10 +262,12 @@ class DetailComponent extends Component {
   // toggleShare
   toggleShare = () => {
     let is_click_share = this.state.is_click_share;
-    this.setState({
-      is_click_share: !is_click_share
-    }, () => {
-    })
+    this.setState(
+      {
+        is_click_share: !is_click_share
+      },
+      () => {}
+    );
   };
   componentDidMount() {
     this.setState(
@@ -273,6 +281,34 @@ class DetailComponent extends Component {
     );
   }
 
+  // 生成截图
+  async capture() {
+    if (!this.code) {
+      this.code = new Qrcode(document.getElementById("qrcode"), {
+        text: window.location.href,
+        width: 128,
+        height: 128,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : Qrcode.CorrectLevel.H
+      });
+    }
+    let canvas = await drawCanvas(".poster");
+    let url = canvas.toDataURL();
+    this.setState({
+      posterImg: url,
+      show: true
+    })
+  }
+
+  hideCanvas = (e) => {
+    console.log(1);
+    e.stopPropagation();
+    this.setState({
+      show: false
+    });
+  };
+  // 评论相关
   DiscussPublish() {
     const { user } = this.props;
     const { content, total } = this.state;
@@ -304,9 +340,13 @@ class DetailComponent extends Component {
           <h3>
             {item.user.username}{" "}
             <span>
-              {
-                item.browser ? <em>{item.browser} {item.os}</em> : <em>来自火星</em>
-              }
+              {item.browser ? (
+                <em>
+                  {item.browser} {item.os}
+                </em>
+              ) : (
+                <em>来自火星</em>
+              )}
               {formatTime(item.createdAt)}
             </span>
           </h3>
@@ -329,7 +369,7 @@ class DetailComponent extends Component {
             {item.reply.map((reply_item, index) => (
               <div className="reply-list-item flex" key={index}>
                 <div className="left">
-                  <img src={reply_item.user.avatar} alt=""/>
+                  <img src={reply_item.user.avatar} alt="" />
                 </div>
                 <div className="right box1">
                   <h3>
@@ -370,16 +410,40 @@ class DetailComponent extends Component {
   }
 
   render() {
-    const { history, user } = this.props;
-    const { detail, comments, text, like, all_likes, is_click_share} = this.state;
+    const { user } = this.props;
+    const {
+      detail,
+      comments,
+      text,
+      like,
+      all_likes,
+      is_click_share,
+      posterImg,
+      show
+    } = this.state;
 
     return (
       <DetailWarp>
         <Back
-          back={history.goBack}
+          back={() => (window.location.href = "/")}
           title={detail.title}
           right={<Login user={user} />}
         />
+
+        {/*生成的海报*/}
+        <Poster />
+
+        {
+          show ? <Overlay click={(e) => this.hideCanvas(e)}>
+            <div className="overlay-box">
+              <img class="posterImg" onClick={(e) => e.stopPropagation()} src={posterImg} alt=""/>
+              <div onClick={(e) => e.stopPropagation()} className="poster-down">
+                <a href={posterImg} download="canvas生成的海报">下载图片</a>
+              </div>
+            </div>
+          </Overlay>: null
+        }
+
         <Warp960>
           <div className="sub_head">
             {detail.author && <span>作者: {detail.author.username}</span>}
@@ -397,7 +461,12 @@ class DetailComponent extends Component {
           </div>
           <div
             className="detail braft-output-content"
-            dangerouslySetInnerHTML={{ __html: detail.content }}
+            dangerouslySetInnerHTML={{
+              __html:
+                detail.editorType === "md"
+                  ? marked(detail.content)
+                  : detail.content
+            }}
           />
           {/*赞*/}
           <div className="like">
@@ -423,21 +492,46 @@ class DetailComponent extends Component {
           </div>
           {/*分享*/}
           <div className="rotate-menu">
-          <span className="share position" onClick={this.toggleShare}>
-            <i className="iconfont icon-fenxiang" />
-          </span>
-            <span className={cls("share1", "position", [{ active: is_click_share }])}>
-            <i className="iconfont icon-twitter" />
-          </span>
-            <span className={cls("share2", "position", [{ active: is_click_share }])}>
-            <i className="iconfont icon-weibo" />
-          </span>
-            <span className={cls("share3", "position", [{ active: is_click_share }])}>
-            <i className="iconfont icon-weixin" />
-          </span>
-            <span className={cls("share4", "position", [{ active: is_click_share }])}>
-            <i className="iconfont icon-qq" />
-          </span>
+            <span className="share position" onClick={this.toggleShare}>
+              <i className="iconfont icon-fenxiang" />
+            </span>
+            <span
+              onClick={() => this.capture()}
+              className={cls("share1", "position", [
+                { active: is_click_share }
+              ])}
+            >
+              <Tooltip placement="top" title="生成海报">
+                <i className="iconfont icon-Postit" />
+              </Tooltip>
+            </span>
+            <span
+              className={cls("share2", "position", [
+                { active: is_click_share }
+              ])}
+            >
+              <Tooltip placement="top" title="微博分享">
+                <i className="iconfont icon-weibo" />
+              </Tooltip>
+            </span>
+            <span
+              className={cls("share3", "position", [
+                { active: is_click_share }
+              ])}
+            >
+              <Tooltip placement="top" title="微信分享">
+                <i className="iconfont icon-weixin" />
+              </Tooltip>
+            </span>
+            <span
+              className={cls("share4", "position", [
+                { active: is_click_share }
+              ])}
+            >
+              <Tooltip placement="top" title="QQ分享">
+                <i className="iconfont icon-qq" />
+              </Tooltip>
+            </span>
           </div>
         </Warp960>
         <BackTop />

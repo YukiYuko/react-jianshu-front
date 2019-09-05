@@ -21,6 +21,8 @@ import SimpleMDE from "react-simplemde-editor";
 import article from "../../../../api/article";
 import {tips} from "../../../../actions";
 
+const placeholder = require("../../../../assets/images/placeholder.png");
+
 class ArticleEdit extends React.Component {
   state = {
     token: getStorage("token"),
@@ -163,7 +165,7 @@ class ArticleEdit extends React.Component {
             <div className="article-edit-item-input box1 flex items-center">
               <img
                 className="avatar"
-                src={current.images}
+                src={current.images || placeholder}
                 alt={current.title}
               />
               <div className="upload">
@@ -222,7 +224,7 @@ class ArticleEdit extends React.Component {
             <span className="article-edit-item-label">标签:</span>
             <div className="article-edit-item-input box1">
               <Checkbox.Group
-                value={current.tags}
+                value={current.tags.map((tag) => tag.tagId)}
                 style={{ width: "100%" }}
                 onChange={this.onChangeLabel}
               >

@@ -7,6 +7,9 @@ const Search = styled.div`
   background-color: #f5f5f5;
   min-height: 100vh;
   padding-bottom: 30px;
+  .highlight {
+    color: #ff2332;
+  }
   .search-head {
     height: 300px;
     background: url("${searchBg}") no-repeat center;
@@ -70,7 +73,7 @@ const Search = styled.div`
   // 最近搜搜
   .search-latest {
     &-item {
-      padding: 0 10px;
+      padding: 5px 10px;
       cursor: pointer;
       transition: all 0.2s ease;
       margin-bottom: 10px;
@@ -89,6 +92,8 @@ const Search = styled.div`
       background-color: #ffffff;
       margin-bottom: 15px;
       transition: all 0.2s ease;
+      cursor: pointer;
+      display: block;
       &:hover {
         box-shadow: 0 0 6px rgba(0,0,0,0.03);
       }
@@ -139,7 +144,7 @@ const Search = styled.div`
           i {
             margin-right: 5px;
           }
-          a {
+          span {
             margin-right: 10px;
           }
         }

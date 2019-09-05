@@ -16,6 +16,8 @@ import "./style.less";
 import system from "../../../../api/system";
 import ArticleEdit from "../articleEdit/articleEdit";
 
+const placeholder = require("../../../../assets/images/placeholder.png");
+
 class MyArticle extends React.PureComponent {
   state = {
     category: [],
@@ -133,12 +135,17 @@ class MyArticle extends React.PureComponent {
           {list.map((item, index) => (
             <div className="article_list_item v-card flex" key={index}>
               <div className="left box1 flex">
-                <img className="img" src={item.images} alt="" />
+                <img className="img" src={item.images || placeholder} alt="" />
                 <div className="left_mess box1">
                   <h3 className="ellipsis">{item.title}</h3>
                   <div>
                     <span>
-                      标签: <i>Js</i> <i>Vue</i>
+                      标签:
+                      {
+                        item.tags.map((tag, index) => (
+                          <i className="tag" key={index}>{tag.tag.name}</i>
+                        ))
+                      }
                     </span>
                   </div>
                   <div>

@@ -228,7 +228,8 @@ class Write extends React.Component {
       cid: this.state.cid,
       aid: this.props.user.id,
       tags: this.state.tags,
-      content: this.state.content
+      content: this.state.content,
+      editorType: this.props.user.editorType
     };
     const checkResult = model.check(params);
     for (let _key in checkResult) {

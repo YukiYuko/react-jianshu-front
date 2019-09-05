@@ -1,0 +1,48 @@
+@import "../../assets/style/var";
+.poster {
+  max-width: 375px;
+  padding: 15px;
+  background-color: #ffffff;
+  text-align: center;
+  //box-shadow: 0 2px 4px -1px rgba(0,0,0,0.08);
+  //display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translateX(-100%) translateY(-100%);
+  &-head {
+    img {
+      width: 100%;
+      height: 200px;
+    }
+  }
+  &-title {
+    padding: 15px 0;
+    color: #111111;
+    font-size: 16px;
+  }
+  &-code {
+    p {
+      color: #999999;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    img {
+      margin: auto;
+    }
+  }
+  &-down {
+    margin-top: 10px;
+    margin-left: 20px;
+    a {
+      display: block;
+      width: 120px;
+      height: 40px;
+      border-radius: 40px;
+      background-image: @gradualPurple;
+      text-align: center;
+      line-height: 40px;
+      color: #ffffff;
+    }
+  }
+}

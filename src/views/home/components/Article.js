@@ -62,7 +62,7 @@ class ArticleComponent extends Component {
           <div className="article-list">
             {
               articles.map((item) => (
-                <Link to={`/post/${item.id}`} key={item.id}>
+                <Link target="_blank" to={`/post/${item.id}`} key={item.id}>
                   <div className="article-list-item">
                     <div className="article-list-item-left">
                       <div className="title">

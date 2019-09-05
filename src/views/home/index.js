@@ -15,15 +15,18 @@ import Wave from "../../common/Wave";
 import Wave2 from "../../common/Wave2";
 import Parallax from "parallax-js";
 import classie from "../../untils/classie";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import weather from "../../api/weather";
 
 class HomeComponent extends Component {
   state = {
+    weatherData: {}
   };
   componentDidMount() {
     let scene = document.getElementById("scene");
     new Parallax(scene);
-    this.setActive();
+    // this.getLocation();
+    this.getWeather();
   }
   componentWillUnmount() {
     clearTimeout(this.timer);
@@ -31,22 +34,75 @@ class HomeComponent extends Component {
 
   setActive() {
     this.timer = setTimeout(() => {
-      classie.add(document.querySelector(".center-widget"), "active")
-    }, 200)
+      classie.add(document.querySelector(".center-widget"), "active");
+    }, 200);
   }
+  // 获取天气
+  getWeather() {
+    weather.getNormalWeather().then(res => {
+      if (res.status === 200) {
+        console.log(res);
+        this.setState(
+          {
+            weatherData: res.data.HeWeather6[0].now
+          },
+          () => {
+            console.log(this.state.weatherData);
+          }
+        );
+      }
+      this.setActive();
+    });
+  }
+  // 获取浏览器位置
+  getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        console.log(position);
+        document.getElementById("location").innerHTML =
+          "纬度：" +
+          position.coords.latitude +
+          "\n经度：" +
+          position.coords.longitude;
+      }, this.showError);
+    } else {
+      console.log("该浏览器不支持定位功能！");
+    }
+  };
+  showError = error => {
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        console.log("用户拒绝对获取地理位置的请求。");
+        break;
+      case error.POSITION_UNAVAILABLE:
+        console.log("位置信息是不可用的。");
+        break;
+      case error.TIMEOUT:
+        console.log("请求用户地理位置超时。");
+        break;
+      case error.UNKNOWN_ERROR:
+        console.log("未知错误。");
+        break;
+      default:
+        console.log("未知错误。");
+        break;
+    }
+  };
+
   render() {
+    const { weatherData } = this.state;
     return (
       <HomeContainer>
         {/*<Header />*/}
-        <Vheader user={this.props.user}/>
+        <Vheader user={this.props.user} />
         {/*menu*/}
         {/*首页背景*/}
         <div className="homeBanner">
           {/*面包按钮*/}
           {/*<div onClick={this.toggleMenu} className={cls("hamburger hamburger-1", {"active": visible})}>*/}
-            {/*<span className="line"/>*/}
-            {/*<span className="line"/>*/}
-            {/*<span className="line"/>*/}
+          {/*<span className="line"/>*/}
+          {/*<span className="line"/>*/}
+          {/*<span className="line"/>*/}
           {/*</div>*/}
           {/*个人介绍*/}
           <div className="card-container" data-depth="0.6">
@@ -55,30 +111,45 @@ class HomeComponent extends Component {
               <h1>QQ: 690517217</h1>
               <h3>职业: 前端切图API调用页面仔</h3>
               <h3>年龄: 18岁(你信吗)</h3>
+              <div id="location" />
               <p>
-                <i className="iconfont icon-weibo"/>
-                <i className="iconfont icon-weixin"/>
-                <i className="iconfont icon-qq"/>
-                <i className="iconfont icon-twitter"/>
+                <i className="iconfont icon-weibo" />
+                <i className="iconfont icon-weixin" />
+                <i className="iconfont icon-qq" />
+                <i className="iconfont icon-twitter" />
               </p>
-              <div className="circle"/>
-              <div className="circle"/>
+              <div className="circle" />
+              <div className="circle" />
             </div>
           </div>
           <div id="scene">
-            {/*中间层*/}
+            {/*天气*/}
             <ul className="center-widget" data-depth="0.6">
               <li className="center-widget-item">
-
+                <h2>温度</h2>
+                <div className="val">
+                  {weatherData.tmp}
+                  <small>
+                    <sup>°</sup>c
+                  </small>
+                </div>
               </li>
               <li className="center-widget-item">
-
+                <h2>体感温度</h2>
+                <div className="val">
+                  {weatherData.fl}
+                  <small>
+                    <sup>°</sup>c
+                  </small>
+                </div>
               </li>
               <li className="center-widget-item">
-
+                <h2>天气状况</h2>
+                <div className="val">{weatherData.cond_txt}</div>
               </li>
               <li className="center-widget-item">
-
+                <h2>能见度</h2>
+                <div className="val">{weatherData.vis}/km</div>
               </li>
             </ul>
             {/*左侧*/}
@@ -126,7 +197,7 @@ class HomeComponent extends Component {
                 <Widget title="友情链接">
                   <FriendLink />
                 </Widget>
-                <Widget title="站点统计">
+                <Widget title="站点统计(暂时未做)">
                   <Census />
                 </Widget>
               </Right>

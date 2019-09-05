@@ -123,6 +123,7 @@ function toggleBody(isPin) {
   }
 }
 
+
 export {
   nFormatter,
   toThousandslsFilter,

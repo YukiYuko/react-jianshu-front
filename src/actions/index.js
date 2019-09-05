@@ -73,6 +73,21 @@ class Sweet_confirm {
   }
 }
 
+// 未登录提醒
+const isLogin = (props) => {
+  if (!props.user.id) {
+    public_confirm("您还未登录，现在去登录吗").then(() => {
+      props.history.push({
+        pathname: "/login",
+        state: {
+          from: props.location.pathname
+        }
+      });
+    });
+    return false;
+  }
+  return true
+};
 /*
 Swal.fire({
     title: '标题',
@@ -97,5 +112,6 @@ export {
   tips,
   public_confirm,
   Sweet_confirm,
-  successModal
+  successModal,
+  isLogin
 }

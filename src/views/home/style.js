@@ -38,7 +38,7 @@ export const HomeContainer = styled.div`
       .line {
         width: 50px;
         height: 5px;
-        background-color: rgba(0,0,0,0.7);
+        background-color: rgba(0, 0, 0, 0.7);
         display: block;
         margin: 8px auto;
         transition: all 0.3s ease-in-out;
@@ -308,6 +308,17 @@ export const HomeContainer = styled.div`
           &:nth-child(4) {
             transform-origin: left top;
             transition-delay: 0.3s;
+          }
+          h2 {
+            font-size: 11px;
+            opacity: 0.8;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+          }
+          .val {
+            font-size: 50px;
+            font-weight: 100;
+            color: #343a42;
           }
         }
       }

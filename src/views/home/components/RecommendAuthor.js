@@ -72,9 +72,9 @@ class RecommendAuthorComponent extends Component {
                 <div className="author-list-item-text box1">
                   <h3>{item.username}</h3>
                   <p>
-                    <span>写了 {nFormatter(item.total_wordage || 0)} 字</span>
+                    <span>写了 {nFormatter(item.num || 0)} 字</span>
                     <span>·</span>
-                    <span>{nFormatter(item.total_likes_count || 0)} 喜欢</span>
+                    <span>{nFormatter(item.followNum || 0)} 粉丝</span>
                   </p>
                 </div>
                 <div onClick={() => this.onFollow(item.id)} className="author-list-item-follow">

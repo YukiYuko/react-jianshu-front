@@ -4,6 +4,7 @@ import "./style.less";
 import CommentForm from "./form";
 import { CSSTransition } from "react-transition-group";
 import CommentItem from "./item";
+import {toggleBody} from "../../untils";
 
 class PublicComments extends PureComponent {
   state = {
@@ -22,14 +23,21 @@ class PublicComments extends PureComponent {
     this.props.submit({...formData, pid: this.state.pid});
     this.setState({
       show: false
-    })
+    });
   };
   openReply = (id) => {
     this.setState({
       show: true,
       pid: id
     });
+    toggleBody(1)
   };
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (!this.state.show) {
+      toggleBody(0)
+    }
+  }
 
   render() {
     const { list = [], count } = this.props;

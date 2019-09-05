@@ -26,6 +26,11 @@ class LoginView extends Component {
       password: ""
     };
   }
+  componentWillMount() {
+    if (this.props.user.id) {
+      this.props.history.replace("/");
+    }
+  }
 
   toggle () {
     this.setState(() => ({
@@ -45,7 +50,7 @@ class LoginView extends Component {
           if(this.props.location && this.props.location.state != null){
             from = this.props.location.state.from
           }
-          const urlTo = from ||'/';
+          const urlTo = from || '/';
           this.props.history.replace(urlTo);
         })
       }, 1000);

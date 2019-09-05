@@ -14,7 +14,7 @@ const Block = styled.div`
       height: 200px;
       background: url(${TagBg}) top #505050;
       background-size: 150px;
-      h3 {
+      .typed-text-h {
         font-size: 18px;
         color: #ffffff;
         margin-bottom: 10px;
@@ -62,6 +62,7 @@ const BlockList = styled.div`
       &-item {
         width: 33.33%;
         padding: 0 5px;
+        display: block;
         &-text {
           width: 100%;
           .img-box {

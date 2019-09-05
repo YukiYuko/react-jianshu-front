@@ -1,19 +1,14 @@
 import React from "react";
 import "./article.less";
 import cls from "classnames";
-import PropTypes from "prop-types";
 import {formatTime} from "../../../untils";
+import {Link} from "react-router-dom";
 
 class Article extends React.PureComponent {
-  static contextTypes = {
-    router: PropTypes.object
-  };
-
   render() {
     const {type, item} = this.props;
-    const {router} = this.context;
     const Single = () => (
-      <div className="article-template single-template" onClick={() => router.history.push(`/post/${item.id}`)}>
+      <Link target="_blank" to={`/post/${item.id}`} className="article-template single-template">
         <h3>{item.title}</h3>
         <p>
           <span>作者：{item.author && item.author.username}</span>
@@ -58,7 +53,7 @@ class Article extends React.PureComponent {
             </span>
           </div>
         </div>
-      </div>
+      </Link>
     );
     const Muti = () => (
       <div className="muti-template">
