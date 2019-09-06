@@ -37,6 +37,12 @@ const DetailWarp = styled.div`
       max-width: 100%;
     }
   }
+  // 这是文章内容导航
+  #catalog-content {
+    position: fixed;
+    right: 20px;
+    top: 100px;
+  }
   // 这是点赞 ***************************************
   .like {
     text-align: center;
@@ -220,7 +226,7 @@ const DetailWarp = styled.div`
               font-size: 12px;
               margin-left: 10px;
             }
-            em {
+            .os {
               background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
               margin-right: 10px;
               padding: 3px 6px;

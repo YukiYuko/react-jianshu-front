@@ -18,6 +18,8 @@ import Poster from "../../common/Poster";
 import {drawCanvas} from "../../untils/poster";
 import Qrcode from "qrcodejs2";
 import Overlay from "../../common/Overlay";
+import Catalog from "../../lib/progress-catalog/progress-catalog.min";
+import "../../lib/progress-catalog/progress-catalog.css";
 
 class DetailComponent extends Component {
   state = {
@@ -172,6 +174,12 @@ class DetailComponent extends Component {
           detail: res.data,
           like: !!arr.length,
           all_likes: (res.data.likes && res.data.likes.length) || 0
+        }, () => {
+          new Catalog({
+            contentEl: 'content',
+            catalogEl: `catalog-content`,
+            selector: ['h1','h2', 'h3']
+          })
         });
       });
   };
@@ -341,11 +349,11 @@ class DetailComponent extends Component {
             {item.user.username}{" "}
             <span>
               {item.browser ? (
-                <em>
+                <em className="os">
                   {item.browser} {item.os}
                 </em>
               ) : (
-                <em>来自火星</em>
+                <em className="os">来自火星</em>
               )}
               {formatTime(item.createdAt)}
             </span>
@@ -432,6 +440,7 @@ class DetailComponent extends Component {
 
         {/*生成的海报*/}
         <Poster />
+        <div id="catalog-content"></div>
 
         {
           show ? <Overlay click={(e) => this.hideCanvas(e)}>
@@ -460,6 +469,7 @@ class DetailComponent extends Component {
               ))}
           </div>
           <div
+            id="content"
             className="detail braft-output-content"
             dangerouslySetInnerHTML={{
               __html:

@@ -113,10 +113,10 @@ class HomeComponent extends Component {
               <h3>年龄: 18岁(你信吗)</h3>
               <div id="location" />
               <p>
-                <i className="iconfont icon-weibo" />
-                <i className="iconfont icon-weixin" />
-                <i className="iconfont icon-qq" />
-                <i className="iconfont icon-twitter" />
+                <a target="_blank" href="https://weibo.com/1799261255/profile?rightmod=1&wvr=6&mod=personinfo"><i className="iconfont icon-weibo" /></a>
+                {/*<i className="iconfont icon-weixin" />*/}
+                {/*<i className="iconfont icon-qq" />*/}
+                {/*<i className="iconfont icon-twitter" />*/}
               </p>
               <div className="circle" />
               <div className="circle" />
