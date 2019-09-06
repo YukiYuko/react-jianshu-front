@@ -9,7 +9,7 @@ import RandArticle from "./components/RandArticle";
 import HotComment from "./components/HotComment";
 import FriendLink from "./components/FriendLink";
 import Census from "./components/Census";
-import { Row, Col, BackTop } from "antd";
+import { Row, Col, BackTop, Affix } from "antd";
 import Widget from "../components/widget";
 import Wave from "../../common/Wave";
 import Wave2 from "../../common/Wave2";
@@ -194,12 +194,14 @@ class HomeComponent extends Component {
                 <Widget title="热门评论">
                   <HotComment />
                 </Widget>
-                <Widget title="友情链接">
-                  <FriendLink />
-                </Widget>
-                <Widget title="站点统计(暂时未做)">
-                  <Census />
-                </Widget>
+                <Affix offsetTop={90} onChange={affixed => console.log(affixed)}>
+                  <Widget title="友情链接">
+                    <FriendLink />
+                  </Widget>
+                  <Widget title="站点统计(暂时未做)">
+                    <Census />
+                  </Widget>
+                </Affix>
               </Right>
             </Col>
           </Row>

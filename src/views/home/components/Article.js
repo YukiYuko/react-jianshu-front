@@ -5,6 +5,7 @@ import {article} from "../../../api";
 import dayjs from 'dayjs';
 import {Link} from "react-router-dom";
 import LoadMore from "../../../common/LoadMore";
+import ScrollReveal from 'scrollreveal';
 
 const ButtonGroup = Button.Group;
 const getDate = (time) => {
@@ -41,12 +42,18 @@ class ArticleComponent extends Component {
           count: res.data.count,
           page: page + 1
         }));
+        ScrollReveal().reveal('.article-list-item', {
+          delay: 375,
+          duration: 500,
+          scale: 0.85
+        });
         this.child.reset();
       }, 500);
     })
   };
 
   componentDidMount() {
+
   }
 
   // 绑定子组件实例
@@ -62,7 +69,7 @@ class ArticleComponent extends Component {
           <div className="article-list">
             {
               articles.map((item) => (
-                <Link target="_blank" to={`/post/${item.id}`} key={item.id}>
+                <Link target="_blank" to={`/post/${item.id}`} key={item.id} rel="noopener noreferrer">
                   <div className="article-list-item">
                     <div className="article-list-item-left">
                       <div className="title">

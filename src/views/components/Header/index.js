@@ -109,8 +109,7 @@ class HeaderComponent extends React.Component {
                       </a>
                       <h4>
                         <a className="cd-nowrap" href="#0">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit.
+                          这是热门新闻
                         </a>
                       </h4>
                       <time dateTime="2016-01-12">Feb 03, 2016</time>
@@ -121,8 +120,7 @@ class HeaderComponent extends React.Component {
                       </a>
                       <h4>
                         <a className="cd-nowrap" href="#0">
-                          Incidunt voluptatem adipisci voluptates fugit beatae
-                          culpa eum, distinctio, assumenda est ad
+                          这是热门新闻
                         </a>
                       </h4>
                       <time dateTime="2016-01-12">Jan 28, 2016</time>
@@ -133,8 +131,7 @@ class HeaderComponent extends React.Component {
                       </a>
                       <h4>
                         <a className="cd-nowrap" href="#0">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Iusto, esse.
+                          这是热门新闻
                         </a>
                       </h4>
                       <time dateTime="2016-01-12">Jan 12, 2016</time>
