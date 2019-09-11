@@ -15,6 +15,7 @@ import article from "../../api/article";
 import draft from "../../api/draft";
 import BraftEditor from "braft-editor";
 import "braft-editor/dist/index.css";
+import E from 'wangeditor';
 import { ContentUtils } from "braft-utils";
 // import { ImageUtils } from "braft-finder";
 import { SchemaModel, StringType, ArrayType, NumberType } from 'schema-typed';
@@ -34,9 +35,9 @@ function beforeUpload(file) {
   if (!isJpgOrPng) {
     message.error("只能上传 jpg/png 类型的图片");
   }
-  const isLt2M = file.size / 1024 / 1024 < 2;
+  const isLt2M = file.size / 1024 / 1024 < 10;
   if (!isLt2M) {
-    message.error("图片不能大于2M");
+    message.error("图片不能大于10M");
   }
   return isJpgOrPng && isLt2M;
 }
@@ -58,7 +59,8 @@ class Write extends React.Component {
     content: "",  // md 文章内容
     editorState: BraftEditor.createEditorState(null), // rich 文章内容
     token: getStorage("token"),
-    postId: ""
+    postId: "",
+    editorContent: ""
   };
 
   constructor(props) {
@@ -73,6 +75,20 @@ class Write extends React.Component {
     this.judgeLogin();
     this.getCategory();
     this.getLabels();
+    if (this.props.user.editorType === "rich") {
+      this.richText();
+    }
+  }
+  richText() {
+    const elem = this.editorElem;
+    this.editor = new E(elem);
+    // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
+    this.editor.customConfig.onchange = html => {
+      this.handleRichThrottled(html);
+    };
+    this.editor.customConfig.pasteFilterStyle = false;
+    this.editor.customConfig.zIndex = 3;
+    this.editor.create();
 
     window.addEventListener("click", e => {
       let _con = document.querySelector(".panel");
@@ -106,8 +122,12 @@ class Write extends React.Component {
           tags: [],  // 文章标签
           imageUrl: res.data.images,  // 头图
           content: res.data.content,  // md 文章内容
-          editorState: BraftEditor.createEditorState(res.data.content), // rich 文章内容
+          editorState: BraftEditor.createEditorState(res.data.content), // rich 文章内容,
+          editorContent: res.data.content
         });
+        this.editor.txt.html(res.data.content);
+      }).catch((res) => {
+        this.props.history.replace(`/write/create`)
       })
     }
   }
@@ -150,7 +170,7 @@ class Write extends React.Component {
       // params.content = marked(this.state.content);
       params.content = this.state.content;
     } else {
-      params.content = this.state.editorState.toHTML();
+      params.content = this.state.editorContent;
     }
     this.setState({
       saving: 1
@@ -248,11 +268,11 @@ class Write extends React.Component {
       }
       params.content = this.state.content;
     } else {
-      if (this.state.editorState.isEmpty()) {
+      if (!this.state.editorContent) {
         tips("请书写文章内容", "error");
         return false
       }
-      params.content = this.state.editorState.toHTML();
+      params.content = this.state.editorContent;
     }
     let id = this.props.match.params.type;
     if (id && id !== "create") {
@@ -342,12 +362,12 @@ class Write extends React.Component {
   };
 
   // 监听富文本 ****************
-  handleRich = editorState => {
+  handleRich = html => {
     this.setState({
-      editorState
-    },() => {
+      editorContent: html
+    }, () => {
       this.autoSave();
-    });
+    })
   };
 
   uploadHandler = info => {
@@ -598,12 +618,16 @@ class Write extends React.Component {
           ) : (
             // 富文本编辑器
             <div className="write-warp__content warp960">
-              <BraftEditor
-                value={this.state.editorState}
-                onChange={(v) => this.handleRichThrottled(v)}
-                controls={controls}
-                extendControls={extendControls}
-              />
+              {/*<BraftEditor*/}
+                {/*value={this.state.editorState}*/}
+                {/*onChange={(v) => this.handleRichThrottled(v)}*/}
+                {/*controls={controls}*/}
+                {/*extendControls={extendControls}*/}
+                {/*stripPastedStyles={true}*/}
+                {/*stripPastedText={true}*/}
+              {/*/>*/}
+              <div className="editorElem" ref={(ref) => this.editorElem = ref} style={{textAlign: 'left'}}>
+              </div>
             </div>
           )}
         </div>

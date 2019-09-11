@@ -13,12 +13,12 @@ import LoadMore from "../components/loadmore";
 import { getStorage } from "../../untils/localstorage";
 import CommentTpl from "../../common/Comment";
 import { formatTime } from "../../untils/index";
-import "../../assets/style/output.css";
+// import "../../assets/style/output.css";
 import Poster from "../../common/Poster";
 import {drawCanvas} from "../../untils/poster";
 import Qrcode from "qrcodejs2";
 import Overlay from "../../common/Overlay";
-import Catalog from "../../lib/progress-catalog/progress-catalog.min";
+import Catalog from "../../lib/progress-catalog/progress-catalog.js";
 import "../../lib/progress-catalog/progress-catalog.css";
 
 class DetailComponent extends Component {
@@ -175,11 +175,16 @@ class DetailComponent extends Component {
           like: !!arr.length,
           all_likes: (res.data.likes && res.data.likes.length) || 0
         }, () => {
-          new Catalog({
-            contentEl: 'content',
-            catalogEl: `catalog-content`,
-            selector: ['h1','h2', 'h3']
-          })
+          setTimeout(() => {
+            new Catalog({
+              contentEl: 'content',
+              catalogEl: `catalog-content`,
+              selector: ['h1','h2'],
+              cool: false,
+              scrollWrapper: document.querySelector(".detail-container")
+            })
+          }, 500);
+
         });
       });
   };
@@ -431,7 +436,7 @@ class DetailComponent extends Component {
     } = this.state;
 
     return (
-      <DetailWarp>
+      <DetailWarp className="detail-container">
         <Back
           back={() => (window.location.href = "/")}
           title={detail.title}
@@ -440,12 +445,12 @@ class DetailComponent extends Component {
 
         {/*生成的海报*/}
         <Poster />
-        <div id="catalog-content"></div>
+        <div id="catalog-content"/>
 
         {
           show ? <Overlay click={(e) => this.hideCanvas(e)}>
             <div className="overlay-box">
-              <img class="posterImg" onClick={(e) => e.stopPropagation()} src={posterImg} alt=""/>
+              <img className="posterImg" onClick={(e) => e.stopPropagation()} src={posterImg} alt=""/>
               <div onClick={(e) => e.stopPropagation()} className="poster-down">
                 <a href={posterImg} download="canvas生成的海报">下载图片</a>
               </div>
@@ -454,97 +459,99 @@ class DetailComponent extends Component {
         }
 
         <Warp960>
-          <div className="sub_head">
-            {detail.author && <span>作者: {detail.author.username}</span>}
-            <span>发布时间: {formatTime(detail.createdAt)}</span>
-            {detail.readNum && <span>点击数: {detail.readNum}</span>}
-          </div>
-          <div className="label">
-            <span>标签:</span>
-            {detail.tags &&
-              detail.tags.split(",").map((item, index) => (
+          <div className="scroll-warp">
+            <div className="sub_head">
+              {detail.author && <span>作者: {detail.author.username}</span>}
+              <span>发布时间: {formatTime(detail.createdAt)}</span>
+              {detail.readNum && <span>点击数: {detail.readNum}</span>}
+            </div>
+            <div className="label">
+              <span>标签:</span>
+              {detail.tags &&
+              detail.tags.map((item, index) => (
                 <Tag key={index} color="magenta">
-                  {item}
+                  {item.tag.name}
                 </Tag>
               ))}
-          </div>
-          <div
-            id="content"
-            className="detail braft-output-content"
-            dangerouslySetInnerHTML={{
-              __html:
-                detail.editorType === "md"
-                  ? marked(detail.content)
-                  : detail.content
-            }}
-          />
-          {/*赞*/}
-          <div className="like">
-            <div className="anim-icon anim-icon-md heart">
-              <input
-                type="checkbox"
-                checked={like}
-                onChange={this.like}
-                id="heart"
-              />
-              <label htmlFor="heart" />
             </div>
-            <div className="like-number">{all_likes}</div>
-            {/*<input value={content} onChange={this.changeHandle} placeholder="说点儿什么吧~"/>*/}
-          </div>
-          {/*评论 */}
-          <div className="discuss">
-            {this.DiscussPublish()}
-            <div className="discuss-comment">
-              {comments.map((item, index) => this.CommentItem(item, index))}
-              <LoadMore text={text} onClick={this.getComment} />
+            <div
+              id="content"
+              className="detail braft-output-content"
+              dangerouslySetInnerHTML={{
+                __html:
+                  detail.editorType === "md"
+                    ? marked(detail.content)
+                    : detail.content
+              }}
+            />
+            {/*赞*/}
+            <div className="like">
+              <div className="anim-icon anim-icon-md heart">
+                <input
+                  type="checkbox"
+                  checked={like}
+                  onChange={this.like}
+                  id="heart"
+                />
+                <label htmlFor="heart" />
+              </div>
+              <div className="like-number">{all_likes}</div>
+              {/*<input value={content} onChange={this.changeHandle} placeholder="说点儿什么吧~"/>*/}
             </div>
-          </div>
-          {/*分享*/}
-          <div className="rotate-menu">
+            {/*评论 */}
+            <div className="discuss">
+              {this.DiscussPublish()}
+              <div className="discuss-comment">
+                {comments.map((item, index) => this.CommentItem(item, index))}
+                <LoadMore text={text} onClick={this.getComment} />
+              </div>
+            </div>
+            {/*分享*/}
+            <div className="rotate-menu">
             <span className="share position" onClick={this.toggleShare}>
               <i className="iconfont icon-fenxiang" />
             </span>
-            <span
-              onClick={() => this.capture()}
-              className={cls("share1", "position", [
-                { active: is_click_share }
-              ])}
-            >
+              <span
+                onClick={() => this.capture()}
+                className={cls("share1", "position", [
+                  { active: is_click_share }
+                ])}
+              >
               <Tooltip placement="top" title="生成海报">
                 <i className="iconfont icon-Postit" />
               </Tooltip>
             </span>
-            <span
-              className={cls("share2", "position", [
-                { active: is_click_share }
-              ])}
-            >
+              <span
+                className={cls("share2", "position", [
+                  { active: is_click_share }
+                ])}
+              >
               <Tooltip placement="top" title="微博分享">
                 <i className="iconfont icon-weibo" />
               </Tooltip>
             </span>
-            <span
-              className={cls("share3", "position", [
-                { active: is_click_share }
-              ])}
-            >
+              <span
+                className={cls("share3", "position", [
+                  { active: is_click_share }
+                ])}
+              >
               <Tooltip placement="top" title="微信分享">
                 <i className="iconfont icon-weixin" />
               </Tooltip>
             </span>
-            <span
-              className={cls("share4", "position", [
-                { active: is_click_share }
-              ])}
-            >
+              <span
+                className={cls("share4", "position", [
+                  { active: is_click_share }
+                ])}
+              >
               <Tooltip placement="top" title="QQ分享">
                 <i className="iconfont icon-qq" />
               </Tooltip>
             </span>
+            </div>
           </div>
         </Warp960>
-        <BackTop />
+        <BackTop target={() => document.querySelector(".detail-container")} />
       </DetailWarp>
     );
   }

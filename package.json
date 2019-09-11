@@ -47,7 +47,8 @@
     "sweetalert2": "^8.16.2",
     "typed.js": "^2.0.10",
     "underscore": "^1.9.1",
-    "velocity-react": "^1.4.1"
+    "velocity-react": "^1.4.1",
+    "wangeditor": "^3.1.1"
   },
   "scripts": {
     "start": "react-app-rewired start",

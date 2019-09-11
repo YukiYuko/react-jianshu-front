@@ -10,10 +10,13 @@ const Warp960 = styled.div`
   max-width: 800px;
   position: relative;
   margin: auto;
+  padding-bottom: 30px;
 `;
 
 const DetailWarp = styled.div`
-  padding-bottom: 50px;
+  //padding-bottom: 50px;
+  height: 100vh;
+  overflow: auto;
   .posterImg {
     animation: scale-in ease-in-out 0.3s;
   }
@@ -31,10 +34,63 @@ const DetailWarp = styled.div`
   }
   .detail {
     padding: 20px 0;
+    color: #111111;
     img {
       display: block;
       margin: auto;
       max-width: 100%;
+    }
+    // 内容区域
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #333;
+      line-height: 1.5;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+    }
+    p {
+      line-height: inherit;
+      margin-top: 22px;
+      margin-bottom: 22px;
+    }
+    code {
+      background-color: #fff5f5;
+      color: #ff502c;
+      font-size: 0.87em;
+      padding: 0.065em 0.4em;
+      border-radius: 2px;
+      overflow-x: auto;
+      word-break: break-word;
+    }
+    pre {
+      position: relative;
+      line-height: 1.75;
+      background: #f8f8f8;
+      padding: 18px 15px 12px;
+      code {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        color: #333;
+        background: #f8f8f8;
+      }
+    }
+    ul,
+    ol {
+      padding-left: 28px;
+      margin-bottom: 15px;
+      li {
+        margin-bottom: 0;
+        list-style: initial;
+        line-height: 20px;
+      }
+    }
+    blockquote {
+      line-height: 24px;
     }
   }
   // 这是文章内容导航
@@ -42,6 +98,9 @@ const DetailWarp = styled.div`
     position: fixed;
     right: 20px;
     top: 100px;
+    li {
+      line-height: 25px;
+    }
   }
   // 这是点赞 ***************************************
   .like {

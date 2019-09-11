@@ -175,7 +175,13 @@
     }
   }
   &__content {
-    height: calc(~"100% - 64px");
+    height: calc(~"100% - 64px") !important;
+    .editorElem {
+      height: 100%;
+      .w-e-text-container {
+        height: calc(~"100% - 27px") !important;
+      }
+    }
     &.warp960 {
       .bf-controlbar {
         box-shadow: none;
