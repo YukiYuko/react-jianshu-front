@@ -2,20 +2,20 @@
  * axios封装
  * 请求拦截、响应拦截、错误统一处理
  */
-import axios from 'axios';
+import axios from "axios";
 // import router from '../router';
 // import store from '../store/index';
-import {notification} from 'antd';
-import {getStorage, removeStorage} from '../untils/localstorage';
+import { notification } from "antd";
+import { getStorage, removeStorage } from "../untils/localstorage";
 
 /**
  * 提示函数
  * 禁止点击蒙层、显示一秒后关闭
  */
-const tip = (msg) => {
+const tip = msg => {
   notification.error({
-    message: 'Tips',
-    description: msg,
+    message: "Tips",
+    description: msg
   });
 };
 
@@ -37,23 +37,23 @@ const errorHandle = (status, other) => {
   switch (status) {
     // 401: 未登录状态，跳转登录页
     case 401:
-      tip('token验证失败..');
+      tip("token验证失败..");
       toLogin();
       break;
     // 403 token过期
     // 清除token并跳转登录页
     case 403:
-      tip('登录过期，请重新登录');
+      tip("登录过期，请重新登录");
       setTimeout(() => {
         toLogin();
       }, 1000);
       break;
     // 404请求不存在
     case 404:
-      tip('请求的资源不存在');
+      tip("请求的资源不存在");
       break;
     case 422:
-      tip('请求参数错误');
+      tip("请求参数错误");
       break;
     default:
       console.log(other);
@@ -61,9 +61,10 @@ const errorHandle = (status, other) => {
 };
 
 // 创建axios实例
-var instance = axios.create({timeout: 1000 * 12});
+var instance = axios.create({ timeout: 1000 * 12 });
 // 设置post请求头
-instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+instance.defaults.headers.post["Content-Type"] =
+  "application/x-www-form-urlencoded";
 /**
  * 请求拦截器
  * 每次请求前，如果存在token则在请求头中携带token
@@ -78,7 +79,8 @@ instance.interceptors.request.use(
     token && (config.headers.Authorization = token);
     return config;
   },
-  error => Promise.error(error));
+  error => Promise.error(error)
+);
 
 // 响应拦截器
 instance.interceptors.response.use(
@@ -86,25 +88,25 @@ instance.interceptors.response.use(
   res => {
     if (res.status === 200) {
       if (res.data.code === 200) {
-        return Promise.resolve(res.data)
+        return Promise.resolve(res.data);
       } else {
         tip(res.data.msg);
         if (res.data.code === 301) {
-          tip('登录过期，请重新登录');
+          tip("登录过期，请重新登录");
           setTimeout(() => {
             toLogin();
           }, 1000);
         }
-        return Promise.reject(res)
+        return Promise.reject(res);
       }
     } else {
       tip("系统错误---");
-      return Promise.reject(res)
+      return Promise.reject(res);
     }
   },
   // 请求失败
   error => {
-    const {response} = error;
+    const { response } = error;
     if (response) {
       // 请求已发出，但是不在2xx的范围
       errorHandle(response.status, response.data.message);
@@ -115,9 +117,10 @@ instance.interceptors.response.use(
       // network状态在app.vue中控制着一个全局的断网提示组件的显示隐藏
       // 关于断网组件中的刷新重新获取数据，会在断网组件中说明
       // store.commit('changeNetwork', false);
-      tip('请检查网络是否正常');
+      tip("请检查网络是否正常");
       return Promise.reject("请求错误");
     }
-  });
+  }
+);
 
 export default instance;

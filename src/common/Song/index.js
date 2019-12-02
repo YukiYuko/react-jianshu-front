@@ -16,14 +16,16 @@ class Song extends React.Component {
       // this.setState({
       //   list: res.data
       // })
-      let audio = res.data.map((item) => ({
-        name: item.name,
-        artist: item.artist,
-        url: item.url,
-        cover: item.cover,
-        theme: "#fb415f"
-      }));
-      this.ap.list.add(audio);
+      if (res.data.length) {
+        let audio = res.data.map((item) => ({
+          name: item.name,
+          artist: item.artist,
+          url: item.url,
+          cover: item.cover,
+          theme: "#fb415f"
+        }));
+        this.ap.list.add(audio);
+      }
     });
   };
   // event binding example

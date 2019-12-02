@@ -15,7 +15,7 @@ import CommentTpl from "../../common/Comment";
 import { formatTime } from "../../untils/index";
 // import "../../assets/style/output.css";
 import Poster from "../../common/Poster";
-import {drawCanvas} from "../../untils/poster";
+import { drawCanvas } from "../../untils/poster";
 import Qrcode from "qrcodejs2";
 import Overlay from "../../common/Overlay";
 import Catalog from "../../lib/progress-catalog/progress-catalog.js";
@@ -170,22 +170,24 @@ class DetailComponent extends Component {
         if (res.data.likes) {
           arr = res.data.likes.filter(item => item.uid === uid * 1);
         }
-        this.setState({
-          detail: res.data,
-          like: !!arr.length,
-          all_likes: (res.data.likes && res.data.likes.length) || 0
-        }, () => {
-          setTimeout(() => {
-            new Catalog({
-              contentEl: 'content',
-              catalogEl: `catalog-content`,
-              selector: ['h1','h2'],
-              cool: false,
-              scrollWrapper: document.querySelector(".detail-container")
-            })
-          }, 500);
-
-        });
+        this.setState(
+          {
+            detail: res.data,
+            like: !!arr.length,
+            all_likes: (res.data.likes && res.data.likes.length) || 0
+          },
+          () => {
+            setTimeout(() => {
+              new Catalog({
+                contentEl: "content",
+                catalogEl: `catalog-content`,
+                selector: ["h1", "h2"],
+                cool: false,
+                scrollWrapper: document.querySelector(".detail-container")
+              });
+            }, 500);
+          }
+        );
       });
   };
   /*
@@ -301,9 +303,9 @@ class DetailComponent extends Component {
         text: window.location.href,
         width: 128,
         height: 128,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : Qrcode.CorrectLevel.H
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: Qrcode.CorrectLevel.H
       });
     }
     let canvas = await drawCanvas(".poster");
@@ -311,10 +313,10 @@ class DetailComponent extends Component {
     this.setState({
       posterImg: url,
       show: true
-    })
+    });
   }
 
-  hideCanvas = (e) => {
+  hideCanvas = e => {
     console.log(1);
     e.stopPropagation();
     this.setState({
@@ -445,18 +447,25 @@ class DetailComponent extends Component {
 
         {/*生成的海报*/}
         <Poster />
-        <div id="catalog-content"/>
+        <div id="catalog-content" />
 
-        {
-          show ? <Overlay click={(e) => this.hideCanvas(e)}>
+        {show ? (
+          <Overlay click={e => this.hideCanvas(e)}>
             <div className="overlay-box">
-              <img className="posterImg" onClick={(e) => e.stopPropagation()} src={posterImg} alt=""/>
-              <div onClick={(e) => e.stopPropagation()} className="poster-down">
-                <a href={posterImg} download="canvas生成的海报">下载图片</a>
+              <img
+                className="posterImg"
+                onClick={e => e.stopPropagation()}
+                src={posterImg}
+                alt=""
+              />
+              <div onClick={e => e.stopPropagation()} className="poster-down">
+                <a href={posterImg} download="canvas生成的海报">
+                  下载图片
+                </a>
               </div>
             </div>
-          </Overlay>: null
-        }
+          </Overlay>
+        ) : null}
 
         <Warp960>
           <div className="scroll-warp">
@@ -468,11 +477,11 @@ class DetailComponent extends Component {
             <div className="label">
               <span>标签:</span>
               {detail.tags &&
-              detail.tags.map((item, index) => (
-                <Tag key={index} color="magenta">
-                  {item.tag.name}
-                </Tag>
-              ))}
+                detail.tags.map((item, index) => (
+                  <Tag key={index} color="magenta">
+                    {item.tag.name}
+                  </Tag>
+                ))}
             </div>
             <div
               id="content"
@@ -508,46 +517,46 @@ class DetailComponent extends Component {
             </div>
             {/*分享*/}
             <div className="rotate-menu">
-            <span className="share position" onClick={this.toggleShare}>
-              <i className="iconfont icon-fenxiang" />
-            </span>
+              <span className="share position" onClick={this.toggleShare}>
+                <i className="iconfont icon-fenxiang" />
+              </span>
               <span
                 onClick={() => this.capture()}
                 className={cls("share1", "position", [
                   { active: is_click_share }
                 ])}
               >
-              <Tooltip placement="top" title="生成海报">
-                <i className="iconfont icon-Postit" />
-              </Tooltip>
-            </span>
+                <Tooltip placement="top" title="生成海报">
+                  <i className="iconfont icon-Postit" />
+                </Tooltip>
+              </span>
               <span
                 className={cls("share2", "position", [
                   { active: is_click_share }
                 ])}
               >
-              <Tooltip placement="top" title="微博分享">
-                <i className="iconfont icon-weibo" />
-              </Tooltip>
-            </span>
+                <Tooltip placement="top" title="微博分享">
+                  <i className="iconfont icon-weibo" />
+                </Tooltip>
+              </span>
               <span
                 className={cls("share3", "position", [
                   { active: is_click_share }
                 ])}
               >
-              <Tooltip placement="top" title="微信分享">
-                <i className="iconfont icon-weixin" />
-              </Tooltip>
-            </span>
+                <Tooltip placement="top" title="微信分享">
+                  <i className="iconfont icon-weixin" />
+                </Tooltip>
+              </span>
               <span
                 className={cls("share4", "position", [
                   { active: is_click_share }
                 ])}
               >
-              <Tooltip placement="top" title="QQ分享">
-                <i className="iconfont icon-qq" />
-              </Tooltip>
-            </span>
+                <Tooltip placement="top" title="QQ分享">
+                  <i className="iconfont icon-qq" />
+                </Tooltip>
+              </span>
             </div>
           </div>
         </Warp960>

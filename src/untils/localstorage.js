@@ -18,15 +18,13 @@ function setStorage(name, data) {
   try {
     let storage = window.localStorage;
     storage.setItem(name, data);
-  } catch (err) {
-  }
+  } catch (err) {}
 }
 //删除localStorage
 function removeStorage(name) {
   try {
     let storage = window.localStorage;
     storage.removeItem(name);
-  } catch (err) {
-  }
+  } catch (err) {}
 }
 export { getStorage, setStorage, removeStorage };
