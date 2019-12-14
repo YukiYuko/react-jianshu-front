@@ -25,6 +25,9 @@ class ProfileEdit extends React.Component {
     avatar: ""
   };
   save = (key, val) => {
+    if (!val) {
+      return;
+    }
     user.update({[key]: val, id: this.props.user.id}).then(() => {
       this.props.set_user({[key]: val})
     })

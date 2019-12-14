@@ -21,7 +21,7 @@ const LeftBar = styled.div`
   }
   .loginOut {
     position: absolute;
-    bottom: 70px;
+    bottom: 0;
     width: 100%;
     height: 80px;
     cursor: pointer;
@@ -188,6 +188,7 @@ const RightContainer = styled.div`
     min-height: 180px;
     margin-bottom: 15px;
     padding: 0 20px;
+    overflow: auto;
     &__title {
       font-size: 18px;
       font-weight: bold;

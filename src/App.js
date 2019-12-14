@@ -13,7 +13,7 @@ import "./App.css";
 import "./assets/style/var.less";
 import "./assets/style/reset.less";
 import "effect-dropdown-react/dist/index.css";
-import Song from "./common/Song";
+// import Song from "./common/Song";
 
 class App extends Component {
   componentDidMount() {
@@ -41,7 +41,7 @@ class App extends Component {
         <div className="App">
           {/*<Globalstyle/>*/}
           <FlexStyle />
-          <Song />
+          {/*<Song />*/}
           <Router>
             <div className="views">
               <ScrollTop>

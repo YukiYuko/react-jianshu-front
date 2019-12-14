@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Left, Right, HomeContainer, ViewFooter } from "./style";
+import React, {Component} from "react";
+import {Left, Right, HomeContainer, ViewFooter} from "./style";
 import Banner from "./components/Banner";
 import Topic from "./components/Topic";
 import Vheader from "../components/Header";
@@ -9,25 +9,25 @@ import RandArticle from "./components/RandArticle";
 import HotComment from "./components/HotComment";
 import FriendLink from "./components/FriendLink";
 import Census from "./components/Census";
-import { Row, Col, BackTop, Affix } from "antd";
+import {Row, Col, BackTop, Affix} from "antd";
 import Widget from "../components/widget";
-import Wave from "../../common/Wave";
 import Wave2 from "../../common/Wave2";
 import Parallax from "parallax-js";
 import classie from "../../untils/classie";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import weather from "../../api/weather";
 
 class HomeComponent extends Component {
   state = {
     weatherData: {}
   };
+
   componentDidMount() {
     let scene = document.getElementById("scene");
     new Parallax(scene);
-    // this.getLocation();
     this.getWeather();
   }
+
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
@@ -37,28 +37,27 @@ class HomeComponent extends Component {
       classie.add(document.querySelector(".center-widget"), "active");
     }, 200);
   }
+
   // 获取天气
   getWeather() {
     weather.getNormalWeather().then(res => {
       if (res.status === 200) {
-        console.log(res);
         this.setState(
           {
             weatherData: res.data.HeWeather6[0].now
-          },
-          () => {
-            console.log(this.state.weatherData);
           }
         );
       }
       this.setActive();
     });
   }
+
   // 获取浏览器位置
   getLocation = () => {
+    // 该方法只有在Edge上有用
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-        console.log(position);
+        console.log("position", position);
         document.getElementById("location").innerHTML =
           "纬度：" +
           position.coords.latitude +
@@ -90,11 +89,11 @@ class HomeComponent extends Component {
   };
 
   render() {
-    const { weatherData } = this.state;
+    const {weatherData} = this.state;
     return (
       <HomeContainer>
         {/*<Header />*/}
-        <Vheader user={this.props.user} />
+        <Vheader user={this.props.user}/>
         {/*menu*/}
         {/*首页背景*/}
         <div className="homeBanner">
@@ -111,15 +110,17 @@ class HomeComponent extends Component {
               <h1>QQ: 690517217</h1>
               <h3>职业: 前端切图API调用页面仔</h3>
               <h3>年龄: 18岁(你信吗)</h3>
-              <div id="location" />
+              {/*<div id="location" onClick={this.getLocation}>获取地理位置</div>*/}
               <p>
-                <a target="_blank" href="https://weibo.com/1799261255/profile?rightmod=1&wvr=6&mod=personinfo"><i className="iconfont icon-weibo" /></a>
+                <a rel="noopener noreferrer" target="_blank"
+                   href="https://weibo.com/1799261255/profile?rightmod=1&wvr=6&mod=personinfo"><i
+                  className="iconfont icon-weibo"/></a>
                 {/*<i className="iconfont icon-weixin" />*/}
                 {/*<i className="iconfont icon-qq" />*/}
                 {/*<i className="iconfont icon-twitter" />*/}
               </p>
-              <div className="circle" />
-              <div className="circle" />
+              <div className="circle"/>
+              <div className="circle"/>
             </div>
           </div>
           <div id="scene">
@@ -157,7 +158,7 @@ class HomeComponent extends Component {
               <div className="left-menu-box">
                 <div className="left-menu-box-container">
                   <div className="top">
-                    <div className="dialog" />
+                    <div className="dialog"/>
                   </div>
                 </div>
               </div>
@@ -166,51 +167,50 @@ class HomeComponent extends Component {
             <div id="right-menu-layer" data-depth="0.2">
               <div className="right-menu-box">
                 <div className="right-menu-box-container">
-                  <div className="share" />
+                  <div className="share"/>
                 </div>
               </div>
             </div>
           </div>
-          <Wave2 />
+          <Wave2/>
         </div>
         <div
           className="warp960"
-          style={{ paddingTop: "20px", paddingBottom: "380px" }}
+          style={{paddingTop: "20px", paddingBottom: "380px"}}
         >
           <Row gutter={16}>
             <Col className="gutter-row" span={16}>
               <Left>
-                <Banner />
-                <Article />
+                <Banner/>
+                <Article/>
               </Left>
             </Col>
             <Col className="gutter-row" span={8}>
               <Right>
-                <Topic />
-                <RecommendAuthor />
+                <Topic/>
+                <RecommendAuthor/>
                 <Widget title="随机文章">
-                  <RandArticle />
+                  <RandArticle/>
                 </Widget>
                 <Widget title="热门评论">
-                  <HotComment />
+                  <HotComment/>
                 </Widget>
                 <Affix offsetTop={90} onChange={affixed => console.log(affixed)}>
                   <Widget title="友情链接">
-                    <FriendLink />
+                    <FriendLink/>
                   </Widget>
                   <Widget title="站点统计(暂时未做)">
-                    <Census />
+                    <Census/>
                   </Widget>
                 </Affix>
               </Right>
             </Col>
           </Row>
-          <Wave />
-          <BackTop />
+          <BackTop/>
         </div>
         {/*footer*/}
         <ViewFooter>
-          <div className="footer-image" />
+          <div className="footer-image"/>
           <div className="warp960">
             <p id="open-button">Yuki-欢迎光临我的世界</p>
           </div>
@@ -219,6 +219,7 @@ class HomeComponent extends Component {
     );
   }
 }
+
 const mapStateToProps = state => ({
   user: state.user
 });

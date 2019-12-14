@@ -123,6 +123,9 @@ export const HomeContainer = styled.div`
       font-size: 20px;
       color: #ffffff;
     }
+    .card-container #location {
+      color: #fff;
+    }
     .card-container .card .circle {
       position: absolute;
       margin: auto;

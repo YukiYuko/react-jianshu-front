@@ -1,13 +1,14 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {Row, Col, BackTop} from "antd";
-import { MessageContainer } from "./style";
+import {MessageContainer} from "./style";
 import Header from "../../common/Header/Header";
 import VComments from "../../common/Comments";
 import messageApi from "../../api/message";
-import { tips } from "../../actions";
+import {tips} from "../../actions";
 import "./style.less";
 import Swing from "../../common/Swing";
 import system from "../../api/system";
+import Img from "../../common/Img/index";
 
 const Rem = require("../../assets/images/rem.jpg");
 
@@ -30,6 +31,7 @@ class Message extends Component {
       this.getCommentList();
     });
   };
+
   // 留言列表
   getCommentList(page = 1) {
     messageApi.list({page}).then(res => {
@@ -39,6 +41,7 @@ class Message extends Component {
       });
     });
   }
+
   // change
   change = (page) => {
     this.getCommentList(page);
@@ -54,16 +57,16 @@ class Message extends Component {
   }
 
   render() {
-    const { list, count, links } = this.state;
+    const {list, count, links} = this.state;
     return (
       <MessageContainer>
-        <Header />
+        <Header/>
         <div className="warp960 pd__top20">
           {/*message__head*/}
           <div className="message__head flex justify-center">
             <div className="box">
               <div className="content flex dir-column items-center justify-center">
-                <img src={Rem} alt="星白凛" />
+                <img src={Rem} alt="星白凛"/>
                 <h2>欢迎大家~ 这里是 星白凛 </h2>
                 <p>
                   你可以在这里把所有想对我说的话写下来，我会每一个仔细查看的~
@@ -100,16 +103,20 @@ class Message extends Component {
                 {
                   links.map((item, index) => (
                     <Col className="gutter-row" span={8} key={index}>
-                      <div className="friends_account_list_item flex items-center card-template">
+                      <a href={item.url}
+                         rel="noopener noreferrer"
+                         target="_blank" className="friends_account_list_item flex items-center card-template">
                         <div className="figcaption"/>
                         <div className="left">
-                          <img src={item.image || item.avatar} alt={item.title}/>
+                          <Img defaultImg={require("../../assets/images/headImage.png")}
+                               imageUrl={item.image || item.avatar}
+                               alt={item.title}/>
                         </div>
                         <div className="right box1">
                           <h3>{item.title}</h3>
                           <p>{item.description}</p>
                         </div>
-                      </div>
+                      </a>
                     </Col>
                   ))
                 }
@@ -132,7 +139,7 @@ class Message extends Component {
           </div>
         </div>
 
-        <BackTop />
+        <BackTop/>
       </MessageContainer>
     );
   }

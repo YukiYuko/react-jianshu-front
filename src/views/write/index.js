@@ -7,7 +7,7 @@ import UserComponent from "./user";
 import { connect } from "react-redux";
 import system from "../../api/system";
 import PublishBtn from "../../views/components/loadmore/paper";
-import { Upload, message, Spin, Icon, Tooltip } from "antd";
+import { Upload, message, Spin, Tooltip } from "antd";
 import {getStorage} from "../../untils/localstorage";
 import * as _ from 'underscore';
 import Base from "../../api/base";
@@ -78,6 +78,7 @@ class Write extends React.Component {
     if (this.props.user.editorType === "rich") {
       this.richText();
     }
+    this.resetClick();
   }
   richText() {
     const elem = this.editorElem;
@@ -89,7 +90,8 @@ class Write extends React.Component {
     this.editor.customConfig.pasteFilterStyle = false;
     this.editor.customConfig.zIndex = 3;
     this.editor.create();
-
+  }
+  resetClick() {
     window.addEventListener("click", e => {
       let _con = document.querySelector(".panel");
       if (_con) {
@@ -415,42 +417,42 @@ class Write extends React.Component {
       tags,
       cid
     } = this.state;
-
-    const controls = [
-      "bold",
-      "italic",
-      "underline",
-      "text-color",
-      "separator",
-      "link",
-      "separator"
-    ];
-    const extendControls = [
-      {
-        key: "antd-uploader",
-        type: "component",
-        component: (
-          <Upload
-            name="avatar"
-            className="avatar-uploader"
-            showUploadList={false}
-            headers={{ Authorization: token }}
-            action={`${Base.server}/upload/single`}
-            beforeUpload={beforeUpload}
-            onChange={this.uploadHandler}
-          >
-            {/* 这里的按钮最好加上type="button"，以避免在表单容器中触发表单提交，用Antd的Button组件则无需如此 */}
-            <button
-              type="button"
-              className="control-item button upload-button"
-              data-title="插入图片"
-            >
-              <Icon type="picture" theme="filled" />
-            </button>
-          </Upload>
-        )
-      }
-    ];
+    //
+    // const controls = [
+    //   "bold",
+    //   "italic",
+    //   "underline",
+    //   "text-color",
+    //   "separator",
+    //   "link",
+    //   "separator"
+    // ];
+    // const extendControls = [
+    //   {
+    //     key: "antd-uploader",
+    //     type: "component",
+    //     component: (
+    //       <Upload
+    //         name="avatar"
+    //         className="avatar-uploader"
+    //         showUploadList={false}
+    //         headers={{ Authorization: token }}
+    //         action={`${Base.server}/upload/single`}
+    //         beforeUpload={beforeUpload}
+    //         onChange={this.uploadHandler}
+    //       >
+    //         {/* 这里的按钮最好加上type="button"，以避免在表单容器中触发表单提交，用Antd的Button组件则无需如此 */}
+    //         <button
+    //           type="button"
+    //           className="control-item button upload-button"
+    //           data-title="插入图片"
+    //         >
+    //           <Icon type="picture" theme="filled" />
+    //         </button>
+    //       </Upload>
+    //     )
+    //   }
+    // ];
     return (
       <Spin spinning={loading} tip="上传中，请稍候...">
         <div className="write-warp">
@@ -602,7 +604,7 @@ class Write extends React.Component {
                       <i className="iconfont icon-tupian" />
                     </Tooltip>
                   </Upload>
-                  <span>了解社区规范</span>
+                  <span>上传图片</span>
                 </div>
               </div>
               <div className="write-warp__content__right flex box1 dir-column">

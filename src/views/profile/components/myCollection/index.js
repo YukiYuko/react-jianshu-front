@@ -1,6 +1,6 @@
 import React from "react";
 import { Empty } from "antd";
-import { withRouter } from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import { connect } from "react-redux";
 import user from "../../../../api/user";
 import { getStorage } from "../../../../untils/localstorage";
@@ -54,7 +54,7 @@ class MyCollection extends React.PureComponent {
         <div className="my-collection-post">
           {list.length ? (
             list.map((item, index) => (
-              <div className="my-collection-post-item" key={index}>
+              <Link target="_blank" to={`/post/${item.id}`} className="my-collection-post-item" key={index}>
                 <div className="my-collection-post-item-head flex ">
                   <div className="left">
                     <img src={item.images} alt="" />
@@ -74,7 +74,7 @@ class MyCollection extends React.PureComponent {
                   <i className="iconfont icon-love" />
                   <span>取消收藏</span>
                 </div>
-              </div>
+              </Link>
             ))
           ) : (
             <Empty

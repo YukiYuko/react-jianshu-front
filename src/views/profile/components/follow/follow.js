@@ -71,7 +71,7 @@ class AboutMember extends Component {
               <div id="more" className={cls("tabcontent",{"active": tab === "more"})}>
                 <h3>more</h3>
                 <div className="tab-content">
-                  这是更多功能
+                  暂无更多功能
                 </div>
               </div>
             </div>

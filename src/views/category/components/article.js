@@ -17,7 +17,7 @@ class Article extends React.PureComponent {
         </p>
         <div className="img flex justify-between">
           {
-            item.images && item.images.split(",").map((img, index) => (
+            item.images.map((img, index) => (
               <div key={index} className={cls('hover_img', [
                 {'width30': item.images.length === 3},
                 {'width48': item.images.length === 2},

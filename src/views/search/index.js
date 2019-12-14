@@ -260,7 +260,7 @@ class SearchView extends React.Component {
                           height={300}
                           placeholder={<Skeleton active />}
                         >
-                          <img src={item.images || placeHolder} alt="" />
+                          <img src={item.images[0] || placeHolder} alt="" />
                         </Lazyload>
                       </div>
                     }

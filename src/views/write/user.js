@@ -5,6 +5,7 @@ import {set_user} from "../../store/modules/user/actions";
 import {connect} from "react-redux";
 import "./user.less"
 import {persistor} from "../../store";
+import {Link} from "react-router-dom";
 
 class UserComponent extends Component {
   constructor(props) {
@@ -32,17 +33,17 @@ aaa
       <div className="user_is_login flex items-center">
         <img src={user.avatar} alt={user.nickname}/>
         <div className="user_menu">
+          {/*<div className="user_menu_item">*/}
+          {/*  <span >写文章</span>*/}
+          {/*  <span >草稿</span>*/}
+          {/*</div>*/}
           <div className="user_menu_item">
-            <span >写文章</span>
-            <span >草稿</span>
+            <Link to={`/profile/following`}>
+              <span>我的主页</span>
+            </Link>
           </div>
           <div className="user_menu_item">
-            <span >我的主页</span>
-            <span >我喜欢的</span>
-            <span >我的收藏集</span>
-          </div>
-          <div className="user_menu_item">
-            <span >设置</span>
+            {/*<span >设置</span>*/}
             <span  onClick={this.loginOut}>退出</span>
           </div>
         </div>
