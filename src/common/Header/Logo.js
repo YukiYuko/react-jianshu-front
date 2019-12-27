@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 const LogoComponent = () => (
     <Logo>
         <Link to="/">
-          <img src={LogoImage} alt="简书"/>
+          <img src={LogoImage} alt="Yuki-雪落下的声音"/>
         </Link>
     </Logo>
 );

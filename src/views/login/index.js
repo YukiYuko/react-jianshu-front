@@ -5,6 +5,7 @@ import "../../assets/style/slide.less";
 import {Divider, Icon, Tooltip} from "antd";
 import Loading from "../../common/Loading";
 import Register from "../register";
+import Logo from "../../common/Header/Logo";
 import { CSSTransition } from 'react-transition-group';
 import cls from "classnames";
 import {tips} from "../../actions";
@@ -157,6 +158,9 @@ class LoginView extends Component {
     const {loading, show} = this.state;
     return (
       <div className="login-view">
+        <div className="login-logo">
+          <Logo />
+        </div>
         <ul className="ken-burns-slideshow">
           <li className="slide" id="slide1" />
           <li className="slide" id="slide2" />

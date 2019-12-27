@@ -18,20 +18,20 @@ import "effect-dropdown-react/dist/index.css";
 class App extends Component {
   componentDidMount() {
     // 监听窗口失去焦点和获取焦点
-    window.addEventListener(
-      "blur",
-      () => {
-        document.title = "啊，我失去焦点了";
-      },
-      true
-    );
-    window.addEventListener(
-      "focus",
-      () => {
-        document.title = "啊，我获得焦点了";
-      },
-      true
-    );
+    // window.addEventListener(
+    //   "blur",
+    //   () => {
+    //     document.title = "啊，我失去焦点了";
+    //   },
+    //   true
+    // );
+    // window.addEventListener(
+    //   "focus",
+    //   () => {
+    //     document.title = "啊，我获得焦点了";
+    //   },
+    //   true
+    // );
   }
   render() {
     const authed = !!this.props.user.id; // 如果登陆之后可以利用redux修改该值(关于redux不在我们这篇文章的讨论范围之内）
