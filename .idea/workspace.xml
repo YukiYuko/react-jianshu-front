@@ -3,24 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2dec39e7-fb5c-4f97-8d56-53a76291db4b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/progress-catalog/progress-catalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/progress-catalog/progress-catalog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/category/components/article.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/category/components/article.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/Header/style.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Header/style.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/components/FriendLink.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/FriendLink.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/style.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/style.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/message/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/message/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/profile/components/follow/follow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/profile/components/follow/follow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/profile/components/myCollection/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/profile/components/myCollection/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/profile/components/myCollection/style.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/profile/components/myCollection/style.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/profile/components/profileEdit/profileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/profile/components/profileEdit/profileEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/profile/style.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/profile/style.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/search/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/search/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/write/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/write/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/write/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/write/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ajax/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ajax/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/forgot/forgot.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/forgot/forgot.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/forgot/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/forgot/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +188,8 @@
       <workItem from="1575266438163" duration="1293000" />
       <workItem from="1575450887942" duration="16000" />
       <workItem from="1576046265095" duration="2632000" />
-      <workItem from="1576226340016" duration="12558000" />
+      <workItem from="1576226340016" duration="12895000" />
+      <workItem from="1577413526721" duration="1323000" />
     </task>
     <servers />
   </component>
@@ -220,25 +206,25 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1914" height="185" key="GridCell.Tab.0.bottom" timestamp="1576226610226">
+    <state width="1899" height="181" key="GridCell.Tab.0.bottom" timestamp="1576290811496">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1914" height="185" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1576226610226" />
+    <state width="1899" height="181" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1576290811496" />
     <state width="1899" height="235" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575268096910" />
-    <state width="1914" height="185" key="GridCell.Tab.0.center" timestamp="1576226610225">
+    <state width="1899" height="181" key="GridCell.Tab.0.center" timestamp="1576290811496">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1914" height="185" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1576226610225" />
+    <state width="1899" height="181" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1576290811496" />
     <state width="1899" height="235" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575268096910" />
-    <state width="1914" height="185" key="GridCell.Tab.0.left" timestamp="1576226610225">
+    <state width="1899" height="181" key="GridCell.Tab.0.left" timestamp="1576290811496">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1914" height="185" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1576226610225" />
+    <state width="1899" height="181" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1576290811496" />
     <state width="1899" height="235" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575268096910" />
-    <state width="1914" height="185" key="GridCell.Tab.0.right" timestamp="1576226610225">
+    <state width="1899" height="181" key="GridCell.Tab.0.right" timestamp="1576290811496">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1914" height="185" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1576226610225" />
+    <state width="1899" height="181" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1576290811496" />
     <state width="1899" height="235" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575268096910" />
     <state x="387" y="163" width="1114" height="716" key="SettingsEditor" timestamp="1576048335427">
       <screen x="0" y="0" width="1920" height="1040" />

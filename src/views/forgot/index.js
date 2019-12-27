@@ -84,11 +84,11 @@ class Forgot extends React.PureComponent {
               <i className="iconfont icon-success" />
               邮件已发送成功!
             </div>
-            <div className="forgot__box__form__item">
-              <span className="shadow-warp">
-                前去确认
-              </span>
-            </div>
+            {/*<div className="forgot__box__form__item">*/}
+            {/*  <span className="shadow-warp">*/}
+            {/*    前去确认*/}
+            {/*  </span>*/}
+            {/*</div>*/}
           </div>
         )}
       </div>
