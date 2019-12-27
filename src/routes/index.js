@@ -3,8 +3,8 @@ import DetailComponent from "../views/detail";
 import TrendingComponent from "../views/trending";
 import SearchComponent from "../views/search";
 import LoginComponent from "../views/login";
-import ForgotComponent from "../views/forgot";
-import ForgotResetComponent from "../views/forgot/reset";
+import ForgotComponent from "../views/forgot/index";
+import ForgotResetComponent from "../views/forgot/reset.js";
 import AboutComponent from "../views/about";
 import MessageComponent from "../views/message";
 import CategoryComponent from "../views/category";
@@ -78,9 +78,12 @@ const routes = [
     path: "/forgot",
     component: ForgotComponent,
     requiresAuth: false,
+    exact: true,
   },
   {
     path: "/forgot/reset",
+    exact: true,
+    strict: true,
     component: ForgotResetComponent,
     requiresAuth: false,
   }

@@ -13,7 +13,7 @@ import SearchInput from "../../../common/SearchInput";
 import Img from "../../../common/Img";
 
 const Logo = require("../../../assets/images/logo.png");
-const Placeholder = require("../../../assets/images/placeholder.png");
+// const Placeholder = require("../../../assets/images/placeholder.png");
 
 class HeaderComponent extends React.Component {
   state = {

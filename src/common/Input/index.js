@@ -136,6 +136,7 @@ class Input extends PureComponent  {
           onChange={this._onChange}
           ref={this.inputRef}
           onKeyPress={this._onKeyPress}
+          autoComplete="new-password"
         />
         {
           showLabel ? <label>{placeholder}</label> : null

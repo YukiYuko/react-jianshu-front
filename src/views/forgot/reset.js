@@ -63,7 +63,7 @@ class ResetPassword extends React.PureComponent {
     // 修改密码模板
     const PasswordBox = (
       <div className="forgot__box__content">
-        <div className="forgot__box__form">
+        <form className="forgot__box__form">
           <div className="forgot__box__form__item">
             <YukiInput onChange={(v) => this.change("email",v)} type="text" placeholder="请输入邮箱" />
           </div>
@@ -78,7 +78,7 @@ class ResetPassword extends React.PureComponent {
               确认提交
             </span>
           </div>
-        </div>
+        </form>
       </div>
     );
 
