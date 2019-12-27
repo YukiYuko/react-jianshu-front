@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./style.less";
+import "./style.scss";
 import "../../assets/style/slide.less";
 import {Divider, Icon, Tooltip} from "antd";
 import Loading from "../../common/Loading";
@@ -156,6 +157,12 @@ class LoginView extends Component {
     const {loading, show} = this.state;
     return (
       <div className="login-view">
+        <ul className="ken-burns-slideshow">
+          <li className="slide" id="slide1" />
+          <li className="slide" id="slide2" />
+          <li className="slide" id="slide3" />
+          <li className="slide" id="slide4" />
+        </ul>
         {/*
         一个小小的动画
         <div className="animation3d">

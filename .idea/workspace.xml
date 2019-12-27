@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2dec39e7-fb5c-4f97-8d56-53a76291db4b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/Input/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/Input/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/forgot/reset.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/forgot/reset.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/login/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +16,7 @@
         <option value="HTML File" />
         <option value="Less File" />
         <option value="JavaScript File" />
+        <option value="SCSS File" />
       </list>
     </option>
   </component>
@@ -40,8 +38,8 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/images" />
-    <property name="list.type.of.created.stylesheet" value="Less" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/images/login" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -53,22 +51,22 @@
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="prettierjs.PrettierConfiguration.Package" value="D:\workspace\react\jianshu\node_modules\prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2018.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\react\jianshu\src\assets\images\login" />
+      <recent name="D:\workspace\react\jianshu\src\assets\images" />
+      <recent name="D:\workspace\react\jianshu\src\assets\style" />
+      <recent name="D:\workspace\react\jianshu\src\lib\progress-catalog" />
+      <recent name="D:\workspace\react\jianshu\src\untils" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\workspace\react\jianshu\src\common" />
       <recent name="D:\workspace\react\jianshu\src\views\profile\components\follow" />
       <recent name="D:\workspace\react\jianshu\src\views\profile\components\myArticle" />
       <recent name="D:\workspace\react\jianshu\src\views\profile\components" />
       <recent name="D:\workspace\react\jianshu\src\views\profile\components\profileEdit" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\workspace\react\jianshu\src\assets\images" />
-      <recent name="D:\workspace\react\jianshu\src\assets\style" />
-      <recent name="D:\workspace\react\jianshu\src\lib\progress-catalog" />
-      <recent name="D:\workspace\react\jianshu\src\untils" />
-      <recent name="D:\workspace\react\jianshu\src\views\profile\components" />
     </key>
   </component>
   <component name="RunManager">
@@ -190,7 +188,8 @@
       <workItem from="1575450887942" duration="16000" />
       <workItem from="1576046265095" duration="2632000" />
       <workItem from="1576226340016" duration="12895000" />
-      <workItem from="1577413526721" duration="2641000" />
+      <workItem from="1577413526721" duration="7123000" />
+      <workItem from="1577431816743" duration="2049000" />
     </task>
     <servers />
   </component>
