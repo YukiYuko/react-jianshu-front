@@ -120,7 +120,9 @@ const AboutWrap = styled.div`
   .about nav ul li:first-child {
     border-left: 0;
   }
-
+  .about nav ul li a {
+    color: #ffffff;
+  }
   .about nav ul li span {
     display: block;
     min-width: 7.5rem;
@@ -229,4 +231,4 @@ const AboutWrap = styled.div`
   }
 `;
 
-export { AboutWrap };
+export {AboutWrap};

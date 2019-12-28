@@ -1,9 +1,11 @@
 import React from "react";
-import { Icon } from "antd";
-import { AboutWrap } from "./style";
-import "./style.less";
-import { Round_item } from "./point";
+import {Icon} from "antd";
+import {Link} from "react-router-dom";
+import {AboutWrap} from "./style";
+import "./style.scss";
+import {Round_item} from "./point";
 import SuperMoon from "../../common/Weather/supermoon/index";
+
 // import {NavLink} from "react-router-dom";
 
 class About extends React.PureComponent {
@@ -11,7 +13,18 @@ class About extends React.PureComponent {
     document.body.classList.add("is-loading");
     setTimeout(() => {
       document.body.classList.remove("is-loading");
-    },100)
+      let rainbowText = Array.from(this.rainbow.getElementsByTagName("p"));
+      rainbowText.forEach((item) => {
+        let letters = item.textContent.split("");
+        item.textContent = "";
+        letters.forEach((letter, i) => {
+          let span = document.createElement("span");
+          span.textContent = letter;
+          span.style.animationDelay = `${-20 + i * 0.2}s`;
+          item.append(span);
+        });
+      });
+    },100);
   }
 
   ball() {
@@ -57,29 +70,27 @@ class About extends React.PureComponent {
             <Icon type="smile" />
           </div>
           <div className="content">
-            <div className="inner">
+            <div className="inner rainbow" ref={(ref) => this.rainbow = ref}>
               <h2>星白凛</h2>
-              <b>
-                <p>
-                  一个切图仔。
-                </p>
-                <p>
-                  一个FF14er。
-                </p>
-                <p>
-                  一个LOLer。
-                </p>
-                <p>
-                  一个大龄单身二次元。（不，蕾姆是我老婆！）
-                </p>
-              </b>
+              <p>
+                一个切图仔。
+              </p>
+              <p>
+                一个FF14er。
+              </p>
+              <p>
+                一个LOLer。
+              </p>
+              <p>
+                一个大龄单身二次元。（不，蕾姆是我老婆！永远喜欢金所泫.jpg）
+              </p>
             </div>
           </div>
           <nav>
             <ul>
               <li>
                 <span>
-                  <b>博客首页</b>
+                  <Link to="/">博客首页</Link>
                 </span>
               </li>
               <li>
@@ -89,7 +100,7 @@ class About extends React.PureComponent {
               </li>
               <li>
                 <span>
-                  <b>凤凰院凶真の实验室</b>
+                  <b>星白凛の实验室</b>
                 </span>
               </li>
 
