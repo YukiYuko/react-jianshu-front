@@ -11,7 +11,7 @@ import {
   Upload
 } from "antd";
 import Base from "../../../../api/base";
-import { beforeUpload } from "../../../../untils";
+import { beforeUpload, getType } from "../../../../untils";
 import YukiInput from "../../../../common/Input";
 import { EffectDropdown, EffectDropdownItem } from "effect-dropdown-react";
 import BraftEditor from "braft-editor";
@@ -31,7 +31,6 @@ class ArticleEdit extends React.Component {
     loading: false
   };
   componentDidMount() {
-    console.log(this.props.current)
   }
   componentWillReceiveProps(nextProps, nextContext) {
     if (this.props.current.id !== nextProps.current.id) {
@@ -104,9 +103,13 @@ class ArticleEdit extends React.Component {
       content:this.state.current.content,
       tags:this.state.tags,
       aid:this.state.current.aid,
-      cid:this.state.current.cid,
-      images: this.state.current.images.join(",")
+      cid:this.state.current.cid
     };
+    if (getType(this.props.current.images) === "Array") {
+      params.images = this.state.current.images.join(",")
+    } else {
+      params.images = this.state.current.images
+    }
     if (this.state.current.editorType === "md") {
 
     } else {

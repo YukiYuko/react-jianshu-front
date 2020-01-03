@@ -123,6 +123,14 @@ function toggleBody(isPin) {
   }
 }
 
+// 获取js类型
+function getType(obj){
+  let type  = typeof obj;
+  if(type !== "object"){
+    return type;
+  }
+  return Object.prototype.toString.call(obj).replace(/^\[object (\S+)]$/, '$1');
+}
 
 export {
   nFormatter,
@@ -134,5 +142,6 @@ export {
   debounce,
   beforeUpload,
   wordlimit,
-  toggleBody
+  toggleBody,
+  getType
 };

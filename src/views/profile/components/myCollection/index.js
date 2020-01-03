@@ -25,7 +25,8 @@ class MyCollection extends React.PureComponent {
     });
   }
   // 取消收藏
-  cancel = id => {
+  cancel = (e,id) => {
+    e.preventDefault();
     new Sweet_confirm({
       text: "确定要将该文章从收藏中取消吗(╥╯^╰╥)"
     })
@@ -68,7 +69,7 @@ class MyCollection extends React.PureComponent {
                   </div>
                 </div>
                 <div
-                  onClick={() => this.cancel(item.id)}
+                  onClick={(e) => this.cancel(e, item.id)}
                   className="my-collection-post-item-btn"
                 >
                   <i className="iconfont icon-love" />

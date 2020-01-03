@@ -3,7 +3,7 @@ import marked from "marked";
 import { DetailWarp, Warp960 } from "./style";
 import Back from "../../common/Back";
 import article from "../../api/article";
-import { BackTop, Tag, Tooltip } from "antd";
+import { BackTop, Tag, Tooltip, notification } from "antd";
 import cls from "classnames";
 import { connect } from "react-redux";
 import comment from "../../api/comment";
@@ -167,6 +167,18 @@ class DetailComponent extends Component {
       .then(res => {
         let uid = this.props.user.id || getStorage("uid");
         let arr = [];
+        if (res.data.status !== 2) {
+          notification.error({
+            message: '提示',
+            description:
+              '该文章正在审核或者不存在',
+            onClose: function () {
+              window.location.replace("/");
+            },
+            duration: 3
+          });
+          return;
+        }
         if (res.data.likes) {
           arr = res.data.likes.filter(item => item.uid === uid * 1);
         }
@@ -459,7 +471,7 @@ class DetailComponent extends Component {
           right={<Login user={user} />}
         />
         {/*生成的海报*/}
-        <Poster />
+        {/*<Poster />*/}
         <div id="catalog-content" />
 
         {show ? (
@@ -529,48 +541,48 @@ class DetailComponent extends Component {
               </div>
             </div>
             {/*分享*/}
-            <div className="rotate-menu">
-              <span className="share position" onClick={this.toggleShare}>
-                <i className="iconfont icon-fenxiang" />
-              </span>
-              <span
-                onClick={() => this.capture()}
-                className={cls("share1", "position", [
-                  { active: is_click_share }
-                ])}
-              >
-                <Tooltip placement="top" title="生成海报">
-                  <i className="iconfont icon-Postit" />
-                </Tooltip>
-              </span>
-              <span
-                className={cls("share2", "position", [
-                  { active: is_click_share }
-                ])}
-              >
-                <Tooltip placement="top" title="微博分享">
-                  <i className="iconfont icon-weibo" />
-                </Tooltip>
-              </span>
-              <span
-                className={cls("share3", "position", [
-                  { active: is_click_share }
-                ])}
-              >
-                <Tooltip placement="top" title="微信分享">
-                  <i className="iconfont icon-weixin" />
-                </Tooltip>
-              </span>
-              <span
-                className={cls("share4", "position", [
-                  { active: is_click_share }
-                ])}
-              >
-                <Tooltip placement="top" title="QQ分享">
-                  <i className="iconfont icon-qq" />
-                </Tooltip>
-              </span>
-            </div>
+            {/*<div className="rotate-menu">*/}
+            {/*  <span className="share position" onClick={this.toggleShare}>*/}
+            {/*    <i className="iconfont icon-fenxiang" />*/}
+            {/*  </span>*/}
+            {/*  <span*/}
+            {/*    onClick={() => this.capture()}*/}
+            {/*    className={cls("share1", "position", [*/}
+            {/*      { active: is_click_share }*/}
+            {/*    ])}*/}
+            {/*  >*/}
+            {/*    <Tooltip placement="top" title="生成海报">*/}
+            {/*      <i className="iconfont icon-Postit" />*/}
+            {/*    </Tooltip>*/}
+            {/*  </span>*/}
+            {/*  <span*/}
+            {/*    className={cls("share2", "position", [*/}
+            {/*      { active: is_click_share }*/}
+            {/*    ])}*/}
+            {/*  >*/}
+            {/*    <Tooltip placement="top" title="微博分享">*/}
+            {/*      <i className="iconfont icon-weibo" />*/}
+            {/*    </Tooltip>*/}
+            {/*  </span>*/}
+            {/*  <span*/}
+            {/*    className={cls("share3", "position", [*/}
+            {/*      { active: is_click_share }*/}
+            {/*    ])}*/}
+            {/*  >*/}
+            {/*    <Tooltip placement="top" title="微信分享">*/}
+            {/*      <i className="iconfont icon-weixin" />*/}
+            {/*    </Tooltip>*/}
+            {/*  </span>*/}
+            {/*  <span*/}
+            {/*    className={cls("share4", "position", [*/}
+            {/*      { active: is_click_share }*/}
+            {/*    ])}*/}
+            {/*  >*/}
+            {/*    <Tooltip placement="top" title="QQ分享">*/}
+            {/*      <i className="iconfont icon-qq" />*/}
+            {/*    </Tooltip>*/}
+            {/*  </span>*/}
+            {/*</div>*/}
           </div>
         </Warp960>
         <BackTop target={() => document.querySelector(".detail-container")} />
