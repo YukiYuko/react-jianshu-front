@@ -105,7 +105,7 @@ class NavComponent extends Component {
               <span onClick={() => this.toUrl(item.id)}  className={classNames("nav-item",{ 'active': cate * 1 === item.id })} key={item.id}>{item.name}</span>
             ))
           }
-          <NavLink className="nav-item" to="/about">关于&留言</NavLink>
+          <NavLink className="nav-item" to="/about">关于我</NavLink>
         </Nav>
         <InputBox>
           <SearchInput/>

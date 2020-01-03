@@ -98,7 +98,12 @@ class HeaderComponent extends React.Component {
               ))}
               <li>
                 <Link to="/message">
-                  <span>关于留言</span>
+                  <span>留言</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/about">
+                  <span>关于我</span>
                 </Link>
               </li>
             </ul>

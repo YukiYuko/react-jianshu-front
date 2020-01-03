@@ -3,7 +3,6 @@ import {Icon} from "antd";
 import {Link} from "react-router-dom";
 import {AboutWrap} from "./style";
 import "./style.scss";
-import {Round_item} from "./point";
 import SuperMoon from "../../common/Weather/supermoon/index";
 
 // import {NavLink} from "react-router-dom";
@@ -25,40 +24,6 @@ class About extends React.PureComponent {
         });
       });
     },100);
-  }
-
-  ball() {
-    let canvas = document.getElementById("canvas");
-    let ctx = canvas.getContext("2d");
-    let WIDTH = document.documentElement.clientWidth;
-    let HEIGHT = document.documentElement.clientHeight;
-    let initRoundPopulation = 80;
-    let round = [];
-    canvas.width = WIDTH;
-    canvas.height = HEIGHT;
-
-    function animate() {
-      ctx.clearRect(0, 0, WIDTH, HEIGHT);
-      for (let i in round) {
-        round[i].move(HEIGHT);
-      }
-      requestAnimationFrame(animate);
-    }
-
-    function init() {
-      for (let i = 0; i < initRoundPopulation; i++) {
-        round[i] = new Round_item(
-          i,
-          Math.random() * WIDTH,
-          Math.random() * HEIGHT,
-          ctx
-        );
-        round[i].draw();
-      }
-      animate();
-    }
-
-    init();
   }
 
   render() {
@@ -106,12 +71,12 @@ class About extends React.PureComponent {
 
               <li>
                 <span>
-                  <b>留言板</b>
+                  <Link to="/message">留言板</Link>
                 </span>
               </li>
               <li>
                 <span>
-                  <b>下载壁纸</b>
+                  <b>更多功能</b>
                 </span>
               </li>
             </ul>

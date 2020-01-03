@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import {Left, Right, HomeContainer, ViewFooter} from "./style";
 import Banner from "./components/Banner";
-import Topic from "./components/Topic";
+// import Topic from "./components/Topic";
+import Dreaming from "./components/Dreaming";
 import Vheader from "../components/Header";
 import RecommendAuthor from "./components/RecommendAuthor";
 import Article from "./components/Article";
@@ -187,7 +188,7 @@ class HomeComponent extends Component {
             </Col>
             <Col className="gutter-row" span={8}>
               <Right>
-                <Topic/>
+                <Dreaming/>
                 <RecommendAuthor/>
                 <Widget title="随机文章">
                   <RandArticle/>

@@ -48,7 +48,7 @@ class FriendLinkComponent extends React.PureComponent {
             </div>
           </a>
         ))}
-        <Link className="more" to="/message">
+        <Link className="more" to="/message" target="_blank">
           更多
         </Link>
       </div>

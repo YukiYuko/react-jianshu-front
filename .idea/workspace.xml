@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="2dec39e7-fb5c-4f97-8d56-53a76291db4b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/Header/Nav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/Header/Nav.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/about/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/about/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/about/style.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/about/style.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/about/style.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/about/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/detail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/detail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/home/components/FriendLink.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/FriendLink.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/profile/components/articleEdit/articleEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/profile/components/articleEdit/articleEdit.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +44,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/images/login" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/images" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -57,8 +61,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\workspace\react\jianshu\src\assets\images\login" />
       <recent name="D:\workspace\react\jianshu\src\assets\images" />
+      <recent name="D:\workspace\react\jianshu\src\assets\images\login" />
       <recent name="D:\workspace\react\jianshu\src\assets\style" />
       <recent name="D:\workspace\react\jianshu\src\lib\progress-catalog" />
       <recent name="D:\workspace\react\jianshu\src\untils" />
@@ -191,7 +195,7 @@
       <workItem from="1576046265095" duration="2632000" />
       <workItem from="1576226340016" duration="12895000" />
       <workItem from="1577413526721" duration="7123000" />
-      <workItem from="1577431816743" duration="9331000" />
+      <workItem from="1577431816743" duration="26803000" />
     </task>
     <servers />
   </component>
@@ -206,6 +210,12 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/../umi/jianshu-admin/node_modules/umi-plugin-dva/src/fixtures/getModel/models/models/a.jsx" />
+        <option value="$PROJECT_DIR$/../umi/jianshu-admin/node_modules/umi-plugin-dva/src/fixtures/getModel/models/models/a.js" />
+      </list>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state width="1899" height="209" key="GridCell.Tab.0.bottom" timestamp="1577434393238">
@@ -236,10 +246,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="387" y="163" width="1114" height="716" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1576048335427" />
-    <state x="626" y="242" width="667" height="556" key="find.popup" timestamp="1576290280221">
+    <state x="626" y="242" width="667" height="556" key="find.popup" timestamp="1578032021092">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="626" y="242" width="667" height="556" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1576290280221" />
+    <state x="626" y="242" width="667" height="556" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578032021092" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1576048183100">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

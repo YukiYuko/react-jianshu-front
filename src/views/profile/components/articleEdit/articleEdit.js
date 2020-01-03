@@ -27,13 +27,17 @@ class ArticleEdit extends React.Component {
   state = {
     token: getStorage("token"),
     current: this.props.current,
+    tags: this.props.current.tags.map((item) => item.tagId),
     loading: false
   };
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(this.props.current)
+  }
   componentWillReceiveProps(nextProps, nextContext) {
     if (this.props.current.id !== nextProps.current.id) {
       this.setState({
-        current: nextProps.current
+        current: nextProps.current,
+        tags: nextProps.current.tags.map((item) => item.tagId)
       });
     }
   }
@@ -80,7 +84,11 @@ class ArticleEdit extends React.Component {
   };
   // 监听 标签
   onChangeLabel = v => {
-    this.updateCurrent("tags", v);
+    // console.log(v)
+    // this.updateCurrent("tags", v);
+    this.setState({
+      tags: v
+    })
   };
   // 更新state
   updateCurrent(key, value) {
@@ -94,9 +102,10 @@ class ArticleEdit extends React.Component {
       id: this.state.current.id,
       title:this.state.current.title,
       content:this.state.current.content,
-      tags:this.state.current.tags,
+      tags:this.state.tags,
       aid:this.state.current.aid,
-      cid:this.state.current.cid
+      cid:this.state.current.cid,
+      images: this.state.current.images.join(",")
     };
     if (this.state.current.editorType === "md") {
 
@@ -116,7 +125,7 @@ class ArticleEdit extends React.Component {
   };
 
   render() {
-    const { token, current, loading } = this.state;
+    const { token, current, loading, tags } = this.state;
     const { category, labels } = this.props;
     const current_cid = this.props.category.filter(
       item => item.id === current.cid
@@ -224,7 +233,8 @@ class ArticleEdit extends React.Component {
             <span className="article-edit-item-label">标签:</span>
             <div className="article-edit-item-input box1">
               <Checkbox.Group
-                value={current.tags.map((tag) => tag.tagId)}
+                // defaultValue={tags}
+                value={tags}
                 style={{ width: "100%" }}
                 onChange={this.onChangeLabel}
               >

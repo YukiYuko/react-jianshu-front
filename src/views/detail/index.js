@@ -295,7 +295,21 @@ class DetailComponent extends Component {
       }
     );
   }
-
+  setCode() {
+    // 生成二维码
+    let arr = [1555,3253,2001,4592,1340,3067,1314,3255,3568,4473,3269,1364,1452,3132,1449,1390,3225,1491,1509,4491,3250];
+    let url = "http://bikego.com/public/app.php/biz/vendor/touristCertificate?vendorId=";
+    arr.forEach((item,index) => {
+      new Qrcode(document.querySelector(".set_code"+index), {
+        text: url + item,
+        width: 128,
+        height: 128,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: Qrcode.CorrectLevel.H
+      });
+    })
+  }
   // 生成截图
   async capture() {
     if (!this.code) {
@@ -444,7 +458,6 @@ class DetailComponent extends Component {
           title={detail.title}
           right={<Login user={user} />}
         />
-
         {/*生成的海报*/}
         <Poster />
         <div id="catalog-content" />
