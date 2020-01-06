@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2dec39e7-fb5c-4f97-8d56-53a76291db4b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/untils/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/untils/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/detail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/detail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/profile/components/articleEdit/articleEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/profile/components/articleEdit/articleEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/profile/components/myCollection/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/profile/components/myCollection/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/home/components/RecommendAuthor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/RecommendAuthor.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +190,7 @@
       <workItem from="1576046265095" duration="2632000" />
       <workItem from="1576226340016" duration="12895000" />
       <workItem from="1577413526721" duration="7123000" />
-      <workItem from="1577431816743" duration="29011000" />
+      <workItem from="1577431816743" duration="31451000" />
     </task>
     <servers />
   </component>

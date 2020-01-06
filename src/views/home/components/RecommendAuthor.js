@@ -23,14 +23,14 @@ class RecommendAuthorComponent extends Component {
 
   // 获取推荐作者
   getData = () => {
-    user.list().then((res) => {
+    user.list({uid: this.props.user.id}).then((res) => {
       this.setState(() => ({
         authors: res.data
       }));
     })
   };
   // 关注作者
-  onFollow = (aid) => {
+  onFollow = (item, status) => {
     if (!this.props.user.id) {
       public_confirm("您还未登录，现在去登录吗").then(() => {
         this.props.history.push({
@@ -49,8 +49,28 @@ class RecommendAuthorComponent extends Component {
       });
       return false;
     }
-    user.follow({uid,aid}).then(() => {
-      tips("关注成功", "success");
+    user.follow({uid, aid: item.id, status}).then(() => {
+      let new_authors = [...this.state.authors];
+      if (status === 2) {
+        tips("取消关注成功", "success");
+        new_authors.forEach((author) => {
+          if (author.id === item.id) {
+            author.is_follow = 0;
+            author.followNum-=1;
+          }
+        });
+      } else {
+        tips("关注成功", "success");
+        new_authors.forEach((author) => {
+          if (author.id === item.id) {
+            author.is_follow = 1;
+            author.followNum+=1;
+          }
+        });
+      }
+      this.setState({
+        authors: new_authors
+      })
     })
   };
 
@@ -77,10 +97,15 @@ class RecommendAuthorComponent extends Component {
                     <span>{nFormatter(item.followNum || 0)} 粉丝</span>
                   </p>
                 </div>
-                <div onClick={() => this.onFollow(item.id)} className="author-list-item-follow">
-                  <i>+</i>
-                  关注
-                </div>
+                {
+                  item.is_follow ? <div className="author-list-item-follow" onClick={() => this.onFollow(item, 2)}>
+                    取消关注
+                  </div> : <div onClick={() => this.onFollow(item, 1)} className="author-list-item-follow">
+                    <i>+</i>
+                    关注
+                  </div>
+                }
+
               </div>
             ))
           }

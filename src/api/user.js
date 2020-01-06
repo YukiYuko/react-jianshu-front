@@ -27,7 +27,7 @@ const user = {
   getUser() {
     return ajax.get(`${base.server}/${prefix}/current`);
   },
-  // 关注用户
+  // 关注/取消关注 用户:  status: 1 关注，2 取消关注
   follow(params) {
     return ajax.post(`${base.server}/${prefix}/follow`, params);
   },
