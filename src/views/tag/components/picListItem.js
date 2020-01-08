@@ -23,7 +23,7 @@ function PicListItem({tag_type, data, onLike, index}) {
         <div className="text">
           <img className="avatar" src={data.avatar} alt="" />
           <div className="text-box">
-            <h3>{data.title}</h3>
+            <h3 className="ellipsis">{data.title}</h3>
             <p>
               <span>作者: {data.createBy}</span>
               <span>时间: {formatTime(data.createdAt)}</span>

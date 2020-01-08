@@ -33,16 +33,25 @@ class LoadMore extends React.PureComponent {
       loading: false
     })
   };
+  _init = () => {
+    this.setState({
+      loading: false,
+      hasMore: true
+    })
+  };
   render() {
     const {initialLoad = true} = this.props;
     return (
+      // 给这个加个key 是为了切换的时候保持最新的page
       <InfiniteScroll
         initialLoad={initialLoad}
         pageStart={0}
         loadMore={this.handleInfiniteOnLoad}
         hasMore={!this.state.loading && this.state.hasMore}
         useWindow={this.props.useWindow}
+        threshold={50}
         style={{width: "100%"}}
+        key={this.props.random}
       >
         {this.props.children}
         {this.state.loading && this.state.hasMore && (

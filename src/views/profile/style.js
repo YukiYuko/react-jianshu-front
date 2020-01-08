@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { grayBorderColor } from "../../assets/style/var";
+import {grayBorderColor} from "../../assets/style/var";
 
 const ProfileContainer = styled.div`
   background-color: #f5f5f5;
@@ -45,6 +45,12 @@ const CenterContainer = styled.div`
         width: 90px;
         height: 90px;
         border-radius: 50%;
+        &:hover {
+          transform: rotate(666turn);
+          transition-delay: 500ms;
+          transition-duration: 59s;
+          transition-timing-function: cubic-bezier(.34, 0, .84, 1);
+        }
       }
     }
     &_mess {

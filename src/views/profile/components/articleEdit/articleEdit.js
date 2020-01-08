@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import {
   Button,
   Checkbox,
@@ -11,12 +11,12 @@ import {
   Upload
 } from "antd";
 import Base from "../../../../api/base";
-import { beforeUpload, getType } from "../../../../untils";
+import {beforeUpload, getType} from "../../../../untils";
 import YukiInput from "../../../../common/Input";
-import { EffectDropdown, EffectDropdownItem } from "effect-dropdown-react";
+import {EffectDropdown, EffectDropdownItem} from "effect-dropdown-react";
 import BraftEditor from "braft-editor";
 import Vbutton from "../../../../common/Button";
-import { getStorage } from "../../../../untils/localstorage";
+import {getStorage} from "../../../../untils/localstorage";
 import SimpleMDE from "react-simplemde-editor";
 import article from "../../../../api/article";
 import {tips} from "../../../../actions";
@@ -30,8 +30,10 @@ class ArticleEdit extends React.Component {
     tags: this.props.current.tags.map((item) => item.tagId),
     loading: false
   };
+
   componentDidMount() {
   }
+
   componentWillReceiveProps(nextProps, nextContext) {
     if (this.props.current.id !== nextProps.current.id) {
       this.setState({
@@ -44,13 +46,13 @@ class ArticleEdit extends React.Component {
   // 监听文本输入
   changeValue = v => {
     this.setState({
-      current: { ...this.state.current, title: v }
+      current: {...this.state.current, title: v}
     });
   };
   // 上传头图
   handleAvatarUpload = info => {
     if (info.file.status === "uploading") {
-      this.setState({ loading: true });
+      this.setState({loading: true});
       return;
     }
     if (info.file.status === "done") {
@@ -89,37 +91,42 @@ class ArticleEdit extends React.Component {
       tags: v
     })
   };
+
   // 更新state
   updateCurrent(key, value) {
     this.setState({
-      current: { ...this.state.current, [key]: value }
+      current: {...this.state.current, [key]: value}
     });
   }
+
   // 保存
-  save = () => {
+  save = async () => {
     let params = {
       id: this.state.current.id,
-      title:this.state.current.title,
-      content:this.state.current.content,
-      tags:this.state.tags,
-      aid:this.state.current.aid,
-      cid:this.state.current.cid
+      title: this.state.current.title,
+      content: this.state.current.content,
+      tags: this.state.tags,
+      aid: this.state.current.aid,
+      cid: this.state.current.cid
     };
     if (getType(this.props.current.images) === "Array") {
       params.images = this.state.current.images.join(",")
     } else {
-      params.images = this.state.current.images
+      params.images = this.state.current.images || [];
     }
     if (this.state.current.editorType === "md") {
 
     } else {
       params.content = params.content.toHTML();
     }
-    article.articleUpdate(params).then(() => {
+    try {
+      await article.articleUpdate(params);
+      let update_Data = await article.articleDetail(params.id);
       tips("更新成功, 需要重新等待管理员审核");
       this.closeEdit();
-      this.props.update();
-    })
+      this.props.update(update_Data.data);
+    } catch (e) {
+    }
   };
 
   // 关闭窗口
@@ -128,8 +135,8 @@ class ArticleEdit extends React.Component {
   };
 
   render() {
-    const { token, current, loading, tags } = this.state;
-    const { category, labels } = this.props;
+    const {token, current, loading, tags} = this.state;
+    const {category, labels} = this.props;
     const current_cid = this.props.category.filter(
       item => item.id === current.cid
     );
@@ -151,7 +158,7 @@ class ArticleEdit extends React.Component {
             name="avatar"
             className="avatar-uploader"
             showUploadList={false}
-            headers={{ Authorization: token }}
+            headers={{Authorization: token}}
             action={`${Base.server}/upload/single`}
             beforeUpload={beforeUpload}
             onChange={this.uploadHandler}
@@ -162,7 +169,7 @@ class ArticleEdit extends React.Component {
               className="control-item button upload-button"
               data-title="插入图片"
             >
-              <Icon type="picture" theme="filled" />
+              <Icon type="picture" theme="filled"/>
             </button>
           </Upload>
         )
@@ -177,7 +184,7 @@ class ArticleEdit extends React.Component {
             <div className="article-edit-item-input box1 flex items-center">
               <img
                 className="avatar"
-                src={current.images || placeholder}
+                src={current.images[0] || placeholder}
                 alt={current.title}
               />
               <div className="upload">
@@ -185,7 +192,7 @@ class ArticleEdit extends React.Component {
                 <Upload
                   name="avatar"
                   showUploadList={false}
-                  headers={{ Authorization: token }}
+                  headers={{Authorization: token}}
                   action={`${Base.server}/upload/single`}
                   beforeUpload={beforeUpload}
                   onChange={this.handleAvatarUpload}
@@ -238,7 +245,7 @@ class ArticleEdit extends React.Component {
               <Checkbox.Group
                 // defaultValue={tags}
                 value={tags}
-                style={{ width: "100%" }}
+                style={{width: "100%"}}
                 onChange={this.onChangeLabel}
               >
                 <Row>

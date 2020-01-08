@@ -49,10 +49,11 @@ const user = {
     });
   },
   // 收藏的文章
-  getCollection(id) {
+  getCollection({uid, page}) {
     return ajax.get(`${base.server}/${prefix}/collection`, {
       params: {
-        id
+        id: uid,
+        page
       }
     });
   },

@@ -14,7 +14,6 @@ class MyFans extends React.PureComponent {
     page: 1
   };
   componentDidMount() {
-
   }
 
   getData = () => {

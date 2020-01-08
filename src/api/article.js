@@ -29,7 +29,7 @@ const article = {
   },
   // 文章列表
   articleList(params) {
-    return ajax.post(`${base.server}/${prefix}/list`, qs.stringify(params));
+    return ajax.post(`${base.server}/${prefix}/list`, params);
   },
   // 发表文章
   articleCreate(params) {
