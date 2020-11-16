@@ -200,7 +200,7 @@ class HomeComponent extends Component {
                   <Widget title="友情链接">
                     <FriendLink/>
                   </Widget>
-                  <Widget title="站点统计(暂时未做)">
+                  <Widget title="站点统计">
                     <Census/>
                   </Widget>
                 </Affix>

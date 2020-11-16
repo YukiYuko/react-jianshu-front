@@ -6,6 +6,12 @@ class ProfileItem extends React.PureComponent {
     value: "",
     editing: false
   };
+  componentDidMount() {
+    this.setState({
+      value: this.props.defaultValue
+    });
+  }
+
   onChange = e => {
     this.setState({
       value: e.target.value
@@ -22,6 +28,7 @@ class ProfileItem extends React.PureComponent {
   };
   save = () => {
     if (this.props.filed === "username") {
+      console.log(this.state.value);
       if (!this.state.value.trim()) {
         tips("用户名不能为空哦~", "error");
         return false;

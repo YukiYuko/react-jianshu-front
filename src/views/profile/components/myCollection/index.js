@@ -9,6 +9,7 @@ import {formatTime} from "../../../../untils";
 import {Sweet_confirm, successModal} from "../../../../actions";
 import article from "../../../../api/article";
 import LoadMore from "../../../../common/LoadMore";
+import Img from "../../../../common/Img";
 
 class MyCollection extends React.PureComponent {
   state = {
@@ -77,7 +78,9 @@ class MyCollection extends React.PureComponent {
               <Link target="_blank" to={`/post/${item.id}`} className="my-collection-post-item" key={index}>
                 <div className="my-collection-post-item-head flex ">
                   <div className="left">
-                    <img src={item.images} alt=""/>
+                    {/*<img src={item.images} alt=""/>*/}
+                    <Img defaultImg={require("../../../../assets/images/placeholder.png")} imageUrl={item.images}
+                         alt={item.title}/>
                   </div>
                   <div className="right box1">
                     <h2>{item.title}</h2>

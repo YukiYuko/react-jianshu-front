@@ -2,6 +2,7 @@ import React from "react";
 import {Icon} from "antd";
 import {Link} from "react-router-dom";
 import {AboutWrap} from "./style";
+import { tips } from "../../actions";
 import "./style.less";
 import SuperMoon from "../../common/Weather/supermoon/index";
 
@@ -25,6 +26,10 @@ class About extends React.PureComponent {
       });
     },100);
   }
+
+  noMore = () => {
+    tips("别点啦！还什么都没有")
+  };
 
   render() {
     return (
@@ -58,12 +63,12 @@ class About extends React.PureComponent {
                   <Link to="/">博客首页</Link>
                 </span>
               </li>
-              <li>
+              <li onClick={this.noMore}>
                 <span>
                   <b>番剧乐园</b>
                 </span>
               </li>
-              <li>
+              <li onClick={this.noMore}>
                 <span>
                   <b>星白凛の实验室</b>
                 </span>
@@ -74,7 +79,7 @@ class About extends React.PureComponent {
                   <Link to="/message">留言板</Link>
                 </span>
               </li>
-              <li>
+              <li onClick={this.noMore}>
                 <span>
                   <b>更多功能</b>
                 </span>
