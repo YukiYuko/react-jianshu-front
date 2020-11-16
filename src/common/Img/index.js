@@ -16,6 +16,7 @@ class Img extends React.Component {
   }
 
   handleImageErrored() {
+    console.log(1111);
     this.setState({
       imageUrl: this.props.defaultImg
     });

@@ -11,13 +11,22 @@
     }
   }
 }
-@keyframes rainbow {
-  @for $i from 0 through 20 {
-    #{percentage($i * 0.05)} {
-      color: hsl(random(360%), 75, 75);
-    }
-  }
-}
+//@keyframes rainbow {
+//  .loop(@n, @i: 1) when (@i =< @n) {
+//    percentage(@i * 0.05) {
+//      color: hsl(random(360%), 75, 75);
+//    }
+//    .loop(@n, (@i + 1));
+//  }
+//}
+//percentage(@i * 0.05)
+//@keyframes rainbow {
+//  @for $i from 0 through 20 {
+//    #{percentage($i * 0.05)} {
+//      color: hsl(random(360%), 75, 75);
+//    }
+//  }
+//}
 @keyframes shining {
   from {
     text-shadow: 0 0 6px rgba(182, 211, 207, 0.9),

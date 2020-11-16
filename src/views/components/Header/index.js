@@ -124,14 +124,14 @@ class HeaderComponent extends React.Component {
               </div>
               <div className="cd-search-suggestions">
                 <div className="news">
-                  <h3>热门新闻</h3>
+                  <h3>热门文章</h3>
                   <ul>
                     {
                       hot.map((item, index) => (
                         <li key={index}>
                           <Link target="_blank" to={`/post/${item.id}`}>
                             <div className="image-wrapper">
-                              <Img defaultImg={require("../../../assets/images/headImage.png")} imageUrl={item.images[0]}
+                              <Img defaultImg={require("../../../assets/images/headImage.png")} imageUrl={item.images[0] || ""}
                                    alt={item.title}/>
                             </div>
                             <h4>

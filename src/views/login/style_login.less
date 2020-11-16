@@ -1,6 +1,6 @@
 .ken-burns-slideshow {
-  $total-slides: 4;
-  $interval: 6s;
+  @total-slides: 4;
+  @interval: 6s;
   position: fixed;
   z-index: -2;
   margin: 0;
@@ -19,12 +19,20 @@
     background-position: center;
     opacity: 0;
     transform: scale(1.2);
-    animation: kenburns $total-slides * $interval linear infinite;
-    @for $i from 1 through $total-slides {
-      &:nth-child(#{$i}) {
-        animation-delay: $interval * ($i - 1);
+    animation: kenburns @total-slides * @interval linear infinite;
+    //@for $i from 1 through $total-slides {
+    //  &:nth-child(#{$i}) {
+    //    animation-delay: $interval * ($i - 1);
+    //  }
+    //}
+    .loop(@n, @i: 1) when (@i =< @n) {
+      &:nth-child(@{i}) {
+        animation-delay: @interval * (@i - 1);
       }
+
+      .loop(@n, (@i + 1));
     }
+    .loop(@total-slides);
   }
 }
 

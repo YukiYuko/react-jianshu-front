@@ -3,7 +3,7 @@ import marked from "marked";
 import { DetailWarp, Warp960 } from "./style";
 import Back from "../../common/Back";
 import article from "../../api/article";
-import { BackTop, Tag, Tooltip, notification } from "antd";
+import { BackTop, Tag, notification } from "antd";
 import cls from "classnames";
 import { connect } from "react-redux";
 import comment from "../../api/comment";
@@ -14,7 +14,7 @@ import { getStorage } from "../../untils/localstorage";
 import CommentTpl from "../../common/Comment";
 import { formatTime } from "../../untils/index";
 // import "../../assets/style/output.css";
-import Poster from "../../common/Poster";
+// import Poster from "../../common/Poster";
 import { drawCanvas } from "../../untils/poster";
 import Qrcode from "qrcodejs2";
 import Overlay from "../../common/Overlay";
@@ -458,7 +458,6 @@ class DetailComponent extends Component {
       text,
       like,
       all_likes,
-      is_click_share,
       posterImg,
       show
     } = this.state;

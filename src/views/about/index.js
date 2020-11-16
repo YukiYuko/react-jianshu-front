@@ -2,7 +2,7 @@ import React from "react";
 import {Icon} from "antd";
 import {Link} from "react-router-dom";
 import {AboutWrap} from "./style";
-import "./style.scss";
+import "./style.less";
 import SuperMoon from "../../common/Weather/supermoon/index";
 
 // import {NavLink} from "react-router-dom";

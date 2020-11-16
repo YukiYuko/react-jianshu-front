@@ -17,6 +17,10 @@ const system = {
   // 友情链接
   LinkList(params) {
     return ajax.post(`${base.server}/${prefix}/link/list`, params);
+  },
+  // 获取系统统计
+  count() {
+    return ajax.get(`${base.server}/${prefix}/count`);
   }
 };
 

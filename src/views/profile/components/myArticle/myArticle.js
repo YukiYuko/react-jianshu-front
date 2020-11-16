@@ -16,7 +16,7 @@ import "./style.less";
 import system from "../../../../api/system";
 import ArticleEdit from "../articleEdit/articleEdit";
 import LoadMore from "../../../../common/LoadMore";
-import FollowTemplate from "../followTemplate";
+// import FollowTemplate from "../followTemplate";
 
 const placeholder = require("../../../../assets/images/placeholder.png");
 

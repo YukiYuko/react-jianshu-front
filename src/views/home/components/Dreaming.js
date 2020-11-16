@@ -1,5 +1,5 @@
 import React from "react";
-import "./Dreaming.scss";
+import "./Dreaming.less";
 const Dreaming = require("../../../assets/images/dreaming.jpg");
 
 const DreamingComponent = () => (

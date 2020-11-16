@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "./style.less";
-import "./style.scss";
+import "./style_login.less";
 import "../../assets/style/slide.less";
 import {Divider, Icon, Tooltip} from "antd";
 import Loading from "../../common/Loading";
