@@ -22,7 +22,7 @@
     "papercss": "^1.6.1",
     "parallax-js": "^3.1.0",
     "qrcodejs2": "^0.0.2",
-    "qs": "^6.6.0",
+    "qs": "^6.6.1",
     "react": "^16.7.0",
     "react-aplayer": "^1.0.0",
     "react-app-rewire-eslint": "^0.2.3",
